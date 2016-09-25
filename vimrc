@@ -24,6 +24,9 @@ Plugin 'bling/vim-airline'
 " Ack support
 Plugin 'mileszs/ack.vim'
 
+" Go support
+Plugin 'fatih/vim-go'
+
 "Syntax check
 "Plugin 'scrooloose/syntastic'
 
@@ -89,10 +92,17 @@ vnoremap <c-r> "hy:%s/<c-r>h//gc<left><left><left>
 set ruler
 
 " Precede each line with its line number
-set nu
+set number
+
+" Highlight the screen line of the cursor
+set cursorline
 
 " Syntax highlighting
 syntax on
+
+" Solarized Dark theme
+colorscheme solarized
+set background=dark
 
 " Highlight lines that go over 80 characters
 match Error /\%81v.\+/
@@ -142,6 +152,14 @@ augroup pythongroup
     autocmd BufNewFile,Bufread *.py set autoindent
 augroup END
 
+"" golang override
+augroup golanggroup
+    autocmd!
+    autocmd BufNewFile,Bufread *.go set tabstop=8
+    autocmd BufNewFile,Bufread *.go set softtabstop=8
+    autocmd BufNewFile,Bufread *.go set shiftwidth=8
+    autocmd BufNewFile,Bufread *.go set autoindent
+augroup END
 
 """"""""""""""""""""""""""""
 "       Movement
@@ -160,6 +178,13 @@ nnoremap <c-k> <c-w>k
 
 " Ctrl + l: Move right
 nnoremap <c-l> <c-w>l
+
+""""""""""""""""""""""""""""
+"       Text Editing
+""""""""""""""""""""""""""""
+
+" Remove trailing whitespaces: Leader + W (whitespaces)
+nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<cr>
 
 """"""""""""""""""""""""""""
 "     Airline-specific
@@ -181,7 +206,7 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 " Don't jump to first result
 cnoreabbrev Ack Ack!
 
-" Don't jump to first result
+" Search: Leader + a (ack)
 nnoremap <leader>a :Ack!<space>
 
 """"""""""""""""""""""""""""
