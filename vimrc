@@ -31,6 +31,9 @@ Plugin 'fatih/vim-go'
 " Git integration
 Plugin 'tpope/vim-fugitive'
 
+" Airline-like bash prompt
+Plugin 'edkolev/promptline.vim'
+
 "Syntax check
 "Plugin 'scrooloose/syntastic'
 
@@ -52,6 +55,9 @@ let mapleader = "\<Space>"
 
 " Map local leader to backslash
 let maplocalleader = "\\"
+
+" Delete over line breaks, automatically inserted indentation, etc.
+set backspace=indent,eol,start
 
 " Enable multiple unsaved buffers
 set hidden
@@ -184,9 +190,6 @@ nnoremap <c-l> <c-w>l
 " Remove trailing whitespaces: Leader + W (whitespaces)
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<cr>
 
-" Delete over line breaks, automatically inserted indentation, etc.
-set backspace=indent,eol,start
-
 """"""""""""""""""""""""""""
 "     Airline-specific
 """"""""""""""""""""""""""""
@@ -225,6 +228,19 @@ nnoremap <leader>t :NERDTree<cr>
 
 " Ignore .pyc files
 let NERDTreeIgnore = ['\.pyc$']
+
+""""""""""""""""""""""""""""
+"     Promptline-specific
+""""""""""""""""""""""""""""
+
+" Shell prompt: Vitualenv > hostname > user > cwd > git branch > exit code
+
+let g:promptline_preset = {
+        \'a' : [ promptline#slices#python_virtualenv() ],
+        \'b' : [ promptline#slices#host({ 'only_if_ssh': 1 }), promptline#slices#user() ],
+        \'c' : [ promptline#slices#cwd() ],
+        \'y' : [ promptline#slices#vcs_branch() ],
+        \'warn' : [ promptline#slices#last_exit_code() ]}
 
 """"""""""""""""""""""""""""
 "         Go
