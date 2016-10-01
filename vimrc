@@ -20,12 +20,16 @@ Plugin 'ctrlpvim/ctrlp.vim'
 
 " Nice status bar
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 " Ack support
 Plugin 'mileszs/ack.vim'
 
 " Go support
 Plugin 'fatih/vim-go'
+
+" Git integration
+Plugin 'tpope/vim-fugitive'
 
 "Syntax check
 "Plugin 'scrooloose/syntastic'
@@ -45,6 +49,9 @@ set encoding=utf-8
 
 " Map leader to space
 let mapleader = "\<Space>"
+
+" Map local leader to backslash
+let maplocalleader = "\\"
 
 " Enable multiple unsaved buffers
 set hidden
@@ -74,7 +81,7 @@ set smartcase
 " so far, matches.  The matched string is highlighted.
 set incsearch
 
-"	When there is a previous search pattern, highlight all its matches.
+" When there is a previous search pattern, highlight all its matches.
 set hlsearch
 
 " Disable highlight after search is done: Leader + space
@@ -125,41 +132,32 @@ set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 """"""""""""""""""""""""""""
 "" General
 
-" Number of spaces that a <Tab> in the file counts for.
+" tabstop: Number of spaces that a <Tab> in the file counts for.
 set tabstop=2
 
-" Number of spaces that a <Tab> counts for while performing editing operations,
-" like inserting a <Tab> or using <BS>.
+" softtabstop: Number of spaces that a <Tab> counts for while performing
+" editing operations, like inserting a <Tab> or using <BS>.
 set softtabstop=2
 
-" Number of spaces to use for each step of (auto)indent. Used for |'cindent'|,
-" |>>|, |<<|, etc.
+" shiftwidth: Number of spaces to use for each step of (auto)indent. Used for
+" |'cindent'|, |>>|, |<<|, etc.
 set shiftwidth=2
 
-" Spaces are used instead of tab characters
+" expandtab: Spaces are used instead of tab characters
 set expandtab
 
 " A <BS> will delete a 'shiftwidth' worth of space at the start of the line. Be
 " smart when using tabs.
 set smarttab
 
-"" Python override
-augroup pythongroup
-    autocmd!
-    autocmd BufNewFile,Bufread *.py set tabstop=4
-    autocmd BufNewFile,Bufread *.py set softtabstop=4
-    autocmd BufNewFile,Bufread *.py set shiftwidth=4
-    autocmd BufNewFile,Bufread *.py set autoindent
-augroup END
+" Copy indent from current line when starting a new line
+set autoindent
 
-"" golang override
-augroup golanggroup
-    autocmd!
-    autocmd BufNewFile,Bufread *.go set tabstop=8
-    autocmd BufNewFile,Bufread *.go set softtabstop=8
-    autocmd BufNewFile,Bufread *.go set shiftwidth=8
-    autocmd BufNewFile,Bufread *.go set autoindent
-augroup END
+" Go, Makefile
+autocmd FileType go,make setlocal ts=8 sts=8 sw=8 noexpandtab
+
+" Python
+autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
 
 """"""""""""""""""""""""""""
 "       Movement
@@ -186,6 +184,9 @@ nnoremap <c-l> <c-w>l
 " Remove trailing whitespaces: Leader + W (whitespaces)
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<cr>
 
+" Delete over line breaks, automatically inserted indentation, etc.
+set backspace=indent,eol,start
+
 """"""""""""""""""""""""""""
 "     Airline-specific
 """"""""""""""""""""""""""""
@@ -193,8 +194,14 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<cr>
 " Airline status bar even when no open tabs/splits
 set laststatus=2
 
+" Solarized theme
+let g:airline_theme='solarized'
+
 " Enable tabline
 " let g:airline#extensions#tabline#enabled = 1
+
+" Use powerline fonts
+let g:airline_powerline_fonts=1
 
 """"""""""""""""""""""""""""
 "       Ack-specific
@@ -218,3 +225,26 @@ nnoremap <leader>t :NERDTree<cr>
 
 " Ignore .pyc files
 let NERDTreeIgnore = ['\.pyc$']
+
+""""""""""""""""""""""""""""
+"         Go
+""""""""""""""""""""""""""""
+
+augroup filetype_go
+
+" Remove previous configuration
+    autocmd!
+
+" Run Go: Leader + r (run)
+    autocmd FileType go nmap <localleader>r <Plug>(go-run)
+
+" Build Go: Leader + b (run)
+    autocmd FileType go nmap <localleader>b <Plug>(go-build)
+
+" Test Go: Leader + t (test)
+    autocmd FileType go nmap <localleader>t <Plug>(go-test)
+
+" Coverage Go: Leader + c (coverage)
+    autocmd FileType go nmap <localleader>c <Plug>(go-coverage)
+
+augroup END
