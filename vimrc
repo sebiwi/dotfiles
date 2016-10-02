@@ -131,26 +131,11 @@ set splitbelow
 set list
 
 " Show trailing whitespaces as dashes
-set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+set listchars=tab:▸\ ,trail:-,extends:>,precedes:<,nbsp:+
 
 """"""""""""""""""""""""""""
 "     Text, tab, indent
 """"""""""""""""""""""""""""
-"" General
-
-" tabstop: Number of spaces that a <Tab> in the file counts for.
-set tabstop=2
-
-" softtabstop: Number of spaces that a <Tab> counts for while performing
-" editing operations, like inserting a <Tab> or using <BS>.
-set softtabstop=2
-
-" shiftwidth: Number of spaces to use for each step of (auto)indent. Used for
-" |'cindent'|, |>>|, |<<|, etc.
-set shiftwidth=2
-
-" expandtab: Spaces are used instead of tab characters
-set expandtab
 
 " A <BS> will delete a 'shiftwidth' worth of space at the start of the line. Be
 " smart when using tabs.
@@ -158,6 +143,15 @@ set smarttab
 
 " Copy indent from current line when starting a new line
 set autoindent
+
+
+" Default
+if &filetype==""
+  setlocal ts=2 sts=2 sw=2 expandtab
+endif
+
+" Yaml
+autocmd FileType yaml,default setlocal ts=2 sts=2 sw=2 expandtab
 
 " Go, Makefile
 autocmd FileType go,make setlocal ts=8 sts=8 sw=8 noexpandtab
