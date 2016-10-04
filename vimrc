@@ -30,9 +30,10 @@ Plugin 'fatih/vim-go'
 
 " Git integration
 Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 
 " Airline-like bash prompt
-Plugin 'edkolev/promptline.vim'
+"Plugin 'edkolev/promptline.vim'
 
 "Syntax check
 "Plugin 'scrooloose/syntastic'
@@ -157,7 +158,7 @@ autocmd FileType yaml,default setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType go,make setlocal ts=8 sts=8 sw=8 noexpandtab
 
 " Python
-autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
+autocmd FileType python,sh setlocal ts=4 sts=4 sw=4 expandtab
 
 """"""""""""""""""""""""""""
 "       Movement
@@ -229,12 +230,12 @@ let NERDTreeIgnore = ['\.pyc$']
 
 " Shell prompt: Vitualenv > hostname > user > cwd > git branch > exit code
 
-let g:promptline_preset = {
-        \'a' : [ promptline#slices#python_virtualenv() ],
-        \'b' : [ promptline#slices#host({ 'only_if_ssh': 1 }), promptline#slices#user() ],
-        \'c' : [ promptline#slices#cwd() ],
-        \'y' : [ promptline#slices#vcs_branch() ],
-        \'warn' : [ promptline#slices#last_exit_code() ]}
+"let g:promptline_preset = {
+"        \'a' : [ promptline#slices#python_virtualenv() ],
+"        \'b' : [ promptline#slices#host({ 'only_if_ssh': 1 }), promptline#slices#user() ],
+"        \'c' : [ promptline#slices#cwd() ],
+"        \'y' : [ promptline#slices#vcs_branch() ],
+"        \'warn' : [ promptline#slices#last_exit_code() ]}
 
 """"""""""""""""""""""""""""
 "         Go

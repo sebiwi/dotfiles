@@ -30,8 +30,8 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 vim +PluginInstall +qall
 
 # Create prompline configuration
-vim +'PromptlineSnapshot! ~/.shell_prompt.sh airline' +qall
+#vim +'PromptlineSnapshot! ~/.shell_prompt.sh airline' +qall
 # OSX
-! uname -a | grep -qi darwin || grep -qi '^source ~/.shell_prompt.sh$' ~/.bash_profile || printf "\n# Airline shell prompt\nsource ~/.shell_prompt.sh"  >> ~/.bash_profile
+#! uname -a | grep -qi darwin || grep -qi '^source ~/.shell_prompt.sh$' ~/.bash_profile || printf "\n# Airline shell prompt\nsource ~/.shell_prompt.sh"  >> ~/.bash_profile
 # Debian/Ubuntu/Arch
-! uname -a | grep -qi 'ubuntu\|arch' || grep -qi '^source ~/.shell_prompt.sh$' ~/.bashrc || printf "\n# Airline shell prompt\nsource ~/.shell_prompt.sh"  >> ~/.bashrc
+#! uname -a | grep -qi 'ubuntu\|arch' || grep -qi '^source ~/.shell_prompt.sh$' ~/.bashrc || printf "\n# Airline shell prompt\nsource ~/.shell_prompt.sh"  >> ~/.bashrc
