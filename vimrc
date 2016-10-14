@@ -98,6 +98,13 @@ nnoremap <leader><space> :noh<cr>
 vnoremap <c-r> "hy:%s/<c-r>h//gc<left><left><left>
 
 """"""""""""""""""""""""""""
+"       Spelling
+""""""""""""""""""""""""""""
+
+" Toggle spell checking with: Leader + s (spelling)
+noremap <silent> <leader>s :set spell!<cr>
+
+""""""""""""""""""""""""""""
 "          UI
 """"""""""""""""""""""""""""
 
@@ -145,20 +152,19 @@ set smarttab
 " Copy indent from current line when starting a new line
 set autoindent
 
-
 " Default
 if &filetype==""
   setlocal ts=2 sts=2 sw=2 expandtab
 endif
 
-" Yaml
-autocmd FileType yaml,default setlocal ts=2 sts=2 sw=2 expandtab
+" Yaml, tf
+autocmd FileType yaml,tf setlocal ts=2 sts=2 sw=2 expandtab
 
 " Go, Makefile
 autocmd FileType go,make setlocal ts=8 sts=8 sw=8 noexpandtab
 
-" Python
-autocmd FileType python,sh setlocal ts=4 sts=4 sw=4 expandtab
+" Python, Bash, Markdown
+autocmd FileType python,sh,markdown setlocal ts=4 sts=4 sw=4 expandtab
 
 """"""""""""""""""""""""""""
 "       Movement
