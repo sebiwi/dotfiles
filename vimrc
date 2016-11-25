@@ -33,7 +33,10 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 
 " Airline-like bash prompt
-"Plugin 'edkolev/promptline.vim'
+Plugin 'edkolev/promptline.vim'
+
+" Airline-like tmux status bar
+Plugin 'edkolev/tmuxline.vim'
 
 "Syntax check
 "Plugin 'scrooloose/syntastic'
@@ -62,6 +65,13 @@ set backspace=indent,eol,start
 
 " Enable multiple unsaved buffers
 set hidden
+
+""""""""""""""""""""""""""""
+" Vim general mappings
+""""""""""""""""""""""""""""
+
+" Map escape to kj
+inoremap kj <esc>
 
 """"""""""""""""""""""""""""
 "     .vimrc-specific
@@ -157,8 +167,8 @@ if &filetype==""
   setlocal ts=2 sts=2 sw=2 expandtab
 endif
 
-" Yaml, tf
-autocmd FileType yaml,tf setlocal ts=2 sts=2 sw=2 expandtab
+" Yaml, tf, HTML, Javascript
+autocmd FileType yaml,tf,html,javascript setlocal ts=2 sts=2 sw=2 expandtab
 
 " Go, Makefile
 autocmd FileType go,make setlocal ts=8 sts=8 sw=8 noexpandtab
@@ -234,14 +244,30 @@ let NERDTreeIgnore = ['\.pyc$']
 "     Promptline-specific
 """"""""""""""""""""""""""""
 
+" Generate with :PromptlineSnapshot <promptfile-name>
 " Shell prompt: Vitualenv > hostname > user > cwd > git branch > exit code
 
-"let g:promptline_preset = {
-"        \'a' : [ promptline#slices#python_virtualenv() ],
-"        \'b' : [ promptline#slices#host({ 'only_if_ssh': 1 }), promptline#slices#user() ],
-"        \'c' : [ promptline#slices#cwd() ],
-"        \'y' : [ promptline#slices#vcs_branch() ],
-"        \'warn' : [ promptline#slices#last_exit_code() ]}
+let g:promptline_preset = {
+        \'a' : [ promptline#slices#python_virtualenv() ],
+        \'b' : [ promptline#slices#host({ 'only_if_ssh': 1 }), promptline#slices#user() ],
+        \'c' : [ promptline#slices#cwd() ],
+        \'y' : [ promptline#slices#vcs_branch() ],
+        \'warn' : [ promptline#slices#last_exit_code() ]}
+
+""""""""""""""""""""""""""""
+"     tmuxline-specific
+""""""""""""""""""""""""""""
+
+let g:tmuxline_preset = {
+      \'a'       : '#S:#I',
+      \'b disabled'       : '',
+      \'c disabled'       : '',
+      \'win'     : ['#I', '#W'],
+      \'cwin'    : ['#I', '#W'],
+      \'x'       : '#(tmux-battery)',
+      \'y'       : ['%a', '%Y-%m-%d', '%l:%M%p'],
+      \'z'       : ['#(whoami)', '#(getipfortmux || echo raspi)'],
+      \'options' : {'status-justify': 'left'}}
 
 """"""""""""""""""""""""""""
 "         Go
