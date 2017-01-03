@@ -84,6 +84,17 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
 """"""""""""""""""""""""""""
+"    Copy/Paste shortcuts
+""""""""""""""""""""""""""""
+
+" Yank text to the OS X clipboard
+noremap <leader>y "*y
+noremap <leader>yy "*Y
+
+" Preserve indentation while pasting text from the OS X clipboard
+noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
+
+""""""""""""""""""""""""""""
 "         Search
 """"""""""""""""""""""""""""
 
@@ -167,8 +178,8 @@ if &filetype==""
   setlocal ts=2 sts=2 sw=2 expandtab
 endif
 
-" Yaml, tf, HTML, Javascript
-autocmd FileType yaml,tf,html,javascript setlocal ts=2 sts=2 sw=2 expandtab
+" Yaml, tf, HTML, Javascript, JSON
+autocmd FileType yaml,tf,html,javascript,json setlocal ts=2 sts=2 sw=2 expandtab
 
 " Go, Makefile
 autocmd FileType go,make setlocal ts=8 sts=8 sw=8 noexpandtab
@@ -229,6 +240,13 @@ cnoreabbrev Ack Ack!
 
 " Search: Leader + a (ack)
 nnoremap <leader>a :Ack!<space>
+
+""""""""""""""""""""""""""""
+"       CtrlP-specific
+""""""""""""""""""""""""""""
+
+" Ignore unnecessary directories
+let g:ctrlp_custom_ignore = 'node_modules\|bower_components\|dist\|tmp\|DS_Store\|git'
 
 """"""""""""""""""""""""""""
 "       NERDTree-specific
