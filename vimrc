@@ -38,8 +38,20 @@ Plugin 'edkolev/promptline.vim'
 " Airline-like tmux status bar
 Plugin 'edkolev/tmuxline.vim'
 
-"Syntax check
-"Plugin 'scrooloose/syntastic'
+" Easy surroundings editing
+Plugin 'tpope/vim-surround'
+
+" Launch asynchronous tasks
+Plugin 'tpope/vim-dispatch'
+
+" Syntax check
+Plugin 'w0rp/ale'
+
+" Indent guidelines
+Plugin 'Yggdroot/indentLine'
+
+" Ansible support
+Plugin 'pearofducks/ansible-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -65,13 +77,6 @@ set backspace=indent,eol,start
 
 " Enable multiple unsaved buffers
 set hidden
-
-""""""""""""""""""""""""""""
-" Vim general mappings
-""""""""""""""""""""""""""""
-
-" Map escape to kj
-inoremap kj <esc>
 
 """"""""""""""""""""""""""""
 "     .vimrc-specific
@@ -178,14 +183,14 @@ if &filetype==""
   setlocal ts=2 sts=2 sw=2 expandtab
 endif
 
-" Yaml, tf, HTML, Javascript, JSON
-autocmd FileType yaml,tf,html,javascript,json setlocal ts=2 sts=2 sw=2 expandtab
+" Ansible, Yaml, tf, JSON
+autocmd FileType vim,ansible,yaml,tf,json setlocal ts=2 sts=2 sw=2 expandtab
 
 " Go, Makefile
 autocmd FileType go,make setlocal ts=8 sts=8 sw=8 noexpandtab
 
-" Python, Bash, Markdown
-autocmd FileType python,sh,markdown setlocal ts=4 sts=4 sw=4 expandtab
+" Python, Bash, Markdown, HTML, Javascript
+autocmd FileType python,sh,markdown,html,xhtml,javascript setlocal ts=4 sts=4 sw=4 expandtab
 
 """"""""""""""""""""""""""""
 "       Movement
@@ -246,7 +251,14 @@ nnoremap <leader>a :Ack!<space>
 """"""""""""""""""""""""""""
 
 " Ignore unnecessary directories
-let g:ctrlp_custom_ignore = 'node_modules\|bower_components\|dist\|tmp\|DS_Store\|git'
+let g:ctrlp_custom_ignore = 'node_modules\|bower_components\|dist\|tmp\|DS_Store\|git\|target'
+
+""""""""""""""""""""""""""""
+"       Dispatch-specific
+""""""""""""""""""""""""""""
+
+" Dispatch: Leader + d (dispatch)
+nnoremap <leader>d :Dispatch<space>
 
 """"""""""""""""""""""""""""
 "       NERDTree-specific
@@ -288,7 +300,7 @@ let g:tmuxline_preset = {
       \'options' : {'status-justify': 'left'}}
 
 """"""""""""""""""""""""""""
-"         Go
+"     vim-go-specific
 """"""""""""""""""""""""""""
 
 augroup filetype_go
