@@ -1,60 +1,57 @@
-""""""""""""""""""""""""""""
-"         Vundle
-""""""""""""""""""""""""""""
-
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+Plug 'VundleVim/Vundle.vim'
 
 " Nerdtree / Filetree view
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 
 " Ctrlp / Nice file searching
-Plugin 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 
 " Nice status bar
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Ack support
-Plugin 'mileszs/ack.vim'
+Plug 'mileszs/ack.vim'
 
 " Go support
-Plugin 'fatih/vim-go'
+Plug 'fatih/vim-go'
 
 " Git integration
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 " Airline-like bash prompt
-Plugin 'edkolev/promptline.vim'
+Plug 'edkolev/promptline.vim'
 
 " Airline-like tmux status bar
-Plugin 'edkolev/tmuxline.vim'
+Plug 'edkolev/tmuxline.vim'
 
 " Easy surroundings editing
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 
 " Launch asynchronous tasks
-Plugin 'tpope/vim-dispatch'
+Plug 'tpope/vim-dispatch'
 
 " Syntax check
-Plugin 'w0rp/ale'
+Plug 'w0rp/ale'
 
 " Indent guidelines
-Plugin 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine'
+
+" JSON Highlight
+Plug 'elzr/vim-json'
 
 " Ansible support
-Plugin 'pearofducks/ansible-vim'
+Plug 'pearofducks/ansible-vim'
+
+" Autocomplete
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --gocode-completer --tern-completer' }
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
+call plug#end()            " required
 "filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 filetype plugin on
@@ -152,7 +149,7 @@ colorscheme solarized
 set background=dark
 
 " Highlight lines that go over 80 characters
-match Error /\%81v.\+/
+match Error /\%121v.\+/
 
 "When on, splitting a window will put the new window right of the current one.
 set splitright
@@ -321,3 +318,10 @@ augroup filetype_go
     autocmd FileType go nmap <localleader>c <Plug>(go-coverage)
 
 augroup END
+
+""""""""""""""""""""""""""""
+"     indentLine-specific
+""""""""""""""""""""""""""""
+
+" Disable hidden quotes for JSON files
+let g:vim_json_syntax_conceal = 0
