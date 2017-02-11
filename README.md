@@ -1,15 +1,15 @@
-# vimrc
+# Dotfiles
 
-This is my vim configuration, including both themes and custom plugins.
+This is used to be my vim configuration.
+Now it also has my tmux, bash and git configurations. Pretty rad.
 
 ## Installation
-Execute the install.sh script. This will create the .vim directory if it doesn't
-exist, install Vundle (and all the other plugins specified in the vimrc), and
-symlink the plugin and colors directories to the right place, as well as the
-vimrc.
+Execute the install.sh script. This will symlink the required directories and files
+to all the right places.
 
-## Usage
-Just use vim!
+## Requirements
+- Vim 8
+- The Silver Searcher
 
 ## Contributing
 1. Fork it!
