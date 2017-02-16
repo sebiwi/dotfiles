@@ -59,9 +59,6 @@ syntax on
 colorscheme solarized
 set background=dark
 
-" Highlight lines that go over 80 characters
-match Error /\%121v.\+/
-
 "When on, splitting a window will put the new window right of the current one.
 set splitright
 

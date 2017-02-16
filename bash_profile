@@ -1,8 +1,10 @@
 # Virtualenvwrapper
 source /usr/local/bin/virtualenvwrapper.sh
 
-# Add custom binaries
-export PATH=$PATH:~/stuff/bin
+# Add custom binaries, and rvm
+export PATH=$PATH:~/stuff/bin:$HOME/.rvm/bin:/usr/local/sbin
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # Golang
 export GOPATH=~/stuff/go

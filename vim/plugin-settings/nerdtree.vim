@@ -5,7 +5,7 @@
 nnoremap <leader>t :NERDTree<cr>
 
 " Ignore .pyc files
-let NERDTreeIgnore = ['\.pyc$']
+let NERDTreeIgnore = ['\.pyc$', '\.git']
 
 " Show hidden files
 let NERDTreeShowHidden=1
