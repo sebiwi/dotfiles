@@ -54,3 +54,6 @@ noremap <silent> <leader>s :set spell!<cr>
 """"""""""""""""""""""""""""
 " Remove trailing whitespaces: Leader + W (whitespaces)
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<cr>
+
+" Format JSON
+nnoremap <leader>fj :%!python -m json.tool<cr>
