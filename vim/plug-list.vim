@@ -10,8 +10,9 @@ call plug#begin('~/.vim/plugged')
 " Nerdtree / Filetree view
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
-" Ctrlp / Nice file searching
-Plug 'ctrlpvim/ctrlp.vim'
+" Fuzzy file/buffer/tag search
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 
 " Nice status bar
 Plug 'bling/vim-airline'
@@ -50,5 +51,12 @@ Plug 'elzr/vim-json', { 'for': 'json' }
 
 " Autocomplete
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --gocode-completer --tern-completer' }
+
+" Terraform
+Plug 'hashivim/vim-terraform'
+Plug 'juliosueiras/vim-terraform-completion'
+
+" Snippets
+Plug 'SirVer/ultisnips'
 
 call plug#end()            " required

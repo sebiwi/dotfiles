@@ -1,8 +1,7 @@
 [alias]
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lola     = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	history = log --pretty=format:\"[%h] %ae, %ar: %s\" --stat
-[http]
-	sslVerify = false
 [core]
 	editor = /usr/local/bin/vim
 [include]
