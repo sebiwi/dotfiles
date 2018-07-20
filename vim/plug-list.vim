@@ -12,7 +12,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 " Fuzzy file/buffer/tag search
 Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim', { 'on': 'Files' }
 
 " Nice status bar
 Plug 'bling/vim-airline'
@@ -27,9 +27,10 @@ Plug 'fatih/vim-go', { 'for': 'go' }
 " Git integration
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'gregsexton/gitv', { 'on': ['Gitv'] }
 
 " Airline-like bash prompt
-Plug 'edkolev/promptline.vim'
+Plug 'edkolev/promptline.vim', { 'on': 'PromptlineSnapshot'  }
 
 " Airline-like tmux status bar
 Plug 'edkolev/tmuxline.vim'
@@ -53,10 +54,19 @@ Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --gocode-completer --tern-completer' }
 
 " Terraform
-Plug 'hashivim/vim-terraform'
-Plug 'juliosueiras/vim-terraform-completion'
+Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
+Plug 'juliosueiras/vim-terraform-completion', { 'for': 'terraform' }
 
 " Snippets
 Plug 'SirVer/ultisnips'
+
+" Tagbar
+Plug 'majutsushi/tagbar'
+
+" Ansible
+Plug 'pearofducks/ansible-vim', { 'for': 'yaml.ansible' }
+
+" Ruby
+Plug 'tpope/vim-endwise', { 'for': 'ruby' }
 
 call plug#end()            " required

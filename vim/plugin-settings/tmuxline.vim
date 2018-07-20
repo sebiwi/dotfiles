@@ -7,7 +7,7 @@ let g:tmuxline_preset = {
     \'c disabled'       : '',
     \'win'     : ['#I', '#W'],
     \'cwin'    : ['#I', '#W'],
-    \'x'       : '#(tmux-battery)',
+    \'x'       : ['#(tmux-battery)', '#(/bin/bash ~/stuff/bin/kube-tmux 250 red cyan)'],
     \'y'       : ['%a', '%Y-%m-%d', '%l:%M%p'],
     \'z'       : ['#(whoami)', '#(getipfortmux || echo raspi)'],
     \'options' : {'status-justify': 'left'}}

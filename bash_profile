@@ -51,7 +51,7 @@ fi
 if [ -e /usr/local/opt/fzf/shell/completion.bash ]; then
   source /usr/local/opt/fzf/shell/key-bindings.bash
   source /usr/local/opt/fzf/shell/completion.bash
-  export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
+  export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --nocolor -g ""'
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
   export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
 
@@ -86,3 +86,21 @@ if [ -e /usr/local/opt/fzf/shell/completion.bash ]; then
   }
   _gen_fzf_default_opts
 fi
+
+function terraform_env_name (){
+ if  [ -f .terraform/environment ]
+ then
+   TERRAFORM_ENV=`cat .terraform/environment`
+   TERRAFORM_MESSAGE="(${TERRAFORM_ENV})"
+ else
+   TERRAFORM_MESSAGE=''
+ fi
+ echo -e  $TERRAFORM_MESSAGE
+}
+
+# Autojump
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+# Kubernetes autocomplete
+source <(kubectl completion bash)
+

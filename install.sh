@@ -19,5 +19,11 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # Symlink tmux.conf
 [ -e ~/.tmux.conf ] || ln -s $DIR/tmux.conf ~/.tmux.conf
 
+# Symlink shell prompt
+[ -e ~/.shell_prompt.sh ] || ln -s $DIR/shell_prompt.sh ~/.shell_prompt.sh
+
+# Symlink tmuxline configuration
+[ -e ~/.tmuxline ] || ln -s $DIR/tmuxline ~/.tmuxline
+
 # Launch Vim and install plugins
 vim +PlugInstall +qall
