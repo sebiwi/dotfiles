@@ -1,5 +1,7 @@
 # Virtualenvwrapper
 source /usr/local/bin/virtualenvwrapper.sh
+export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper_lazy.sh
 
 # Add custom binaries, and rvm
 export PATH=$PATH:~/stuff/bin:$HOME/.rvm/bin:/usr/local/sbin:~/stuff/go/bin
@@ -104,3 +106,13 @@ function terraform_env_name (){
 # Kubernetes autocomplete
 source <(kubectl completion bash)
 
+## Kubernetes
+
+# Alias
+alias kc='kubectl'
+alias kn='kubens'
+alias kx='kubectx'
+alias kgp='kubectl get pods'
+
+# Autocomplete
+source <(kubectl completion bash | sed 's/kubectl/kc/g')

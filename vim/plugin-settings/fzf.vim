@@ -4,8 +4,8 @@
 " Buffers: ;
 " nnoremap ; :Buffers<cr>
 
-"" Tags: ;
-nnoremap <c-;> :Tags<cr>
+"" Fulltext: ;
+nnoremap <c-g> :Rg<cr>
 
 " Files: ;
 nnoremap <c-p> :Files<cr>

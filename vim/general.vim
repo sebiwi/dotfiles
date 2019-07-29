@@ -59,7 +59,7 @@ syntax on
 colorscheme solarized
 set background=dark
 
-"When on, splitting a window will put the new window right of the current one.
+" When on, splitting a window will put the new window right of the current one.
 set splitright
 
 " When on, splitting a window will put the new window right of the current one.

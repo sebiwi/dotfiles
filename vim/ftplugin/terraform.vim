@@ -4,4 +4,4 @@ setlocal softtabstop=2
 setlocal shiftwidth=2
 setlocal expandtab
 
-autocmd FileType tf noremap <buffer> <localLeader>l :call terraformcomplete#JumpRef()<CR>
+match Error /\%100v.\+/

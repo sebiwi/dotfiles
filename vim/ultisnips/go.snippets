@@ -1,0 +1,12 @@
+# error format
+snippet tif "If test format " !b
+if got != want {
+	t.Errorf("got: '%${1:v}', want: '%${2:v}'", got, want)
+}
+endsnippet
+
+snippet trun "T.Run with anonymous function " !b
+t.Run("'${1:it doest}'", func(t *testing.T) {
+	${2}
+})
+endsnippet

@@ -8,11 +8,11 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Nerdtree / Filetree view
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree', { 'on':  ['NERDTree', 'NERDTreeFind'] }
 
 " Fuzzy file/buffer/tag search
 Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim', { 'on': 'Files' }
+Plug 'junegunn/fzf.vim', { 'on': ['Files', 'Rg'] }
 
 " Nice status bar
 Plug 'bling/vim-airline'
@@ -68,5 +68,14 @@ Plug 'pearofducks/ansible-vim', { 'for': 'yaml.ansible' }
 
 " Ruby
 Plug 'tpope/vim-endwise', { 'for': 'ruby' }
+
+" Bracked bindings
+Plug 'tpope/vim-unimpaired'
+
+" Repeat plugin maps
+Plug 'tpope/vim-repeat'
+
+" Alignment tool
+Plug 'godlygeek/tabular' , { 'on': 'Tab' }
 
 call plug#end()            " required
