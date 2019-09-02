@@ -57,3 +57,9 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<cr>
 
 " Format JSON
 nnoremap <leader>fj :%!python -m json.tool<cr>
+
+""""""""""""""""""""""""""""
+"         Diff
+""""""""""""""""""""""""""""
+nnoremap <leader>dt :windo diffthis<cr>
+nnoremap <leader>do :windo diffoff<cr>
