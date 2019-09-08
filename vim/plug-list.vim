@@ -30,7 +30,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'gregsexton/gitv', { 'on': ['Gitv'] }
 
 " Airline-like bash prompt
-Plug 'edkolev/promptline.vim', { 'on': 'PromptlineSnapshot'  }
+" Plug 'edkolev/promptline.vim'
 
 " Airline-like tmux status bar
 Plug 'edkolev/tmuxline.vim'
