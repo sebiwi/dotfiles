@@ -32,6 +32,12 @@ function __promptline_ps1 {
   # section "y" slices
   __promptline_wrapper "$(__promptline_vcs_branch)" "$slice_prefix" "$slice_suffix" && { slice_prefix="$slice_joiner"; is_prompt_empty=0; }
 
+  # section "z" header
+  slice_prefix="${z_bg}${sep}${z_fg}${z_bg}${space}" slice_suffix="$space${z_sep_fg}" slice_joiner="${z_fg}${z_bg}${alt_sep}${space}" slice_empty_prefix="${z_fg}${z_bg}${space}"
+  [ $is_prompt_empty -eq 1 ] && slice_prefix="$slice_empty_prefix"
+  # section "z" slices
+  __promptline_wrapper "$KUBERNETES_INFO" "$slice_prefix" "$slice_suffix" && { slice_prefix="$slice_joiner"; is_prompt_empty=0; }
+
   # section "warn" header
   slice_prefix="${warn_bg}${sep}${warn_fg}${warn_bg}${space}" slice_suffix="$space${warn_sep_fg}" slice_joiner="${warn_fg}${warn_bg}${alt_sep}${space}" slice_empty_prefix="${warn_fg}${warn_bg}${space}"
   [ $is_prompt_empty -eq 1 ] && slice_prefix="$slice_empty_prefix"
@@ -126,6 +132,11 @@ function __promptline_right_prompt {
   # section "y" slices
   __promptline_wrapper "$(__promptline_vcs_branch)" "$slice_prefix" "$slice_suffix" && { slice_prefix="$slice_joiner"; }
 
+  # section "z" header
+  slice_prefix="${z_sep_fg}${z_fg}${z_bg}${space}" slice_suffix="$space${z_sep_fg}" slice_joiner="${z_fg}${z_bg}${alt_rsep}${space}" slice_empty_prefix=""
+  # section "z" slices
+  __promptline_wrapper "$KUBERNETES_INFO" "$slice_prefix" "$slice_suffix" && { slice_prefix="$slice_joiner"; }
+
   # close sections
   printf "%s" "$reset"
 }
@@ -160,6 +171,9 @@ function __promptline {
   local y_fg="${wrap}38;5;7${end_wrap}"
   local y_bg="${wrap}48;5;11${end_wrap}"
   local y_sep_fg="${wrap}38;5;11${end_wrap}"
+  local z_fg="${wrap}0;0;0${end_wrap}"
+  local z_bg="${wrap}0;0;0${end_wrap}"
+  local z_sep_fg="${wrap}0;0;0${end_wrap}"
   if [[ -n ${ZSH_VERSION-} ]]; then
     PROMPT="$(__promptline_left_prompt)"
     RPROMPT="$(__promptline_right_prompt)"
