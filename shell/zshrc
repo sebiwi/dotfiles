@@ -74,6 +74,7 @@ plugins=(
   autojump
   vi-mode
   kube-ps1
+  kubectl
 )
 
 

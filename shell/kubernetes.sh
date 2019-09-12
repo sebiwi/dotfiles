@@ -1,10 +1,10 @@
 # kube-ps1
 kon() {
-    export KUBERNETES_INFO=$(kube_ps1)
+    export KUBE_ON=true
 }
 
 koff() {
-    unset KUBERNETES_INFO
+    unset KUBE_ON
 }
 
 # Alias
