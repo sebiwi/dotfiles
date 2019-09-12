@@ -164,6 +164,9 @@ export GOPATH=${HOME}/stuff/go
 # Kubernetes
 source ~/stuff/dotfiles/shell/kubernetes.sh
 
+# nvm
+source /usr/share/nvm/init-nvm.sh
+
 test-microphone() {
     arecord -vvv -f dat /dev/null
 }
