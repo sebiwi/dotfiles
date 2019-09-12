@@ -124,6 +124,12 @@ bindsym $mod+Shift+x exec betterlockscreen -l
 # hibernate
 bindsym $mod+Shift+h exec systemctl hibernate
 
+# activate second monitor
+bindsym $mod+Shift+m exec xrandr --output DP-2 --auto --right-of eDP-1
+
+# Deactivate second monitor
+bindsym $mod+Shift+n exec xrandr --output DP-2 --off
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
