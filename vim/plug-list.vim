@@ -12,7 +12,7 @@ Plug 'scrooloose/nerdtree', { 'on':  ['NERDTree', 'NERDTreeFind'] }
 
 " Fuzzy file/buffer/tag search
 Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim', { 'on': ['Files', 'Rg'] }
+Plug 'junegunn/fzf.vim', { 'on': ['Files', 'Ag'] }
 
 " Nice status bar
 Plug 'bling/vim-airline'
@@ -76,6 +76,9 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-repeat'
 
 " Alignment tool
-Plug 'godlygeek/tabular' , { 'on': 'Tab' }
+Plug 'godlygeek/tabular', { 'on': 'Tab' }
+
+" Organization tools
+Plug 'vimwiki/vimwiki'
 
 call plug#end()            " required

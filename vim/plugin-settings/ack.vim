@@ -8,4 +8,4 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 cnoreabbrev Ack Ack!
 
 " Search: Leader + a (ack)
-nnoremap <leader>a :Ack!<space>
+nnoremap <leader>ac :Ack!<space>
