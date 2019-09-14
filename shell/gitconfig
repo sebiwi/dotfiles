@@ -4,6 +4,6 @@
 	history = log --pretty=format:\"[%h] %ae, %ar: %s\" --stat
 	poule = ! bash -c 'source $HOME/stuff/dotfiles/shell/poule.sh && poule && git pull'
 [core]
-	editor = /usr/local/bin/vim
+	editor = vim
 [include]
 	path = .gitconfig.user
