@@ -121,6 +121,13 @@ source ~/.shell_prompt.sh
 
 # fzf
 source ~/stuff/dotfiles/shell/fzf.sh
+
+# Kubernetes
+source ~/stuff/dotfiles/shell/kubernetes.sh
+
+# nvm / commented because of long startup time
+# source /usr/share/nvm/init-nvm.sh
+
 # i3: stay in current directory when opening a new terminal
 export PROMPT_COMMAND="pwd > /tmp/whereami"
 precmd() { eval "$PROMPT_COMMAND" }
@@ -131,12 +138,6 @@ setupsolarized dircolors.ansi-dark
 
 # Go Path
 export GOPATH=${HOME}/stuff/go
-
-# Kubernetes
-source ~/stuff/dotfiles/shell/kubernetes.sh
-
-# nvm
-source /usr/share/nvm/init-nvm.sh
 
 test-microphone() {
     arecord -vvv -f dat /dev/null
