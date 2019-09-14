@@ -153,6 +153,9 @@ if [ -e /usr/share/fzf/completion.zsh ]; then
   }
   _gen_fzf_default_opts
 fi
+# i3: stay in current directory when opening a new terminal
+export PROMPT_COMMAND="pwd > /tmp/whereami"
+precmd() { eval "$PROMPT_COMMAND" }
 
 # Solarized directory colors
 source /usr/share/zsh/plugins/zsh-dircolors-solarized/zsh-dircolors-solarized.zsh

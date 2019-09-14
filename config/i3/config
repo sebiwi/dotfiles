@@ -16,6 +16,7 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec urxvt
+bindsym $mod+Shift+Return exec $HOME/stuff/dotfiles/shell/i3_shell.sh
 
 # kill focused window
 bindsym $mod+Shift+q kill
