@@ -139,6 +139,9 @@ setupsolarized dircolors.ansi-dark
 # Go Path
 export GOPATH=${HOME}/stuff/go
 
+# Ruby: rbenv
+eval "$(rbenv init -)"
+
 test-microphone() {
     arecord -vvv -f dat /dev/null
 }
