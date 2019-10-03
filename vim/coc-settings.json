@@ -1,0 +1,12 @@
+{
+  "languageserver": {
+    "terraform": {
+      "command": "terraform-lsp",
+      "filetypes": ["terraform"],
+      "initializationOptions": {}
+    }
+  },
+  "yaml.schemas": {
+    "kubernetes": "/*.yaml"
+  }
+}

@@ -23,7 +23,7 @@ autocmd FileType go nmap <localleader>d <Plug>(go-doc)
 autocmd FileType go nmap <localleader>a <Plug>(go-alternate-vertical)
 
 " Use godef for godef
-let g:go_def_mode = "godef"
+" let g:go_def_mode = "godef"
 
 " Tagbar
 nmap <F8> :TagbarToggle<CR>

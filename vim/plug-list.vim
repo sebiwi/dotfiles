@@ -41,9 +41,6 @@ Plug 'tpope/vim-surround'
 " Launch asynchronous tasks
 Plug 'tpope/vim-dispatch' , { 'on': ['Make', 'Dispatch'] }
 
-" Syntax check
-Plug 'w0rp/ale'
-
 " Indent guidelines
 Plug 'Yggdroot/indentLine'
 
@@ -51,7 +48,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'elzr/vim-json', { 'for': 'json' }
 
 " Autocomplete
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --gocode-completer --tern-completer' }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Terraform
 Plug 'hashivim/vim-terraform', { 'for': 'terraform' }

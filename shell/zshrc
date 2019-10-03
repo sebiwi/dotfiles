@@ -74,7 +74,6 @@ plugins=(
   autojump
   vi-mode
   kube-ps1
-  kubectl
 )
 
 
@@ -91,6 +90,7 @@ plugins=(
 # else
 #   export EDITOR='mvim'
 # fi
+export EDITOR=vim
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -141,6 +141,10 @@ export GOPATH=${HOME}/stuff/go
 
 # Ruby: rbenv
 eval "$(rbenv init -)"
+
+# PATH settings
+export PATH="$GOPATH/bin:/home/sebiwi/.nvm/versions/node/v10.16.3/bin:$HOME/.tfenv/bin:$PATH"
+
 
 test-microphone() {
     arecord -vvv -f dat /dev/null

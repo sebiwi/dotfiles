@@ -1,7 +1,7 @@
 """"""""""""""""""""""""""""
 "     .vimrc-specific
 """"""""""""""""""""""""""""
-" Open vim configuration in a vsplit: Leader + ev (edit vim)
+" Open vim configuration in a new tab: Leader + ev (edit vim)
 nnoremap <leader>ev :tabedit $MYVIMRC<cr>:lcd $HOME/stuff/dotfiles<cr>
 
 " Source vim configuration inmediatly: Leader + sv (source vim)
