@@ -280,7 +280,7 @@ format-disconnected =
 [module/date]
 
 type = custom/script
-exec = date +" %H:%M"
+exec = date +" %F %H:%M"
 interval = 5
 
 format-padding = 2

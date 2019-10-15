@@ -59,7 +59,7 @@ URxvt.scrollBar: false
 URxvt.font:     xft:SF Mono:size=12,xft:Monaco for Powerline:size=12:antialias=true
 URxvt.letterSpace: -1
 
-URxvt.perl-ext-common: ...,keyboard-select
+URxvt.perl-ext-common: ...,keyboard-select,resize-font
 URxvt.keysym.M-Tab: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
 URxvt.keyboard-select.clipboard: true

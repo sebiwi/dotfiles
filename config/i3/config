@@ -125,11 +125,14 @@ bindsym $mod+Shift+x exec betterlockscreen -l
 # hibernate
 bindsym $mod+Shift+h exec systemctl hibernate
 
-# activate second monitor
+# Activate second monitor
 bindsym $mod+Shift+m exec xrandr --output DP-2 --auto --right-of eDP-1
 
 # Deactivate second monitor
 bindsym $mod+Shift+n exec xrandr --output DP-2 --off
+
+# Screenshot
+bindsym $mod+Shift+s exec deepin-screenshot
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
