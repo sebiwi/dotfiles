@@ -14,7 +14,7 @@ yay -S i3-gaps rxvt-unicode polybar dmenu rofi \
        monaco-powerline-font-git otf-sfmono ttf-google-sans ttf-material-icons-git ttf-font-awesome ttf-ionicons
 
 # Symlink zshrc
-[ -e ~/.zshrc ] || ln -s $DIR/shell/zshrc ~/.zshrc
+[ -e ~/.zshrc ] || ln -s $DIR/arch/shell/zshrc ~/.zshrc
 
 # Symlink vim directory
 [ -e ~/.vim ] || ln -s $DIR/vim ~/.vim
@@ -32,28 +32,28 @@ yay -S i3-gaps rxvt-unicode polybar dmenu rofi \
 [ -e ~/.config ] || mkdir ~/.config
 
 # Symlink i3 configuration
-[ -e ~/.config/i3 ] || ln -s $DIR/config/i3 ~/.config/i3
+[ -e ~/.config/i3 ] || ln -s $DIR/arch/config/i3 ~/.config/i3
 
 # Symlink polybar configuration
-[ -e ~/.config/polybar ] || ln -s $DIR/config/polybar ~/.config/polybar
+[ -e ~/.config/polybar ] || ln -s $DIR/arch/config/polybar ~/.config/polybar
 
 # Symlink ranger configuration
-[ -e ~/.config/ranger ] || ln -s $DIR/config/ranger ~/.config/ranger
+[ -e ~/.config/ranger ] || ln -s $DIR/arch/config/ranger ~/.config/ranger
 
 # Symlink rofi configuration
-[ -e ~/.config/rofi ] || ln -s $DIR/config/rofi ~/.config/rofi
+[ -e ~/.config/rofi ] || ln -s $DIR/arch/config/rofi ~/.config/rofi
 
 # Symlink zathura configuration
-[ -e ~/.config/zathura ] || ln -s $DIR/config/zathura ~/.config/zathura
+[ -e ~/.config/zathura ] || ln -s $DIR/arch/config/zathura ~/.config/zathura
 
 # Symlink betterlockscreen configuration
-[ -e ~/.config/betterlockscreenrc ] || ln -s $DIR/config/betterlockscreenrc ~/.config/betterlockscreenrc
+[ -e ~/.config/betterlockscreenrc ] || ln -s $DIR/arch/config/betterlockscreenrc ~/.config/betterlockscreenrc
 
 # Symlink compton configuration
-[ -e ~/.config/compton.conf ] || ln -s $DIR/config/compton.conf ~/.config/compton.conf
+[ -e ~/.config/compton.conf ] || ln -s $DIR/arch/config/compton.conf ~/.config/compton.conf
 
 # Symlink Xresources configuration
-[ -e ~/.Xresources ] || ln -s $DIR/X/Xresources ~/.Xresources
+[ -e ~/.Xresources ] || ln -s $DIR/arch/X/Xresources ~/.Xresources
 
 # Launch Vim and install plugins
 # vim +PlugInstall +qall
