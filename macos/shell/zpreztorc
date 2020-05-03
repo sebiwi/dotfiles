@@ -1,0 +1,15 @@
+# Set the Prezto modules to load (browse modules).
+# The order matters.
+zstyle ':prezto:load' pmodule \
+  'editor' \
+  'utility' \
+  'completion' \
+  'syntax-highlighting' \
+#  'git' \
+#  'prompt' \
+#  'history-substring-search' \
+
+# Vim mode on terminal
+zstyle ':prezto:module:editor' key-bindings 'vi'
+
+zstyle ':prezto:module:syntax-highlighting' color 'yes'

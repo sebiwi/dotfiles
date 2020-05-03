@@ -1,0 +1,52 @@
+# Prompt
+source ~/.shell_prompt.sh
+
+# Virtualenvwrapper
+export WORKON_HOME=~/.Envs && source /usr/local/bin/virtualenvwrapper_lazy.sh
+
+# Terminal colors
+export CLICOLOR=1
+
+# Autojump
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+# NVM: commented due to startup time
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Locale settings
+export LC_ALL=en_US.UTF-8
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# Set PATH
+## rbenv, golang, nvm
+export PATH="/Users/sebacace/go/bin:/usr/local/go/bin:/Users/sebacace/.nvm/versions/node/v12.16.1/bin:$PATH"
+
+# rbenv
+eval "$(rbenv init -)"
+
+# Fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# History
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+
+# Kubernetes
+source ~/stuff/dotfiles/shell/kubernetes.sh
+source /usr/local/opt/kube-ps1/share/kube-ps1.sh
+
+# AWS
+sp() {
+    export AWS_PROFILE=$(grep '^\[.*\]$' ~/.aws/credentials ~/.aws/config | cut -d ':' -f 2 | cut -d ' ' -f 2 | tr -d [ | tr -d ] | fzf)
+}
+
+up() {
+    unset AWS_PROFILE
+}
