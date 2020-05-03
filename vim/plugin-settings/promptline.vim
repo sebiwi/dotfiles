@@ -12,7 +12,7 @@
 "         \'}']}
 
 " let g:promptline_preset = {
-"   \'a' : [ promptline#slices#python_virtualenv(), '$GOOGLE_PROJECT', '$AZURE_SUBSCRIPTION', '$AWS_ACCOUNT' ],
+"   \'a' : [ promptline#slices#python_virtualenv(), '$GOOGLE_PROJECT', '$AZURE_SUBSCRIPTION', '$AWS_PROFILE' ],
 "   \'b' : [ promptline#slices#cwd() ],
 "   \'y' : [ promptline#slices#vcs_branch() ],
 "   \'z' : [ kubernetes_status ],
