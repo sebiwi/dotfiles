@@ -33,7 +33,7 @@ Plug 'gregsexton/gitv', { 'on': ['Gitv'] }
 " Plug 'edkolev/promptline.vim'
 
 " Airline-like tmux status bar
-Plug 'edkolev/tmuxline.vim'
+"Plug 'edkolev/tmuxline.vim'
 
 " Easy surroundings editing
 Plug 'tpope/vim-surround'
@@ -53,9 +53,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Terraform
 Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
 Plug 'juliosueiras/vim-terraform-completion', { 'for': 'terraform' }
-
-" Snippets
-Plug 'SirVer/ultisnips'
 
 " Tagbar
 Plug 'majutsushi/tagbar'

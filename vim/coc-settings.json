@@ -6,6 +6,10 @@
       "initializationOptions": {}
     }
   },
+  "snippets.ultisnips.directories": [
+    "UltiSnips",
+    "gosnippets/UltiSnips"
+  ],
   "yaml.schemas": {
     "kubernetes": "/*.yaml"
   }

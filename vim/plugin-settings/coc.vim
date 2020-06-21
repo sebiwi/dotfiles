@@ -2,7 +2,7 @@
 "  CoC configuration
 """"""""""""""""""""""""""""
 " let g:coc_global_extensions = [ 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-tslint', 'coc-tslint-plugin', 'coc-css', 'coc-json', 'coc-pyls', 'coc-yaml' ]
-let g:coc_global_extensions = [ 'coc-go', 'coc-tsserver', 'coc-python', 'coc-ultisnips', 'coc-json', 'coc-yaml' ]
+let g:coc_global_extensions = [ 'coc-go', 'coc-tsserver', 'coc-python', 'coc-snippets', 'coc-json', 'coc-yaml' ]
 
 " Better display for messages
 " set cmdheight=2
@@ -31,14 +31,13 @@ endfunction
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <NUL> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
-" Use <C-j> for both expand and jump (make expand higher priority.)
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-imap <C-j> <Plug>(coc-snippets-expand-jump)
 " Or use `complete_info` if your vim support it, like:
-" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
