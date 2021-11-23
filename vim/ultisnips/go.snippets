@@ -1,12 +1,13 @@
 # error format
 snippet tif "If test format " !b
 if got != want {
-	t.Errorf("got: '%${1:v}', want: '%${2:v}'", got, want)
+	t.Errorf("got: %${1:q}, want: %${2:q}", got, want)
 }
 endsnippet
 
+# sub-test
 snippet trun "T.Run with anonymous function " !b
-t.Run("'${1:it doest}'", func(t *testing.T) {
+t.Run("${1:description}", func(t *testing.T) {
 	${2}
 })
 endsnippet

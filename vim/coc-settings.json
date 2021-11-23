@@ -1,9 +1,20 @@
 {
+  "coc.preferences.formatOnSaveFiletypes": [
+    "rust",
+    "python"
+  ],
   "languageserver": {
     "terraform": {
-      "command": "terraform-lsp",
-      "filetypes": ["terraform"],
-      "initializationOptions": {}
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "filetypes": ["terraform", "tf"],
+      "initializationOptions": {},
+      "settings": {}
+    },
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"]
     }
   },
   "snippets.ultisnips.directories": [
@@ -11,6 +22,34 @@
     "gosnippets/UltiSnips"
   ],
   "yaml.schemas": {
-    "kubernetes": "/*.yaml"
-  }
+    "kubernetes": "deployment.yaml"
+  },
+  "python.linting.flake8Enabled": true,
+  "python.formatting.provider": "black",
+  "yaml.customTags": [
+    "!Ref",
+    "!GetAtt",
+    "!fn",
+    "!And",
+    "!And sequence",
+    "!If",
+    "!Condition sequence",
+    "!Condition scalar",
+    "!If sequence",
+    "!Not sequence",
+    "!Equals sequence",
+    "!Or",
+    "!FindInMap sequence",
+    "!Base64",
+    "!Cidr",
+    "!Sub sequence",
+    "!Sub scalar",
+    "!GetAZs",
+    "!ImportValue",
+    "!Select",
+    "!Split",
+    "!stack_output_external",
+    "!stack_output",
+    "!Join sequence"
+  ]
 }

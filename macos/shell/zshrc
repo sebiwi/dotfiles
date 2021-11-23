@@ -1,9 +1,6 @@
 # Prompt
 source ~/.shell_prompt.sh
 
-# Virtualenvwrapper
-export WORKON_HOME=~/.Envs && source /usr/local/bin/virtualenvwrapper_lazy.sh
-
 # Terminal colors
 export CLICOLOR=1
 
@@ -15,23 +12,33 @@ export CLICOLOR=1
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Locale settings
-export LC_ALL=en_US.UTF-8
-
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
 # Set PATH
-## rbenv, golang, nvm
-export PATH="/Users/sebacace/go/bin:/usr/local/go/bin:/Users/sebacace/.nvm/versions/node/v12.16.1/bin:$PATH"
+# golang, nvm
+#export PATH="/Users/sebacace/go/bin:/usr/local/go/bin:/Users/sebacace/.nvm/versions/node/v14.15.5/bin:/usr/local/sbin:$PATH"
+export PATH="/Users/sebacace/.gem/ruby/2.6.0/bin:/Users/sebacace/go/bin:/usr/local/go/bin:/Users/sebacace/.nvm/versions/node/v12.18.1/bin:/usr/local/sbin:$PATH"
+
 
 # rbenv
 eval "$(rbenv init -)"
 
+# pyenv
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+# Virtualenvwrapper
+export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+export WORKON_HOME=$HOME/.Envs
+pyenv virtualenvwrapper_lazy
+
 # Fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.sh
 
 # History
 HISTFILE=~/.histfile
@@ -39,14 +46,58 @@ HISTSIZE=1000
 SAVEHIST=1000
 
 # Kubernetes
+source <(kubectl completion zsh)
 source ~/stuff/dotfiles/shell/kubernetes.sh
 source /usr/local/opt/kube-ps1/share/kube-ps1.sh
 
 # AWS
 sp() {
-    export AWS_PROFILE=$(grep '^\[.*\]$' ~/.aws/credentials ~/.aws/config | cut -d ':' -f 2 | cut -d ' ' -f 2 | tr -d [ | tr -d ] | fzf)
+  export AWS_PROFILE=$(grep '^\[.*\]$' ~/.aws/credentials ~/.aws/config | cut -d ':' -f 2 | cut -d ' ' -f 2 | tr -d [ | tr -d ] | fzf)
+  export AWS_SDK_LOAD_CONFIG=1
 }
 
 up() {
-    unset AWS_PROFILE
+  unset AWS_PROFILE
+  unset AWS_SDK_LOAD_CONFIG
 }
+
+createvm() {
+  aws ec2 run-instances --image-id ami-0a8e758f5e873d1c1 --count 1 --instance-type t2.micro --iam-instance-profile Name=ManagedInstancesRole --security-group-ids sg-415a450e --subnet-id subnet-95391ff3 > /dev/null
+}
+
+terminatevm() {
+  INSTANCE_ID=$(aws ec2 describe-instances --filters Name=instance-state-name,Values=running --query 'Reservations[*].Instances[*].InstanceId' --output text | fzf)
+  aws ec2 terminate-instances --instance-ids ${INSTANCE_ID}
+}
+
+sshvm() {
+  INSTANCE_ID=$(aws ec2 describe-instances --filters Name=instance-state-name,Values=running --query 'Reservations[*].Instances[*].InstanceId' --output text | fzf)
+  aws ssm start-session --target ${INSTANCE_ID}
+}
+
+function share {
+
+    BUCKET=$(whoami)-share
+    EXPIRY_DAYS=1
+
+    # create the bucket if it doesn't exist, and apply a lifecycle policy to tidy up old files
+    # if aws s3 ls "s3://$BUCKET" 2>&1 | grep -q 'NoSuchBucket'; then
+    #     echo "Creating bucket: $BUCKET and applying expiry policy of $EXPIRY_DAYS days...";
+    #     aws s3api create-bucket --bucket $BUCKET --region eu-west-1 --create-bucket-configuration LocationConstraint=eu-west-1;
+    #     aws s3api put-bucket-lifecycle \
+    #         --bucket $BUCKET \
+    #         --lifecycle-configuration "{\"Rules\":[{\"Prefix\":\"\",\"Status\":\"Enabled\",\"AbortIncompleteMultipartUpload\":{\"DaysAfterInitiation\":7},\"Expiration\":{\"Days\":$EXPIRY_DAYS},\"ID\":\"ttl\"}]}";
+    # fi
+
+    # upload & copy presigned url to clipboard
+    aws s3 cp "$1" "s3://$BUCKET/$1";
+    aws s3 presign "s3://$BUCKET/$1" --expires-in $(($EXPIRY_DAYS*86400)) | pbcopy;
+    echo -e "\nFile uploaded with $EXPIRY_DAYS day ttl and presigned URL copied to clipboard\n";
+
+    echo -e "Generated link\n"
+    pbpaste
+    echo -e "\n"
+
+}
+
+complete -C '/usr/local/bin/aws_completer' aws

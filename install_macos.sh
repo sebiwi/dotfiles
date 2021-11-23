@@ -34,12 +34,21 @@ else
     echo "vim already installed, moving on..."
 fi
 
+# Install ctags
+if [[ ! -f /usr/local/bin/ctags ]] ; then
+    echo "instaling ctags..."
+    brew install ctags
+else
+    echo "ctags already installed, moving on..."
+fi
+
 # Install fzf
 which -s fzf
 if [[ $? != 0 ]] ; then
     echo "instaling fzf..."
     brew install fzf
     $(brew --prefix)/opt/fzf/install
+    [ -e ~/.fzf.sh ] || ln -s $DIR/macos/shell/fzf.sh ~/.fzf.sh
 else
     echo "fzf already installed, moving on..."
 fi

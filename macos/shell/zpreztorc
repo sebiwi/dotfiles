@@ -5,6 +5,7 @@ zstyle ':prezto:load' pmodule \
   'utility' \
   'completion' \
   'syntax-highlighting' \
+  'fzf-tab'
 #  'git' \
 #  'prompt' \
 #  'history-substring-search' \
@@ -12,4 +13,5 @@ zstyle ':prezto:load' pmodule \
 # Vim mode on terminal
 zstyle ':prezto:module:editor' key-bindings 'vi'
 
+# Syntax highlighting
 zstyle ':prezto:module:syntax-highlighting' color 'yes'
