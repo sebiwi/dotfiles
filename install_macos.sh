@@ -34,14 +34,6 @@ else
     echo "vim already installed, moving on..."
 fi
 
-# Install ctags
-if [[ ! -f /usr/local/bin/ctags ]] ; then
-    echo "instaling ctags..."
-    brew install ctags
-else
-    echo "ctags already installed, moving on..."
-fi
-
 # Install fzf
 which -s fzf
 if [[ $? != 0 ]] ; then
@@ -83,14 +75,7 @@ if [[ $? != 0 ]] ; then
     fi
     which tmux-mem-cpu-load
     if [[ $? != 0 ]]; then
-        mkdir -p ~/.tmux/plugins
-        git clone git@github.com:minhdanh/macos-network-speed.git ~/.tmux/plugins/tmux-mem-cpu-load
-        pushd ~/.tmux/plugins/tmux-mem-cpu-load
-        cmake .
-        make
-        ln -s tmux-mem-cpu-load /usr/local/bin/tmux-mem-cpu-load
-        ln -s $PWD/tmux-mem-cpu-load /usr/local/bin/tmux-mem-cpu-load
-        popd
+        brew install tmux-mem-cpu-load
     fi
     which getipfortmux
     if [[ $? != 0 ]]; then
@@ -114,14 +99,6 @@ else
     echo "tmux already installed, moving on..."
 fi
 
-# Install fonts
-if [[ ! -f ~/Library/Fonts/Menlo-Regular-Normal.ttf ]] ; then
-    echo "instaling fonts..."
-    ln -s $DIR/macos/fonts/Menlo-Regular-Normal.ttf ~/Library/Fonts/Menlo-Regular-Normal.ttf
-else
-    echo "fonts already installed, moving on..."
-fi
-
 # Install rbenv
 which -s rbenv
 if [[ $? != 0 ]] ; then
@@ -134,26 +111,24 @@ fi
 # Install nvm
 which -s node
 if [[ $? != 0 ]] ; then
-    echo "installing node..."
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-    NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+    brew install nvm
+    mkdir ~/.nvm
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+    [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
     nvm install --lts
 else
     echo "node already installed, moving on..."
 fi
 
-# Install python
-if [[ ! -f /usr/local/bin/python ]] ; then
-    echo "installing python"
-    brew install python
-    # set Python3 as default Python: https://dev.to/irfnhm/how-to-set-python3-as-a-default-python-version-on-mac-4jjf
-    [ -e /usr/local/bin/python ] || ln -s -f /usr/local/bin/python3.7 /usr/local/bin/python
-    echo "installing virtualenvwrapper"
-    pip3 install virtualenvwrapper
+## Install python
+which -s pyenv
+if [[ $? != 0 ]] ; then
+    echo "installing pyenv"
+    brew install pyenv
+    brew install pyenv-virtualenvwrapper
 else
-    echo "python already installed, moving on..."
+    echo "pyenv already installed, moving on..."
 fi
 
 # Install autojump tools
@@ -161,6 +136,15 @@ which -s autojump
 if [[ $? != 0 ]] ; then
     echo "installing autojump"
     brew install autojump
+else
+    echo "autojump already installed, moving on..."
+fi
+
+# Install bat
+which -s bat
+if [[ $? != 0 ]] ; then
+    echo "installing bat"
+    brew install bat
 else
     echo "autojump already installed, moving on..."
 fi
@@ -174,7 +158,7 @@ else
     echo "kubernetes tools already installed, moving on..."
 fi
 
-# Install prezto
+## Install prezto
 if [[ ! -f ~/.zprezto ]] ; then
     echo "installing prezto"
     git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
@@ -188,7 +172,7 @@ else
     echo "prezto already installed, moving on..."
 fi
 
-# Install the silver searcher
+## Install the silver searcher
 which -s ag
 if [[ $? != 0 ]] ; then
     echo "installing the silver searcher..."
@@ -196,8 +180,6 @@ if [[ $? != 0 ]] ; then
 else
     echo "the silver searcher already installed, moving on..."
 fi
-
-set -e
 
 # Symlink gitconfig
 [ -e ~/.gitconfig ] || ln -s $DIR/shell/gitconfig ~/.gitconfig

@@ -11,15 +11,27 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  ['NERDTree', 'NERDTreeFind'] }
 
 " Fuzzy file/buffer/tag search
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim', { 'on': ['Files', 'Ag'] }
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim', {
+        \ 'on': [
+            \ 'Ag',
+            \ 'Rg',
+            \ 'FZF',
+            \ 'Files',
+            \ 'Buffers',
+            \ 'Commits',
+            \ 'BCommits',
+            \ 'Tags',
+            \ 'BTags',
+            \ 'History',
+            \ 'Lines',
+            \ 'BLines',
+            \ 'Marks'
+        \ ] }
 
 " Nice status bar
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
-" Ack support
-Plug 'mileszs/ack.vim', { 'on': 'Ack' }
 
 " Go support
 Plug 'fatih/vim-go', { 'for': 'go' }
@@ -38,30 +50,21 @@ Plug 'gregsexton/gitv', { 'on': ['Gitv'] }
 " Easy surroundings editing
 Plug 'tpope/vim-surround'
 
-" Launch asynchronous tasks
-Plug 'tpope/vim-dispatch' , { 'on': ['Make', 'Dispatch'] }
-
 " Indent guidelines
 Plug 'Yggdroot/indentLine'
-
-" JSON Highlight
-Plug 'elzr/vim-json', { 'for': 'json' }
 
 " Autocomplete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Terraform
 Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
-Plug 'juliosueiras/vim-terraform-completion', { 'for': 'terraform' }
+Plug 'rhadley-recurly/vim-terragrunt', { 'for': 'hcl' }
 
-" Tagbar
-Plug 'majutsushi/tagbar'
+" Tagbar-like
+Plug 'liuchengxu/vista.vim'
 
 " Ansible
 Plug 'pearofducks/ansible-vim', { 'for': 'yaml.ansible' }
-
-" Ruby
-Plug 'tpope/vim-endwise', { 'for': 'ruby' }
 
 " Bracked bindings
 Plug 'tpope/vim-unimpaired'
@@ -74,5 +77,11 @@ Plug 'godlygeek/tabular', { 'on': 'Tab' }
 
 " Organization tools
 Plug 'vimwiki/vimwiki'
+
+" Development icons
+Plug 'ryanoasis/vim-devicons'
+
+" Easy search and replace
+Plug 'thinca/vim-qfreplace'
 
 call plug#end()            " required

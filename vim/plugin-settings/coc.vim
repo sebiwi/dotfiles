@@ -2,7 +2,11 @@
 "  CoC configuration
 """"""""""""""""""""""""""""
 " let g:coc_global_extensions = [ 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-tslint', 'coc-tslint-plugin', 'coc-css', 'coc-json', 'coc-pyls', 'coc-yaml' ]
-let g:coc_global_extensions = [ 'coc-cfn-lint', 'coc-tsserver', 'coc-pyright', 'coc-snippets', 'coc-json', 'coc-rls' ]
+let g:coc_global_extensions = [ 'coc-pyright', 'coc-snippets', 'coc-json', '@yaegassy/coc-ansible']
+
+let g:coc_filetype_map = {
+  \ 'yaml.ansible': 'ansible',
+  \ }
 
 " Better display for messages
 " set cmdheight=2

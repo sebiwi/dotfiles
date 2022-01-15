@@ -56,9 +56,8 @@ set wildmenu
 syntax on
 
 " Solarized Dark theme
+set background=dark
 colorscheme solarized
-" set background=dark
-set t_Co=256
 
 " When on, splitting a window will put the new window right of the current one.
 set splitright

@@ -25,31 +25,5 @@
     "kubernetes": "deployment.yaml"
   },
   "python.linting.flake8Enabled": true,
-  "python.formatting.provider": "black",
-  "yaml.customTags": [
-    "!Ref",
-    "!GetAtt",
-    "!fn",
-    "!And",
-    "!And sequence",
-    "!If",
-    "!Condition sequence",
-    "!Condition scalar",
-    "!If sequence",
-    "!Not sequence",
-    "!Equals sequence",
-    "!Or",
-    "!FindInMap sequence",
-    "!Base64",
-    "!Cidr",
-    "!Sub sequence",
-    "!Sub scalar",
-    "!GetAZs",
-    "!ImportValue",
-    "!Select",
-    "!Split",
-    "!stack_output_external",
-    "!stack_output",
-    "!Join sequence"
-  ]
+  "python.formatting.provider": "black"
 }
