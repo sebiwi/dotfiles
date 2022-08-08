@@ -21,9 +21,6 @@
     "UltiSnips",
     "gosnippets/UltiSnips"
   ],
-  "yaml.schemas": {
-    "kubernetes": "deployment.yaml"
-  },
   "python.linting.flake8Enabled": true,
   "python.formatting.provider": "black"
 }

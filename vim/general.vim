@@ -62,7 +62,7 @@ colorscheme solarized
 " When on, splitting a window will put the new window right of the current one.
 set splitright
 
-" When on, splitting a window will put the new window right of the current one.
+" When on, splitting a window will put the new window below of the current one.
 set splitbelow
 
 " Same as :print, but display unprintable characters with '^' and put $ after

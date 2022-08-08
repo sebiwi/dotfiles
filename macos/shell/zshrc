@@ -25,6 +25,10 @@ fi
 # nvm:golang:path
 export PATH="/Users/sebiwi/.nvm/versions/node/v16.13.1/bin/:/Users/sebiwi/go/bin:$PATH"
 
+# tfenv
+## See https://github.com/hashicorp/terraform-provider-aws/issues/21749
+export TFENV_ARCH=arm64
+
 # rbenv
 eval "$(rbenv init -)"
 
@@ -38,13 +42,13 @@ export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
 export WORKON_HOME=$HOME/.Envs
 pyenv virtualenvwrapper_lazy
 
-# Fzf
+# fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # History
 HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=50000
+SAVEHIST=10000
 
 # Kubernetes
 source ~/stuff/dotfiles/shell/kubernetes.sh
@@ -53,17 +57,19 @@ source /opt/homebrew/opt/kube-ps1/share/kube-ps1.sh
 # AWS
 sp() {
   export AWS_PROFILE=$(grep '^\[.*\]$' ~/.aws/credentials ~/.aws/config | cut -d ':' -f 2 | cut -d ' ' -f 2 | tr -d [ | tr -d ] | fzf)
-  export AWS_SDK_LOAD_CONFIG=1
+  export AWS_DEFAULT_REGION=eu-west-1
 }
 
 up() {
   unset AWS_PROFILE
-  unset AWS_SDK_LOAD_CONFIG
+  unset AWS_DEFAULT_REGION
 }
 
 # Bat
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
+# Github
+alias gprunesquashmerged='git checkout -q main && git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base main $branch) && [[ $(git cherry main $(git commit-tree $(git rev-parse "$branch^{tree}") -p $mergeBase -m _)) == "-"* ]] && git branch -D $branch; done'
 
 function share {
 

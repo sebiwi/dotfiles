@@ -12,29 +12,14 @@ Plug 'scrooloose/nerdtree', { 'on':  ['NERDTree', 'NERDTreeFind'] }
 
 " Fuzzy file/buffer/tag search
 Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim', {
-        \ 'on': [
-            \ 'Ag',
-            \ 'Rg',
-            \ 'FZF',
-            \ 'Files',
-            \ 'Buffers',
-            \ 'Commits',
-            \ 'BCommits',
-            \ 'Tags',
-            \ 'BTags',
-            \ 'History',
-            \ 'Lines',
-            \ 'BLines',
-            \ 'Marks'
-        \ ] }
+Plug 'junegunn/fzf.vim'
 
 " Nice status bar
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Go support
-Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'fatih/vim-go'
 
 " Git integration
 Plug 'tpope/vim-fugitive'
@@ -83,5 +68,8 @@ Plug 'ryanoasis/vim-devicons'
 
 " Easy search and replace
 Plug 'thinca/vim-qfreplace'
+
+" Easy comment
+Plug 'tpope/vim-commentary'
 
 call plug#end()            " required
