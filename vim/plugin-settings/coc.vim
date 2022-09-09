@@ -45,8 +45,13 @@ function! CheckBackspace() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-hi CocSearch ctermfg=12 guifg=#18A3FF
-hi CocMenuSel ctermbg=White guibg=#13354B
+" Highlight colors
+"" Increase search
+hi CocSearch ctermfg=4 gui=bold
+"" Selection background
+hi CocMenuSel ctermfg=White ctermbg=246 guibg=Black
+"" Menu background
+hi CocFloating ctermfg=14 ctermbg=0 guifg=bg
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
