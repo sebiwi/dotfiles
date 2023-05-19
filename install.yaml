@@ -1,0 +1,53 @@
+---
+
+- name: Install dependencies
+  hosts: localhost
+  tasks:
+    # - name: Install packages
+    #   homebrew:
+    #     name: "{{ item }}"
+    #     state: present
+    #   with_items:
+    #     - vim
+    #     - fzf
+    #     - tmux
+    #     - cmake
+    #     - pyenv
+    #     - pyenv-virtualenvwrapper
+    #     - autojump
+    #     - bat
+    #     - git-delta
+    #     - kubernetes-cli
+    #     - kube-ps1
+    #     - kubectx
+    #     - the_silver_searcher
+    - name: Check if iterm2 is installed
+      homebrew_cask:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - iterm2
+    # - name: playbook dir
+    #   debug:
+    #     var: ansible_env.HOME
+    ## vim
+    # - name: Symlink vim directory and running configuration
+    #   file:
+    #     src: "{{ playbook_dir }}/{{ item }}"
+    #     dest: "{{ ansible_env.HOME }}/.{{ item }}"
+    #     state: link
+    #   with_items:
+    #     - vim
+    #     - vimrc
+    # - name: Create vim directories
+    #   file:
+    #     path: "{{ ansible_env.HOME }}/.vim/{{ item }}"
+    #     state: directory
+    #   with_items:
+    #     - undo
+    #     - backup
+    #     - swap
+    # - name: Install vim plugins
+    #   shell: vim +PlugInstall +qall
+    #   changed_when: false
+    ## vim
