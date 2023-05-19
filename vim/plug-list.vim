@@ -24,7 +24,6 @@ Plug 'fatih/vim-go'
 " Git integration
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'gregsexton/gitv', { 'on': ['Gitv'] }
 
 " Airline-like bash prompt
 " Plug 'edkolev/promptline.vim'
@@ -51,7 +50,7 @@ Plug 'liuchengxu/vista.vim'
 " Ansible
 Plug 'pearofducks/ansible-vim', { 'for': 'yaml.ansible' }
 
-" Bracked bindings
+" Bracket bindings
 Plug 'tpope/vim-unimpaired'
 
 " Repeat plugin maps
@@ -71,5 +70,14 @@ Plug 'thinca/vim-qfreplace'
 
 " Easy comment
 Plug 'tpope/vim-commentary'
+
+" Live preview for replaces
+Plug 'markonm/traces.vim'
+
+" Edition context at the beginning of the buffer
+Plug 'wellle/context.vim'
+
+" HTTP client
+Plug 'nicwest/vim-http'
 
 call plug#end()            " required

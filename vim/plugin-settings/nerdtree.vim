@@ -10,3 +10,4 @@ let NERDTreeIgnore = ['\.pyc$', '\.git$']
 
 " Show hidden files
 let NERDTreeShowHidden=1
+let g:NERDTreeMinimalMenu=1

@@ -12,7 +12,7 @@ function! s:GrepOperator(type)
         return
     endif
 
-    silent execute "Ack! " shellescape(@@)
+    silent execute "Ag! " shellescape(@@)
     copen
 
     let @@ = saved_unnamed_register
