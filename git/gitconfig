@@ -1,11 +1,12 @@
 [alias]
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-	lola     = log --graph --decorate --pretty=oneline --abbrev-commit --all
-	history = log --pretty=format:\"[%h] %ae, %ar: %s\" --stat
-	poule = ! bash -c 'source $HOME/stuff/dotfiles/shell/poule.sh && poule && git pull'
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    lola     = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    history = log --pretty=format:\"[%h] %ae, %ar: %s\" --stat
+    poule = ! bash -c 'source $HOME/stuff/dotfiles/shell/poule.sh && poule && git pull'
+
 [core]
-	editor = vim
-	pager = delta
+    editor = vim
+    pager = delta
 
 [interactive]
     diffFilter = delta --color-only --features=interactive
@@ -24,7 +25,9 @@
     hunk-header-file-style = red
     hunk-header-line-number-style = "#067a00"
     hunk-header-style = file line-number syntax
+
 [include]
-	path = .gitconfig.user
+    path = .gitconfig.user
+
 [init]
-	defaultBranch = main
+    defaultBranch = main

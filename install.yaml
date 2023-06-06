@@ -3,51 +3,127 @@
 - name: Install dependencies
   hosts: localhost
   tasks:
-    # - name: Install packages
-    #   homebrew:
-    #     name: "{{ item }}"
-    #     state: present
-    #   with_items:
-    #     - vim
-    #     - fzf
-    #     - tmux
-    #     - cmake
-    #     - pyenv
-    #     - pyenv-virtualenvwrapper
-    #     - autojump
-    #     - bat
-    #     - git-delta
-    #     - kubernetes-cli
-    #     - kube-ps1
-    #     - kubectx
-    #     - the_silver_searcher
-    - name: Check if iterm2 is installed
+
+    # General dependencies
+    - name: Install formulae
+      homebrew:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - vim
+        - fzf
+        - tmux
+        - the_silver_searcher
+        - bat
+        - git-delta
+        - tmux-mem-cpu-load
+    - name: Install casks
       homebrew_cask:
         name: "{{ item }}"
         state: present
       with_items:
         - iterm2
-    # - name: playbook dir
-    #   debug:
-    #     var: ansible_env.HOME
-    ## vim
-    # - name: Symlink vim directory and running configuration
-    #   file:
-    #     src: "{{ playbook_dir }}/{{ item }}"
-    #     dest: "{{ ansible_env.HOME }}/.{{ item }}"
-    #     state: link
-    #   with_items:
-    #     - vim
-    #     - vimrc
-    # - name: Create vim directories
-    #   file:
-    #     path: "{{ ansible_env.HOME }}/.vim/{{ item }}"
-    #     state: directory
-    #   with_items:
-    #     - undo
-    #     - backup
-    #     - swap
-    # - name: Install vim plugins
-    #   shell: vim +PlugInstall +qall
-    #   changed_when: false
-    ## vim
+        - firefox
+    - name: create /usr/local/bin
+      file:
+        path: /usr/local/bin
+        state: directory
+      become: true
+
+    # vim
+    - name: Symlink vim directory and running configuration
+      file:
+        src: "{{ playbook_dir }}/{{ item }}"
+        dest: "{{ ansible_env.HOME }}/.{{ item }}"
+        state: link
+      with_items:
+        - vim
+        - vimrc
+    - name: Create vim directories
+      file:
+        path: "{{ ansible_env.HOME }}/.vim/{{ item }}"
+        state: directory
+      with_items:
+        - undo
+        - backup
+        - swap
+
+    # tmux
+    - name: Symlink tmux configuration
+      file:
+        src: "{{ playbook_dir }}/tmux/{{ item }}"
+        dest: "{{ ansible_env.HOME }}/.{{ item }}"
+        state: link
+      with_items:
+        - tmux.conf
+        - tmuxline
+    - name: Install tpm
+      git:
+        repo: https://github.com/tmux-plugins/tpm
+        dest: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
+    - name: Clone getipfortmux repository
+      git:
+        repo: https://github.com/JoshOldenburg/ipaddrutil.git
+        dest: /tmp/ipaddrutil
+    - name: Build getipfortmux
+      shell: make all
+      args:
+        chdir: /tmp/ipaddrutil
+        creates: /tmp/ipaddrutil/getipfortmux
+    - name: Add getipfortmux binary to path
+      copy:
+        src: /tmp/ipaddrutil/getipfortmux
+        dest: /usr/local/bin/getipfortmux
+        mode: '0111'
+      become: true
+    - name: Clone tmux-battery repository
+      git:
+        repo: https://github.com/JoshOldenburg/tmux-battery.git
+        dest: /tmp/tmux-battery
+    - name: Build tmux-battery
+      shell: make all
+      args:
+        chdir: /tmp/tmux-battery
+        creates: /tmp/tmux-battery/tmux-battery
+    - name: Add tmux-battery binary to path
+      copy:
+        src: /tmp/tmux-battery/tmux-battery
+        dest: /usr/local/bin/tmux-battery
+        mode: '0111'
+      become: true
+
+    # fzf
+    - name: Symlink fzf configuration
+      file:
+        src: "{{ playbook_dir }}/shell/{{ item }}"
+        dest: "{{ ansible_env.HOME }}/.{{ item }}"
+        state: link
+      with_items:
+        - fzf.zsh
+
+    # Prezto
+    - name: Install prezto
+      git:
+        repo: https://github.com/sorin-ionescu/prezto.git
+        dest: "{{ ansible_env.HOME }}/.zprezto"
+    - name: Symlink prezto configuration
+      file:
+        src: "{{ playbook_dir }}/shell/{{ item }}"
+        dest: "{{ ansible_env.HOME }}/.{{ item }}"
+        state: link
+      with_items:
+        - zshrc
+        - zpreztorc
+    - name: Install fzf-tab prezto module
+      git:
+        repo: https://github.com/Aloxaf/fzf-tab
+        dest: "{{ ansible_env.HOME }}/.zprezto/contrib/fzf-tab"
+
+    # git
+    - name: Symlink git configuration
+      file:
+        src: "{{ playbook_dir }}/git/{{ item }}"
+        dest: "{{ ansible_env.HOME }}/.{{ item }}"
+        state: link
+      with_items:
+        - gitconfig

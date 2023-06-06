@@ -1,0 +1,93 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Brew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# asdf
+source "${HOME}/.asdf/asdf.sh"
+
+# virtualenvwrapper
+export WORKON_HOME=~/.virtualenvs
+. $(asdf where python)/bin/virtualenvwrapper.sh
+
+# ls colors
+export CLICOLOR=1
+
+# Zsh autocompletion
+# autoload bashcompinit && bashcompinit
+# autoload -Uz compinit && compinit
+
+# Autojump
+# [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+
+# Set PATH
+# nvm:golang:path
+# export PATH="/Users/sebiwi/.nvm/versions/node/v16.13.1/bin/:/Users/sebiwi/go/bin:$PATH"
+
+# History
+HISTFILE=~/.histfile
+HISTSIZE=50000
+SAVEHIST=10000
+
+# Kubernetes
+# source ~/stuff/dotfiles/shell/kubernetes.sh
+# source /opt/homebrew/opt/kube-ps1/share/kube-ps1.sh
+
+# AWS
+# sp() {
+#   export AWS_PROFILE=$(grep '^\[.*\]$' ~/.aws/credentials ~/.aws/config | cut -d ':' -f 2 | cut -d ' ' -f 2 | tr -d [ | tr -d ] | fzf)
+#   export AWS_DEFAULT_REGION=eu-west-1
+# }
+
+# up() {
+#   unset AWS_PROFILE
+#   unset AWS_DEFAULT_REGION
+# }
+
+# Bat
+# export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+# function share {
+
+#     BUCKET=$(whoami)-share
+#     EXPIRY_DAYS=1
+
+#     # create the bucket if it doesn't exist, and apply a lifecycle policy to tidy up old files
+#     # if aws s3 ls "s3://$BUCKET" 2>&1 | grep -q 'NoSuchBucket'; then
+#     #     echo "Creating bucket: $BUCKET and applying expiry policy of $EXPIRY_DAYS days...";
+#     #     aws s3api create-bucket --bucket $BUCKET --region eu-west-1 --create-bucket-configuration LocationConstraint=eu-west-1;
+#     #     aws s3api put-bucket-lifecycle \
+#     #         --bucket $BUCKET \
+#     #         --lifecycle-configuration "{\"Rules\":[{\"Prefix\":\"\",\"Status\":\"Enabled\",\"AbortIncompleteMultipartUpload\":{\"DaysAfterInitiation\":7},\"Expiration\":{\"Days\":$EXPIRY_DAYS},\"ID\":\"ttl\"}]}";
+#     # fi
+
+#     # upload & copy presigned url to clipboard
+#     aws s3 cp "$1" "s3://$BUCKET/$1";
+#     aws s3 presign "s3://$BUCKET/$1" --expires-in $(($EXPIRY_DAYS*86400)) | pbcopy;
+#     echo -e "\nFile uploaded with $EXPIRY_DAYS day ttl and presigned URL copied to clipboard\n";
+
+#     echo -e "Generated link\n"
+#     pbpaste
+#     echo -e "\n"
+
+# }
+
+# complete -C '/opt/homebrew/bin/aws_completer' aws
+
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+

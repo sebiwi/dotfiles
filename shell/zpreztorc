@@ -5,13 +5,21 @@ zstyle ':prezto:load' pmodule \
   'utility' \
   'completion' \
   'syntax-highlighting' \
+  'history-substring-search' \
+  'autosuggestions' \
+  'prompt' \
   'fzf-tab'
-#  'git' \
-#  'prompt' \
-#  'history-substring-search' \
 
-# Vim mode on terminal
+# Editor
+## Vim mode on terminal
 zstyle ':prezto:module:editor' key-bindings 'vi'
+
+## Dot expansion
+zstyle ':prezto:module:editor' dot-expansion 'yes'
 
 # Syntax highlighting
 zstyle ':prezto:module:syntax-highlighting' color 'yes'
+
+# Prompt
+## Powerlevel 10k
+zstyle :prezto:module:prompt theme powerlevel10k
