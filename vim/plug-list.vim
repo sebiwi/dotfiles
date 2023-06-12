@@ -25,9 +25,6 @@ Plug 'fatih/vim-go'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
-" Airline-like bash prompt
-" Plug 'edkolev/promptline.vim'
-
 " Airline-like tmux status bar
 "Plug 'edkolev/tmuxline.vim'
 

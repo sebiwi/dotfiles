@@ -1,8 +1,7 @@
 """"""""""""""""""""""""""""
 "  CoC configuration
 """"""""""""""""""""""""""""
-" let g:coc_global_extensions = [ 'coc-emoji', 'coc-eslint', 'coc-prettier', 'coc-tsserver', 'coc-tslint', 'coc-tslint-plugin', 'coc-css', 'coc-json', 'coc-pyls', 'coc-yaml' ]
-let g:coc_global_extensions = [ 'coc-pyright', 'coc-snippets', 'coc-json', '@yaegassy/coc-ansible' ]
+let g:coc_global_extensions = [ 'coc-tsserver', 'coc-snippets', 'coc-json', '@yaegassy/coc-ansible' ]
 
 " Map filetypes to LSPs
 let g:coc_filetype_map = {

@@ -23,11 +23,10 @@ export CLICOLOR=1
 # autoload -Uz compinit && compinit
 
 # Autojump
-# [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 
 # Set PATH
-# nvm:golang:path
-# export PATH="/Users/sebiwi/.nvm/versions/node/v16.13.1/bin/:/Users/sebiwi/go/bin:$PATH"
+export PATH="${HOME}/go/bin:$PATH"
 
 # History
 HISTFILE=~/.histfile
@@ -49,8 +48,8 @@ SAVEHIST=10000
 #   unset AWS_DEFAULT_REGION
 # }
 
-# Bat
-# export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+# Use bat for man pages
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # function share {
 
