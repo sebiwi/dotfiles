@@ -19,7 +19,7 @@ Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Go support
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 
 " Git integration
 Plug 'tpope/vim-fugitive'
@@ -76,5 +76,9 @@ Plug 'wellle/context.vim'
 
 " HTTP client
 Plug 'nicwest/vim-http'
+
+" JavaScript
+Plug 'mattn/emmet-vim'
+Plug 'pangloss/vim-javascript'
 
 call plug#end()            " required

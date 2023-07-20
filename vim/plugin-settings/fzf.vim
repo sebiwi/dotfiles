@@ -2,7 +2,7 @@
 "    fzf configuration
 """"""""""""""""""""""""""""
 " Fulltext:
-nnoremap <leader>ag :Ag<cr>
+nnoremap <leader>g :Ag<cr>
 
 " Files:
 nnoremap <c-p> :Files<cr>

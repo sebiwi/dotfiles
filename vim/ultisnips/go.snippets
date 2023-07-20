@@ -1,5 +1,11 @@
-# error format
+# Test template
 snippet tif "If test format " !b
+// Given
+${5}
+want := ${4:value}
+// When
+got := ${3:functionName}
+// Then
 if got != want {
 	t.Errorf("got: %${1:q}, want: %${2:q}", got, want)
 }

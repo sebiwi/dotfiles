@@ -1,15 +1,27 @@
 """"""""""""""""""""""""""""
 "  CoC configuration
 """"""""""""""""""""""""""""
-let g:coc_global_extensions = [ 'coc-tsserver', 'coc-snippets', 'coc-json', '@yaegassy/coc-ansible' ]
+let g:coc_global_extensions = [
+      \'coc-tsserver',
+      \'coc-snippets',
+      \'coc-json',
+      \'coc-prisma',
+      \'@yaegassy/coc-ansible'
+      \]
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+  command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
+endif
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
 
 " Map filetypes to LSPs
 let g:coc_filetype_map = {
   \ 'yaml.ansible': 'ansible',
   \ }
-
-" Better display for messages
-" set cmdheight=2
 
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
@@ -22,8 +34,6 @@ set signcolumn=yes
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-@> coc#refresh()
-" inoremap <silent><expr> <c-space> coc#refresh()
-" inoremap <silent><expr> <NUL> coc#refresh()
 
 " Use Control + j for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
