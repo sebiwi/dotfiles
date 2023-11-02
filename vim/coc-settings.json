@@ -13,8 +13,6 @@
       "filetypes": ["go"]
     }
   },
-  "snippets.ultisnips.directories": [
-    "UltiSnips",
-    "gosnippets/UltiSnips"
-  ],
+  "snippets.ultisnips.directories": ["UltiSnips", "gosnippets/UltiSnips"],
+  "coc.preferences.formatOnType": true
 }

@@ -18,10 +18,6 @@ export WORKON_HOME=~/.virtualenvs
 # ls colors
 export CLICOLOR=1
 
-# Zsh autocompletion
-# autoload bashcompinit && bashcompinit
-# autoload -Uz compinit && compinit
-
 # Autojump
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 

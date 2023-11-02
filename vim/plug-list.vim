@@ -81,4 +81,7 @@ Plug 'nicwest/vim-http'
 Plug 'mattn/emmet-vim'
 Plug 'pangloss/vim-javascript'
 
+" Language support
+Plug 'sheerun/vim-polyglot'
+
 call plug#end()            " required

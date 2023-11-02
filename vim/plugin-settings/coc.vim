@@ -3,10 +3,10 @@
 """"""""""""""""""""""""""""
 let g:coc_global_extensions = [
       \'coc-tsserver',
+      \'@yaegassy/coc-tailwindcss3',
+      \'coc-emmet',
       \'coc-snippets',
       \'coc-json',
-      \'coc-prisma',
-      \'@yaegassy/coc-ansible'
       \]
 
 if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
