@@ -61,5 +61,15 @@ nnoremap <leader>fj :%!python -m json.tool<cr>
 """"""""""""""""""""""""""""
 "         Diff
 """"""""""""""""""""""""""""
+" Select split for diff
 nnoremap <leader>dt :windo diffthis<cr>
+" Disable diffs
 nnoremap <leader>do :windo diffoff<cr>
+
+""""""""""""""""""""""""""""
+"         Zoom
+""""""""""""""""""""""""""""
+" Zoom on pane
+noremap Zi <c-w>_ \| <c-w>\|
+" Zoom out
+noremap Zo <c-w>=
