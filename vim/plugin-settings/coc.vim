@@ -4,7 +4,6 @@
 let g:coc_global_extensions = [
       \'coc-tsserver',
       \'@yaegassy/coc-tailwindcss3',
-      \'coc-emmet',
       \'coc-snippets',
       \'coc-json',
       \]

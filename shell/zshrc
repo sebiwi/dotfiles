@@ -11,18 +11,14 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # asdf
 source "${HOME}/.asdf/asdf.sh"
 
-# virtualenvwrapper
-export WORKON_HOME=~/.virtualenvs
-. $(asdf where python)/bin/virtualenvwrapper.sh
-
 # ls colors
 export CLICOLOR=1
 
 # Autojump
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 
-# Set PATH
-export PATH="${HOME}/go/bin:$PATH"
+# Set PATH: golang:psql
+export PATH="${HOME}/go/bin:/opt/homebrew/opt/libpq/bin:$PATH"
 
 # History
 HISTFILE=~/.histfile
