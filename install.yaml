@@ -14,6 +14,7 @@
         - git-delta
         - go
         - kubectx
+        - terraform-docs
         - terraform-ls
         - the_silver_searcher
         - tmux
