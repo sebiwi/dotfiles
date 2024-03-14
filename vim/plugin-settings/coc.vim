@@ -2,6 +2,7 @@
 "  CoC configuration
 """"""""""""""""""""""""""""
 let g:coc_global_extensions = [
+      \'@yaegassy/coc-ruff',
       \'coc-tsserver',
       \'@yaegassy/coc-tailwindcss3',
       \'coc-snippets',

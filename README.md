@@ -7,27 +7,25 @@ The dotfiles.
 - brew
 - asdf
   - python
-    - virtualenv
-    - virtualenvwrapper
+    - pdm
 
 ## Installation
 
 Install the requirements under the `Requirements` section, then:
 
 ```bash
-# Create a virtualenv for this repository
-mkvirtualenv dotfiles
 
-# Install ansible
-pip install ansible
+# install ansible
+pdm install
 
-# Run the install script
-ansible-playbook install.yaml -K
+# run the install script
+pdm run ansible-playbook install.yaml -K
 ```
 
 Change iTerm's colorscheme to Solarized Dark, and use the Powerlevel10k patched fonts.
 
 ## Contributing
+
 1. Fork it!
 2. Create your feature branch: `git checkout -b my-new-feature`
 3. Commit your changes: `git commit -am 'Add some feature'`
@@ -35,4 +33,5 @@ Change iTerm's colorscheme to Solarized Dark, and use the Powerlevel10k patched 
 5. Submit a pull request
 
 ## License
+
 MIT - see LICENSE for more details

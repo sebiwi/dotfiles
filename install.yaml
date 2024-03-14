@@ -1,33 +1,38 @@
 ---
-
 - name: Install dependencies
   hosts: localhost
   tasks:
-
     # General dependencies
     - name: Install formulae
       homebrew:
         name: "{{ item }}"
         state: present
       with_items:
-        - vim
-        - fzf
-        - tmux
-        - the_silver_searcher
+        - autojump
         - bat
+        - fzf
         - git-delta
+        - go
+        - kubectx
+        - terraform-ls
+        - the_silver_searcher
+        - tmux
         - tmux-mem-cpu-load
+        - vim
     - name: Install casks
       homebrew_cask:
         name: "{{ item }}"
         state: present
       with_items:
-        - iterm2
+        - docker
         - firefox
+        - iterm2
+        - keepassxc
     - name: create /usr/local/bin
       file:
         path: /usr/local/bin
         state: directory
+        mode: "0755"
       become: true
 
     # vim
@@ -43,6 +48,7 @@
       file:
         path: "{{ ansible_env.HOME }}/.vim/{{ item }}"
         state: directory
+        mode: "0755"
       with_items:
         - undo
         - backup
@@ -58,11 +64,11 @@
         - tmux.conf
         - tmuxline
     - name: Install tpm
-      git:
+      ansible.builtin.git:
         repo: https://github.com/tmux-plugins/tpm
         dest: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
     - name: Clone getipfortmux repository
-      git:
+      ansible.builtin.git:
         repo: https://github.com/JoshOldenburg/ipaddrutil.git
         dest: /tmp/ipaddrutil
     - name: Build getipfortmux
@@ -74,7 +80,7 @@
       copy:
         src: /tmp/ipaddrutil/getipfortmux
         dest: /usr/local/bin/getipfortmux
-        mode: '0111'
+        mode: "0111"
       become: true
     - name: Clone tmux-battery repository
       git:
@@ -89,7 +95,7 @@
       copy:
         src: /tmp/tmux-battery/tmux-battery
         dest: /usr/local/bin/tmux-battery
-        mode: '0111'
+        mode: "0111"
       become: true
 
     # fzf

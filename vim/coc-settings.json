@@ -14,5 +14,6 @@
     }
   },
   "snippets.ultisnips.directories": ["UltiSnips", "gosnippets/UltiSnips"],
-  "coc.preferences.formatOnType": true
+  "coc.preferences.formatOnType": true,
+  "coc.preferences.formatOnSave": true
 }
