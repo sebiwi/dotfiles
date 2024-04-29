@@ -5,7 +5,7 @@ The dotfiles.
 ## Requirements
 
 - brew
-- asdf
+- mise
   - python
     - pdm
 

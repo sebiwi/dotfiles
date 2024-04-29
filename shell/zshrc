@@ -8,8 +8,8 @@ fi
 # Brew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# asdf
-source "${HOME}/.asdf/asdf.sh"
+# mise
+eval "$(/opt/homebrew/bin/mise activate zsh)"
 
 # ls colors
 export CLICOLOR=1

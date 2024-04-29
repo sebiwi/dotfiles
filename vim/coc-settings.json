@@ -15,5 +15,6 @@
   },
   "snippets.ultisnips.directories": ["UltiSnips", "gosnippets/UltiSnips"],
   "coc.preferences.formatOnType": true,
-  "coc.preferences.formatOnSave": true
+  "coc.preferences.formatOnSave": true,
+  "coc.preferences.jumpCommand": "vsplit"
 }
