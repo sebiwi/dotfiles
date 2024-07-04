@@ -78,10 +78,12 @@ Plug 'wellle/context.vim'
 Plug 'nicwest/vim-http'
 
 " JavaScript
-Plug 'mattn/emmet-vim'
 Plug 'pangloss/vim-javascript'
 
 " Language support
 Plug 'sheerun/vim-polyglot'
+
+" Register preview
+Plug 'junegunn/vim-peekaboo'
 
 call plug#end()            " required
