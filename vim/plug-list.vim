@@ -44,17 +44,11 @@ Plug 'rhadley-recurly/vim-terragrunt', { 'for': 'hcl' }
 " Tagbar-like
 Plug 'liuchengxu/vista.vim'
 
-" Ansible
-Plug 'pearofducks/ansible-vim', { 'for': 'yaml.ansible' }
-
 " Bracket bindings
 Plug 'tpope/vim-unimpaired'
 
 " Repeat plugin maps
 Plug 'tpope/vim-repeat'
-
-" Alignment tool
-Plug 'godlygeek/tabular', { 'on': 'Tab' }
 
 " Organization tools
 Plug 'vimwiki/vimwiki'
