@@ -20,15 +20,18 @@
         - tmux
         - tmux-mem-cpu-load
         - vim
+        - font-meslo-lg-nerd-font
     - name: Install casks
       homebrew_cask:
         name: "{{ item }}"
         state: present
       with_items:
+        # - iterm2
         - docker
         - firefox
-        - iterm2
         - keepassxc
+        - wezterm
+        - nikitabobko/tap/aerospace
     - name: create /usr/local/bin
       file:
         path: /usr/local/bin
@@ -134,3 +137,28 @@
         state: link
       with_items:
         - gitconfig
+
+    # wezterm
+    - name: Symlink wezterm configuration
+      file:
+        src: "{{ playbook_dir }}/wezterm/{{ item }}"
+        dest: "{{ ansible_env.HOME }}/.{{ item }}"
+        state: link
+      with_items:
+        - wezterm.lua
+
+    # aerospace
+    - name: Create aerospace directories
+      file:
+        path: "{{ ansible_env.HOME }}/.config/{{ item }}"
+        state: directory
+        mode: "0755"
+      with_items:
+        - aerospace
+    - name: Symlink aerospace configuration
+      file:
+        src: "{{ playbook_dir }}/aerospace/{{ item }}"
+        dest: "{{ ansible_env.HOME }}/.config/aerospace/{{ item }}"
+        state: link
+      with_items:
+        - aerospace.toml

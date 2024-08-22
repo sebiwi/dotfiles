@@ -26,7 +26,7 @@ HISTSIZE=50000
 SAVEHIST=10000
 
 # Kubernetes
-source ~/stuff/dotfiles/shell/kubernetes.sh
+# source ~/stuff/dotfiles/shell/kubernetes.sh
 # source /opt/homebrew/opt/kube-ps1/share/kube-ps1.sh
 
 # AWS
@@ -69,7 +69,6 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # }
 
 # complete -C '/opt/homebrew/bin/aws_completer' aws
-
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then

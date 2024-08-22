@@ -58,14 +58,6 @@ else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
-" Highlight colors
-"" Increase search
-hi CocSearch ctermfg=4 gui=bold
-"" Selection background
-hi CocMenuSel ctermfg=White ctermbg=246 guibg=Black
-"" Menu background
-hi CocFloating ctermfg=14 ctermbg=0 guifg=bg
-
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
