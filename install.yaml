@@ -10,6 +10,8 @@
       with_items:
         - autojump
         - bat
+        - eza
+        - font-meslo-lg-nerd-font
         - fzf
         - git-delta
         - go
@@ -20,7 +22,6 @@
         - tmux
         - tmux-mem-cpu-load
         - vim
-        - font-meslo-lg-nerd-font
     - name: Install casks
       homebrew_cask:
         name: "{{ item }}"
