@@ -31,7 +31,7 @@
         - docker
         - firefox
         - keepassxc
-        - wezterm
+        - wezterm@nightly
         - nikitabobko/tap/aerospace
     - name: create /usr/local/bin
       file:
