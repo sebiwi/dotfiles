@@ -55,7 +55,7 @@ endfunction
 if has('nvim')
   inoremap <silent><expr> <c-space> coc#refresh()
 else
-  inoremap <silent><expr> <c-@> coc#refresh()
+  inoremap <silent><expr> <c-;> coc#refresh()
 endif
 
 " Use `[g` and `]g` to navigate diagnostics

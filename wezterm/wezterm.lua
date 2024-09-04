@@ -10,7 +10,7 @@ config.window_decorations = "RESIZE"
 
 config.color_scheme = 'Solarized (dark) (terminal.sexy)'
 
-config.window_background_opacity = 0.8
+config.window_background_opacity = 0.9
 config.macos_window_background_blur = 10
 
 config.audible_bell = "Disabled"
