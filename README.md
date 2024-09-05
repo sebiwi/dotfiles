@@ -5,9 +5,9 @@ The dotfiles.
 ## Requirements
 
 - brew
-- mise
-  - python
-    - pdm
+  - mise
+    - python
+      - pdm
 
 ## Installation
 
