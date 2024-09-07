@@ -27,12 +27,16 @@
         name: "{{ item }}"
         state: present
       with_items:
-        # - iterm2
+        - 1password
+        - alt-tab
         - docker
-        - firefox
+        - firefox@developer-edition
+        - hiddenbar
         - keepassxc
-        - wezterm@nightly
         - nikitabobko/tap/aerospace
+        - raycast
+        - stats
+        - wezterm@nightly
     - name: create /usr/local/bin
       file:
         path: /usr/local/bin
