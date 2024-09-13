@@ -2,19 +2,37 @@
   "languageserver": {
     "terraform": {
       "command": "terraform-ls",
-      "args": ["serve"],
-      "filetypes": ["terraform", "tf"],
+      "args": [
+        "serve"
+      ],
+      "filetypes": [
+        "terraform",
+        "tf"
+      ],
       "initializationOptions": {},
       "settings": {}
     },
     "golang": {
       "command": "gopls",
-      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["go"]
+      "rootPatterns": [
+        "go.mod",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "filetypes": [
+        "go"
+      ]
     }
   },
-  "snippets.ultisnips.directories": ["UltiSnips", "gosnippets/UltiSnips"],
   "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnSave": true,
-  "coc.preferences.jumpCommand": "vsplit"
+  "snippets.ultisnips.directories": [
+    "UltiSnips",
+    "gosnippets/UltiSnips"
+  ],
+  "coc.preferences.jumpCommand": "vsplit",
+  "pyright.inlayHints.functionReturnTypes": false,
+  "pyright.inlayHints.variableTypes": false,
+  "pyright.inlayHints.parameterTypes": false
 }
