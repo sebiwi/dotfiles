@@ -114,6 +114,7 @@
         state: link
       with_items:
         - fzf.zsh
+        - p10k.zsh
 
     # Prezto
     - name: Install prezto
