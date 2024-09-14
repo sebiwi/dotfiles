@@ -80,4 +80,7 @@ Plug 'sheerun/vim-polyglot'
 " Register preview
 Plug 'junegunn/vim-peekaboo'
 
+" copilot
+Plug 'github/copilot.vim'
+
 call plug#end()            " required

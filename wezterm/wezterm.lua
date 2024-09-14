@@ -1,4 +1,5 @@
 local wezterm = require("wezterm")
+local act = wezterm.action
 
 local config = wezterm.config_builder()
 
@@ -48,44 +49,44 @@ config.leader = {
 
 config.keys = {
   {
+    mods = "LEADER",
     key = "[",
-    mods = "LEADER",
-    action = wezterm.action.ActivateCopyMode,
+    action = act.ActivateCopyMode,
   },
   {
+    mods = "LEADER",
     key = "z",
-    mods = "LEADER",
-    action = wezterm.action.TogglePaneZoomState,
+    action = act.TogglePaneZoomState,
   },
   {
-    key = 'c',
     mods = 'LEADER',
-    action = wezterm.action.SpawnTab "CurrentPaneDomain",
+    key = 'c',
+    action = act.SpawnTab "CurrentPaneDomain",
   },
   {
     mods = "LEADER",
     key = "p",
-    action = wezterm.action.ActivateTabRelative(-1)
+    action = act.ActivateTabRelative(-1)
   },
   {
     mods = "LEADER",
     key = "n",
-    action = wezterm.action.ActivateTabRelative(1)
+    action = act.ActivateTabRelative(1)
   },
   {
     mods = "LEADER",
     key = "%",
-    action = wezterm.action.SplitHorizontal { domain = "CurrentPaneDomain" }
+    action = act.SplitHorizontal { domain = "CurrentPaneDomain" }
   },
   {
     mods = "LEADER",
     key = "\"",
-    action = wezterm.action.SplitVertical { domain = "CurrentPaneDomain" }
+    action = act.SplitVertical { domain = "CurrentPaneDomain" }
   },
   {
     mods = 'LEADER',
     key = ',',
-    action = wezterm.action.PromptInputLine {
+    action = act.PromptInputLine {
       description = 'Enter new name for tab',
       action = wezterm.action_callback(
         function(window, pane, line)
@@ -104,37 +105,95 @@ config.keys = {
   {
     mods = "LEADER",
     key = "j",
-    action = wezterm.action.ActivatePaneDirection "Down"
+    action = act.ActivatePaneDirection "Down"
   },
   {
     mods = "LEADER",
     key = "k",
-    action = wezterm.action.ActivatePaneDirection "Up"
+    action = act.ActivatePaneDirection "Up"
   },
   {
     mods = "LEADER",
     key = "l",
-    action = wezterm.action.ActivatePaneDirection "Right"
+    action = act.ActivatePaneDirection "Right"
   },
   {
     mods = "LEADER",
     key = "LeftArrow",
-    action = wezterm.action.AdjustPaneSize { "Left", 5 }
+    action = act.AdjustPaneSize { "Left", 5 }
   },
   {
     mods = "LEADER",
     key = "RightArrow",
-    action = wezterm.action.AdjustPaneSize { "Right", 5 }
+    action = act.AdjustPaneSize { "Right", 5 }
   },
   {
     mods = "LEADER",
     key = "DownArrow",
-    action = wezterm.action.AdjustPaneSize { "Down", 5 }
+    action = act.AdjustPaneSize { "Down", 5 }
   },
   {
     mods = "LEADER",
     key = "UpArrow",
-    action = wezterm.action.AdjustPaneSize { "Up", 5 }
+    action = act.AdjustPaneSize { "Up", 5 }
+  },
+}
+
+config.key_tables = {
+  copy_mode = {
+    {key="q", mods="NONE", action=act.CopyMode("Close")},
+
+    {key="h", mods="NONE", action=act.CopyMode("MoveLeft")},
+    {key="j", mods="NONE", action=act.CopyMode("MoveDown")},
+    {key="k", mods="NONE", action=act.CopyMode("MoveUp")},
+    {key="l", mods="NONE", action=act.CopyMode("MoveRight")},
+
+    {key="w",          mods="NONE", action=act.CopyMode("MoveForwardWord")},
+    {key="e",          mods="NONE", action=act.CopyMode("MoveForwardWordEnd")},
+
+    {key="b",         mods="NONE",  action=act.CopyMode("MoveBackwardWord")},
+
+    {key="0",     mods="NONE",  action=act.CopyMode("MoveToStartOfLine")},
+    {key="$",     mods="NONE",  action=act.CopyMode("MoveToEndOfLineContent")},
+    {key="_",     mods="NONE",  action=act.CopyMode("MoveToStartOfLineContent")},
+
+    {key="v", mods="NONE",  action=act.CopyMode{SetSelectionMode="Cell"}},
+    {key="V", mods="NONE",  action=act.CopyMode{SetSelectionMode="Line"}},
+    {key="v", mods="CTRL",  action=act.CopyMode{SetSelectionMode="Block"}},
+
+    {key="G", mods="NONE",  action=act.CopyMode("MoveToScrollbackBottom")},
+    {key="g", mods="NONE",  action=act.CopyMode("MoveToScrollbackTop")},
+
+    {key="H", mods="NONE",  action=act.CopyMode("MoveToViewportTop")},
+    {key="M", mods="NONE",  action=act.CopyMode("MoveToViewportMiddle")},
+    {key="L", mods="NONE",  action=act.CopyMode("MoveToViewportBottom")},
+
+    {key="u", mods="CTRL", action=act.CopyMode("PageUp")},
+    {key="d", mods="CTRL", action=act.CopyMode("PageDown")},
+
+    -- Enter y to copy and quit the copy mode.
+    {key="y", mods="NONE", action=act.Multiple{
+      act.CopyTo("ClipboardAndPrimarySelection"),
+      act.CopyMode("Close"),
+    }},
+    -- Enter search mode to edit the pattern.
+    -- When the search pattern is an empty string the existing pattern is preserved
+    {key="/", mods="NONE", action=act{Search={CaseSensitiveString=""}}},
+    {key="?", mods="NONE", action=act{Search={CaseInSensitiveString=""}}},
+    {key="n", mods="CTRL", action=act{CopyMode="NextMatch"}},
+    {key="p", mods="CTRL", action=act{CopyMode="PriorMatch"}},
+  },
+
+  search_mode = {
+    {key="Escape", mods="NONE", action=act{CopyMode="Close"}},
+    -- Go back to copy mode when pressing enter, so that we can use unmodified keys like "n"
+    -- to navigate search results without conflicting with typing into the search area.
+    {key="Enter", mods="NONE", action="ActivateCopyMode"},
+    {key="c", mods="CTRL", action="ActivateCopyMode"},
+    {key="n", mods="CTRL", action=act{CopyMode="NextMatch"}},
+    {key="p", mods="CTRL", action=act{CopyMode="PriorMatch"}},
+    {key="r", mods="CTRL", action=act.CopyMode("CycleMatchType")},
+    {key="u", mods="CTRL", action=act.CopyMode("ClearPattern")},
   },
 }
 
@@ -143,7 +202,7 @@ for i = 0, 9 do
     table.insert(config.keys, {
         key = tostring(i),
         mods = "LEADER",
-        action = wezterm.action.ActivateTab(i),
+        action = act.ActivateTab(i),
     })
 end
 
@@ -154,19 +213,19 @@ wezterm.on("update-right-status", function(window, _)
     local prefix = ""
 
     if window:leader_is_active() then
-        prefix = " " .. utf8.char(0x1f30a) -- ocean wave
-        SOLID_LEFT_ARROW = utf8.char(0xe0b2)
+      prefix = " " .. utf8.char(0x1f30a) -- ocean wave
+      SOLID_LEFT_ARROW = utf8.char(0xe0b2)
     end
 
     if window:active_tab():tab_id() ~= 0 then
-        ARROW_FOREGROUND = { Foreground = { Color = "#002D3A" } }
+      ARROW_FOREGROUND = { Foreground = { Color = "#002D3A" } }
     end -- arrow color based on if tab is first pane
 
     window:set_left_status(wezterm.format {
-        { Background = { Color = "#9EABAB" } },
-        { Text = prefix },
-        ARROW_FOREGROUND,
-        { Text = SOLID_LEFT_ARROW }
+      { Background = { Color = "#9EABAB" } },
+      { Text = prefix },
+      ARROW_FOREGROUND,
+      { Text = SOLID_LEFT_ARROW }
     })
 end)
 

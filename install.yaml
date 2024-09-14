@@ -32,6 +32,7 @@
         - docker
         - firefox@developer-edition
         - hiddenbar
+        - keymapp
         - nikitabobko/tap/aerospace
         - raycast
         - stats
