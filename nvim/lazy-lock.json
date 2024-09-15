@@ -7,6 +7,7 @@
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "conform.nvim": { "branch": "master", "commit": "1a99fdc1d3aa9ccdf3021e67982a679a8c5c740c" },
   "dashboard-nvim": { "branch": "master", "commit": "fabf5feec96185817c732d47d363f34034212685" },
+  "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "dressing.nvim": { "branch": "master", "commit": "c5775a888adbc50652cb370073fcfec963eca93e" },
   "flash.nvim": { "branch": "main", "commit": "34c7be146a91fec3555c33fe89c7d643f6ef5cf1" },
   "friendly-snippets": { "branch": "main", "commit": "00ebcaa159e817150bd83bfe2d51fa3b3377d5c4" },
@@ -25,7 +26,9 @@
   "mini.icons": { "branch": "main", "commit": "2d89252993fec829b24720097a687412d10f6c85" },
   "mini.indentscope": { "branch": "main", "commit": "da9af64649e114aa79480c238fd23f6524bc0903" },
   "mini.pairs": { "branch": "main", "commit": "e543c760edc5e746e5b6cbd02c066c17ead3ef16" },
+  "mini.surround": { "branch": "main", "commit": "0e67c4bc147f2a15cee94e7c94dcc0e115b9f55e" },
   "neo-tree.nvim": { "branch": "main", "commit": "0774fa2085c62a147fcc7b56f0ac37053cc80217" },
+  "neogit": { "branch": "master", "commit": "cfbdc888cdfb3cb675615eb96467d980b73b3da5" },
   "noice.nvim": { "branch": "main", "commit": "448bb9c524a7601035449210838e374a30153172" },
   "nui.nvim": { "branch": "main", "commit": "b58e2bfda5cea347c9d58b7f11cf3012c7b3953f" },
   "nvim-cmp": { "branch": "main", "commit": "ae644feb7b67bf1ce4260c231d1d4300b19c6f30" },
@@ -45,6 +48,5 @@
   "tokyonight.nvim": { "branch": "main", "commit": "4b386e66a9599057587c30538d5e6192e3d1c181" },
   "trouble.nvim": { "branch": "main", "commit": "6efc446226679fda0547c0fd6a7892fd5f5b15d8" },
   "ts-comments.nvim": { "branch": "main", "commit": "98d7d4dec0af1312d38e288f800bbf6ff562b6ab" },
-  "vim-fugitive": { "branch": "master", "commit": "d4877e54cef67f5af4f950935b1ade19ed6b7370" },
   "which-key.nvim": { "branch": "main", "commit": "bfec3d6bc0a9b0b2cb11644642f78c2c3915eef0" }
 }
