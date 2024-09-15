@@ -11,11 +11,16 @@
         - autojump
         - bat
         - eza
+        - fd
         - font-meslo-lg-nerd-font
         - fzf
         - git-delta
         - go
         - kubectx
+        - lazygit
+        - luarocks
+        - neovim
+        - ripgrep
         - terraform-docs
         - terraform-ls
         - the_silver_searcher
@@ -62,6 +67,15 @@
         - undo
         - backup
         - swap
+
+    # nvim
+    - name: Symlink nvim directory and running configuration
+      file:
+        src: "{{ playbook_dir }}/{{ item }}"
+        dest: "{{ ansible_env.HOME }}/.config/{{ item }}"
+        state: link
+      with_items:
+        - nvim
 
     # tmux
     - name: Symlink tmux configuration
