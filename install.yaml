@@ -17,6 +17,7 @@
         - git-delta
         - go
         - kubectx
+        - lazygit
         - luarocks
         - neovim
         - ripgrep
