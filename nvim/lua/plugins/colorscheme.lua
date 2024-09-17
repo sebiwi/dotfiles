@@ -11,7 +11,7 @@ return {
       variant = "summer", -- "spring" | "summer" | "autumn" | "winter" (default)
       transparent = {
         enabled = true, -- Master switch to enable transparency
-        pmenu = true, -- Popup menu (e.g., autocomplete suggestions)
+        pmenu = false, -- Popup menu (e.g., autocomplete suggestions)
         normal = true, -- Main editor window background
         normalfloat = true, -- Floating windows
         neotree = true, -- Neo-tree file explorer
@@ -22,5 +22,14 @@ return {
         mason = false, -- Mason manage external tooling
       },
     },
+    -- on_highlights = function(colors, color)
+    --   local shade = color.shade
+    --   local tint = color.tint
+    --   local blend = color.blend
+    --   return {
+    --     LspReferenceRead = { bg = colors.base02, standout = true },
+    --     LspReferenceWrite = { bg = colors.base02, standout = true },
+    --   }
+    -- end,
   },
 }
