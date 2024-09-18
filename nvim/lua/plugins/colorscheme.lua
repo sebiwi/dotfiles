@@ -21,15 +21,16 @@ return {
         lazy = false, -- Lazy plugin manager UI
         mason = false, -- Mason manage external tooling
       },
+      on_highlights = function(colors, color)
+        local shade = color.shade
+        local tint = color.tint
+        local blend = color.blend
+        return {
+          MatchParen = { reverse = true },
+          LspReferenceRead = { fg = colors.base07, standout = true },
+          LspReferenceWrite = { fg = colors.base07, standout = true },
+        }
+      end,
     },
-    -- on_highlights = function(colors, color)
-    --   local shade = color.shade
-    --   local tint = color.tint
-    --   local blend = color.blend
-    --   return {
-    --     LspReferenceRead = { bg = colors.base02, standout = true },
-    --     LspReferenceWrite = { bg = colors.base02, standout = true },
-    --   }
-    -- end,
   },
 }
