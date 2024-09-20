@@ -1,4 +1,5 @@
 local wezterm = require("wezterm")
+local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
 local act = wezterm.action
 
 local config = wezterm.config_builder()
@@ -23,7 +24,6 @@ config.switch_to_last_active_tab_when_closing_tab = true
 
 -- colors
 config.color_scheme = "Solarized (dark) (terminal.sexy)"
--- config.color_scheme = "tokyonight_moon"
 config.colors = {
 	tab_bar = {
 		background = "#002b36",
@@ -231,5 +231,17 @@ wezterm.on("update-right-status", function(window, _)
 		{ Text = SOLID_LEFT_ARROW },
 	}))
 end)
+
+smart_splits.apply_to_config(config, {
+	direction_keys = {
+		move = { "h", "j", "k", "l" },
+		resize = { "LeftArrow", "DownArrow", "UpArrow", "RightArrow" },
+	},
+	-- modifier keys to combine with direction_keys
+	modifiers = {
+		move = "CTRL", -- modifier to use for pane movement, e.g. CTRL+h to move left
+		resize = "META", -- modifier to use for pane resize, e.g. META+h to resize to the left
+	},
+})
 
 return config
