@@ -16,6 +16,7 @@
         - fzf
         - git-delta
         - go
+        - krew
         - kubectx
         - lazygit
         - luarocks
@@ -32,7 +33,7 @@
         name: "{{ item }}"
         state: present
       with_items:
-        - 1password
+        # - 1password
         - alt-tab
         - docker
         - firefox@developer-edition

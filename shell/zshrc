@@ -17,8 +17,8 @@ export CLICOLOR=1
 # Autojump
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 
-# Set PATH: golang:psql
-export PATH="${HOME}/go/bin:/opt/homebrew/opt/libpq/bin:$PATH"
+# Set PATH: golang:psql:krew
+export PATH="${HOME}/go/bin:${HOME}/.krew/bin:/opt/homebrew/opt/libpq/bin:$PATH"
 
 # History
 HISTFILE=~/.histfile
@@ -26,8 +26,7 @@ HISTSIZE=50000
 SAVEHIST=10000
 
 # Kubernetes
-# source ~/stuff/dotfiles/shell/kubernetes.sh
-# source /opt/homebrew/opt/kube-ps1/share/kube-ps1.sh
+source ~/stuff/dotfiles/shell/kubernetes.sh
 
 # AWS
 # sp() {
