@@ -1250,9 +1250,9 @@
       '*prod*'  PROD    # These values are examples that are unlikely
       '*staging*'  STAGING    # to match your needs. Customize them as needed.
       '*'       DEFAULT)
-  typeset -g POWERLEVEL9K_KUBECONTEXT_PROD_FOREGROUND=160
-  typeset -g POWERLEVEL9K_KUBECONTEXT_STAGING_FOREGROUND=130
-  typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_FOREGROUND=032
+  typeset -g POWERLEVEL9K_KUBECONTEXT_PROD_FOREGROUND=166  # Solarized Red
+  typeset -g POWERLEVEL9K_KUBECONTEXT_STAGING_FOREGROUND=136  # Solarized Yellow
+  typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_FOREGROUND=64  # Solarized Green
   # typeset -g POWERLEVEL9K_KUBECONTEXT_DEFAULT_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   # Use POWERLEVEL9K_KUBECONTEXT_CONTENT_EXPANSION to specify the content displayed by kubecontext

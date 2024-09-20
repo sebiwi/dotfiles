@@ -13,7 +13,7 @@ return {
         enabled = true, -- Master switch to enable transparency
         pmenu = false, -- Popup menu (e.g., autocomplete suggestions)
         normal = true, -- Main editor window background
-        normalfloat = true, -- Floating windows
+        normalfloat = false, -- Floating windows
         neotree = true, -- Neo-tree file explorer
         nvimtree = true, -- Nvim-tree file explorer
         whichkey = true, -- Which-key popup
