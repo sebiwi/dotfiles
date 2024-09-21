@@ -1,14 +1,14 @@
 local wezterm = require("wezterm")
-local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
 local act = wezterm.action
-
 local config = wezterm.config_builder()
+
+--- plugins
+local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
+local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
 
 --- general
 config.audible_bell = "Disabled"
 config.native_macos_fullscreen_mode = true
-
-config.window_decorations = "RESIZE"
 
 --- fonts
 config.font = wezterm.font("MesloLGS Nerd Font Mono")
@@ -17,26 +17,10 @@ config.font_size = 14
 -- tab bar
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
-config.use_fancy_tab_bar = false
-config.tab_and_split_indices_are_zero_based = true
-config.tab_max_width = 32
 config.switch_to_last_active_tab_when_closing_tab = true
 
 -- colors
 config.color_scheme = "Solarized (dark) (terminal.sexy)"
-config.colors = {
-	tab_bar = {
-		background = "#002b36",
-		active_tab = {
-			fg_color = "#FFF6E1",
-			bg_color = "#5F7C84",
-		},
-		inactive_tab = {
-			fg_color = "#809A00",
-			bg_color = "#002D3A",
-		},
-	},
-}
 
 config.window_background_opacity = 0.95
 config.macos_window_background_blur = 10
@@ -209,29 +193,7 @@ for i = 0, 9 do
 	})
 end
 
--- status
-wezterm.on("update-right-status", function(window, _)
-	local SOLID_LEFT_ARROW = ""
-	local ARROW_FOREGROUND = { Foreground = { Color = "#5F7C84" } }
-	local prefix = ""
-
-	if window:leader_is_active() then
-		prefix = " " .. utf8.char(0x1f30a) -- ocean wave
-		SOLID_LEFT_ARROW = utf8.char(0xe0b2)
-	end
-
-	if window:active_tab():tab_id() ~= 0 then
-		ARROW_FOREGROUND = { Foreground = { Color = "#002D3A" } }
-	end -- arrow color based on if tab is first pane
-
-	window:set_left_status(wezterm.format({
-		{ Background = { Color = "#9EABAB" } },
-		{ Text = prefix },
-		ARROW_FOREGROUND,
-		{ Text = SOLID_LEFT_ARROW },
-	}))
-end)
-
+-- smart splits config
 smart_splits.apply_to_config(config, {
 	direction_keys = {
 		move = { "h", "j", "k", "l" },
@@ -243,5 +205,23 @@ smart_splits.apply_to_config(config, {
 		resize = "META", -- modifier to use for pane resize, e.g. META+h to resize to the left
 	},
 })
+
+-- tabline config
+tabline.get_config()
+tabline.setup({
+	options = {
+		theme = "Solarized (dark) (terminal.sexy)",
+	},
+	sections = {
+		tabline_b = {},
+		tabline_c = {},
+		-- tab_active = {},
+		-- tab_inactive = {},
+		tabline_x = {},
+		tabline_y = {},
+		tabline_z = {},
+	},
+})
+tabline.apply_to_config(config)
 
 return config
