@@ -53,8 +53,6 @@ tabline.setup({
 	sections = {
 		tabline_b = {},
 		tabline_c = {},
-		-- tab_active = {},
-		-- tab_inactive = {},
 		tabline_x = {},
 		tabline_y = {},
 		tabline_z = {},
