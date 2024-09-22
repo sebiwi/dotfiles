@@ -16,7 +16,7 @@ return {
         normalfloat = false, -- Floating windows
         neotree = true, -- Neo-tree file explorer
         nvimtree = true, -- Nvim-tree file explorer
-        whichkey = true, -- Which-key popup
+        whichkey = false, -- Which-key popup
         telescope = true, -- Telescope fuzzy finder
         lazy = false, -- Lazy plugin manager UI
         mason = false, -- Mason manage external tooling
