@@ -21,7 +21,11 @@ return {
       {
         mode = "v",
         "<LEADER>gf",
-        ":DiffviewFileHistory<CR>",
+        function()
+          local start_line, end_line =
+            math.min(vim.fn.line("."), vim.fn.line("v")), math.max(vim.fn.line("."), vim.fn.line("v"))
+          vim.cmd(string.format("%d,%d DiffviewFileHistory", start_line, end_line))
+        end,
         desc = "Diffview Current Selection History",
       },
     },
