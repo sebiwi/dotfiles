@@ -27,7 +27,7 @@ config.macos_window_background_blur = 10
 
 -- mappings
 config.leader = {
-	key = "a",
+	key = "b",
 	mods = "CTRL",
 }
 
