@@ -21,6 +21,7 @@
         - lazygit
         - luarocks
         - neovim
+        - pngpaste
         - ripgrep
         - terraform-docs
         - terraform-ls
@@ -40,6 +41,7 @@
         - hiddenbar
         - keymapp
         - nikitabobko/tap/aerospace
+        - obsidian
         - raycast
         - stats
         - wezterm@nightly
