@@ -15,6 +15,7 @@
         - font-meslo-lg-nerd-font
         - fzf
         - git-delta
+        - gnu-sed
         - go
         - krew
         - kubectx
