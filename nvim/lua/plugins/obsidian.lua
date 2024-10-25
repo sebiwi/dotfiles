@@ -41,7 +41,10 @@ return {
       checkboxes = {},
       bullets = {},
     },
-    -- note ID: title ? %Y-%m-%d-title : %Y-%m-%d-Untitled
+    -- put notes on the inbox directory
+    new_notes_location = "notes_subdir",
+    notes_subdir = "inbox",
+    -- note ID: title ? %Y-%m-%d_title : %Y-%m-%d_Untitled
     note_id_func = function(title)
       local suffix = ""
       if title ~= nil then
@@ -49,7 +52,7 @@ return {
       else
         suffix = "Untitled"
       end
-      return tostring(os.date("%Y-%m-%d")) .. "-" .. suffix
+      return tostring(os.date("%Y-%m-%d")) .. "_" .. suffix
     end,
     -- Open the URL in the default web browser.
     ---@param url string
@@ -58,12 +61,12 @@ return {
     end,
     -- Optional, by default when you use `:ObsidianFollowLink` on a link to an image
     -- file it will be ignored but you can customize this behavior here.
-    ------@param img string
-    ---follow_img_func = function(img)
-    ---  vim.fn.jobstart({ "qlmanage", "-p", img }) -- Mac OS quick look preview
-    ---  -- vim.fn.jobstart({"xdg-open", url})  -- linux
-    ---  -- vim.cmd(':silent exec "!start ' .. url .. '"') -- Windows
-    ---end,
+    ---@param img string
+    follow_img_func = function(img)
+      vim.fn.jobstart({ "qlmanage", "-p", img }) -- Mac OS quick look preview
+      -- vim.fn.jobstart({"xdg-open", url})  -- linux
+      -- vim.cmd(':silent exec "!start ' .. url .. '"') -- Windows
+    end,
     templates = {
       folder = "templates",
       date_format = "%Y-%m-%d",
@@ -94,11 +97,6 @@ return {
       "<cmd>ObsidianTemplate<cr>",
     },
     {
-      desc = "Create Checkbox",
-      "<LEADER>oc",
-      "<cmd>ObsidianToggleCheckbox<cr>",
-    },
-    {
       desc = "Paste Image from Clipboard",
       "<LEADER>op",
       "<cmd>ObsidianPasteImg<cr>",
@@ -112,6 +110,11 @@ return {
       desc = "Grep Notes",
       "<LEADER>og",
       "<cmd>ObsidianSearch<cr>",
+    },
+    {
+      desc = "Search Current Page Headings",
+      "<LEADER>oc",
+      "<cmd>ObsidianTOC<cr>",
     },
     {
       desc = "Search Current Page Links",

@@ -4,8 +4,11 @@
 [metadata]
 groups = ["default"]
 strategy = ["cross_platform", "inherit_metadata"]
-lock_version = "4.4.1"
-content_hash = "sha256:990ded15bc7680ed43160397133215cf4905276adb0640ef41c4570c83216e71"
+lock_version = "4.5.0"
+content_hash = "sha256:16cb4e8aacd44ba774b3655b87fa2065e751141086603a490af9f45ff234de60"
+
+[[metadata.targets]]
+requires_python = ">=3.12"
 
 [[package]]
 name = "ansible"
