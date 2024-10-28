@@ -43,7 +43,7 @@ return {
     },
     -- put notes on the inbox directory
     new_notes_location = "notes_subdir",
-    notes_subdir = "inbox",
+    notes_subdir = "0-inbox",
     -- note ID: title ? %Y-%m-%d_title : %Y-%m-%d_Untitled
     note_id_func = function(title)
       local suffix = ""
