@@ -36,10 +36,9 @@ return {
         path = "~/stuff/notes",
       },
     },
-    -- disable checkboxes and bullets
+    -- use lazyvim markdown extras for rendering
     ui = {
-      checkboxes = {},
-      bullets = {},
+      enable = false,
     },
     -- put notes on the inbox directory
     new_notes_location = "notes_subdir",
