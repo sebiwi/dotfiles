@@ -12,7 +12,6 @@
         - bat
         - eza
         - fd
-        - font-meslo-lg-nerd-font
         - fzf
         - git-delta
         - gnu-sed
@@ -39,6 +38,7 @@
         - alt-tab
         - docker
         - firefox@developer-edition
+        - font-jetbrains-mono-nerd-font
         - hiddenbar
         - keymapp
         - nikitabobko/tap/aerospace

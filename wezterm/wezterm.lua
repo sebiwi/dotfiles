@@ -11,7 +11,7 @@ config.audible_bell = "Disabled"
 config.native_macos_fullscreen_mode = true
 
 --- fonts
-config.font = wezterm.font("MesloLGS Nerd Font Mono")
+config.font = wezterm.font("JetBrainsMono Nerd Font")
 config.font_size = 14
 
 -- tab bar
