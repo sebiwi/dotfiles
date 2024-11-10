@@ -16,6 +16,8 @@
         - git-delta
         - gnu-sed
         - go
+        - helm
+        - k9s
         - krew
         - kubectx
         - lazygit
@@ -41,6 +43,7 @@
         - hiddenbar
         - keymapp
         - nikitabobko/tap/aerospace
+        - font-jetbrains-mono-nerd-font
         - obsidian
         - raycast
         - stats
