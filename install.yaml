@@ -17,6 +17,7 @@
         - gnu-sed
         - go
         - helm
+        - hub
         - k9s
         - krew
         - kubectx
