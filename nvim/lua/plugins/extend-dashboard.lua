@@ -21,7 +21,7 @@ return {
           icon = " ",
           title = "Git Status",
           enabled = vim.fn.isdirectory(".git") == 1,
-          cmd = "hub diff --stat -B -M -C",
+          cmd = "hub status --short --branch --renames",
           height = 5,
           padding = 1,
           indent = 3,
