@@ -20,7 +20,9 @@ return {
           section = "terminal",
           icon = " ",
           title = "Git Status",
-          enabled = vim.fn.isdirectory(".git") == 1,
+          enabled = function()
+            return Snacks.git.get_root() ~= nil
+          end,
           cmd = "hub status --short --branch --renames",
           height = 5,
           padding = 1,
