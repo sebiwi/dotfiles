@@ -25,6 +25,7 @@ return {
           height = 5,
           padding = 1,
           indent = 3,
+          ttl = 5,
         },
         { section = "startup" },
       },
