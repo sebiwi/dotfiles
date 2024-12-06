@@ -13,6 +13,7 @@
         - eza
         - fd
         - fzf
+        - gh
         - git-delta
         - gnu-sed
         - go
@@ -82,6 +83,27 @@
         state: link
       with_items:
         - nvim
+    - name: Check if gh-notify extension is already installed
+      command: gh ext list
+      register: gh_ext_list
+    - name: Install gh notify extension
+      command: gh ext install meiji163/gh-notify
+      when: "'meiji163/gh-notify' not in gh_ext_list.stdout"
+    - name: Check if shell-color-scripts is already installed
+      stat:
+        path: /usr/local/bin/random-splash
+      register: shell_color_scripts_installed
+    - name: Clone shell-color-scripts repository
+      git:
+        repo: https://gitlab.com/dwt1/shell-color-scripts.git
+        dest: /tmp/shell-color-scripts
+      when: not shell_color_scripts_installed.stat.exists
+    - name: Install shell-color-scripts
+      command: make install
+      args:
+        chdir: /tmp/shell-color-scripts
+      when: not shell_color_scripts_installed.stat.exists
+      become: true
 
     # tmux
     - name: Symlink tmux configuration
