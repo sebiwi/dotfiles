@@ -3,6 +3,7 @@
     "lazyvim.plugins.extras.ai.copilot",
     "lazyvim.plugins.extras.ai.copilot-chat",
     "lazyvim.plugins.extras.coding.mini-surround",
+    "lazyvim.plugins.extras.coding.nvim-cmp",
     "lazyvim.plugins.extras.coding.yanky",
     "lazyvim.plugins.extras.editor.dial",
     "lazyvim.plugins.extras.editor.mini-files",
@@ -11,6 +12,7 @@
     "lazyvim.plugins.extras.lang.python",
     "lazyvim.plugins.extras.lang.terraform",
     "lazyvim.plugins.extras.test.core",
+    "lazyvim.plugins.extras.ui.indent-blankline",
     "lazyvim.plugins.extras.ui.mini-indentscope",
     "lazyvim.plugins.extras.ui.treesitter-context"
   ],
