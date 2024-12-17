@@ -86,6 +86,7 @@
     - name: Check if gh-notify extension is already installed
       command: gh ext list
       register: gh_ext_list
+      changed_when: false
     - name: Install gh notify extension
       command: gh ext install meiji163/gh-notify
       when: "'meiji163/gh-notify' not in gh_ext_list.stdout"
