@@ -2,6 +2,17 @@ return {
   "folke/snacks.nvim",
   opts = {
     dashboard = {
+      --       preset = {
+      --         header = [[
+      --       ████ ██████           █████      ██
+      --      ███████████             █████ 
+      --      █████████ ███████████████████ ███   ███████████
+      --     █████████  ███    █████████████ █████ ██████████████
+      --    █████████ ██████████ █████████ █████ █████ ████ █████
+      --  ███████████ ███    ███ █████████ █████ █████ ████ █████
+      -- ██████  █████████████████████ ████ █████ █████ ████ ██████
+      -- ]],
+      --       },
       sections = {
         { section = "header" },
         {
@@ -12,12 +23,26 @@ return {
           padding = 1,
         },
         { section = "keys", gap = 1, padding = 1 },
+        {
+          pane = 2,
+          icon = " ",
+          desc = "Browse Repo",
+          padding = 1,
+          key = "b",
+          action = function()
+            Snacks.gitbrowse()
+          end,
+        },
         function()
           local in_git = Snacks.git.get_root() ~= nil
           local cmds = {
             {
               title = "Notifications",
               cmd = "gh notify -s -a -n5",
+              key = "a",
+              action = function()
+                vim.ui.open("https://github.com/notifications")
+              end,
               icon = " ",
               height = 5,
               enabled = true,
@@ -25,6 +50,10 @@ return {
             {
               title = "Open Issues",
               cmd = "gh issue list -L 3",
+              key = "i",
+              action = function()
+                vim.fn.jobstart("gh issue list --web", { detach = true })
+              end,
               icon = " ",
               height = 7,
             },
@@ -32,6 +61,10 @@ return {
               icon = " ",
               title = "Open PRs",
               cmd = "gh pr list -L 3",
+              key = "p",
+              action = function()
+                vim.fn.jobstart("gh pr list --web", { detach = true })
+              end,
               height = 7,
             },
             {

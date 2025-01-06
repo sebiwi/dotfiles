@@ -21,6 +21,7 @@ config.switch_to_last_active_tab_when_closing_tab = true
 
 -- colors
 config.color_scheme = "Solarized (dark) (terminal.sexy)"
+-- config.color_scheme = "Tokyo Night Storm"
 
 config.window_background_opacity = 0.95
 config.macos_window_background_blur = 10
