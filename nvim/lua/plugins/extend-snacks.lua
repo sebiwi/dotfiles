@@ -1,6 +1,18 @@
 return {
   "folke/snacks.nvim",
   opts = {
+    picker = {
+      win = {
+        input = {
+          keys = {
+            ["<a-c>"] = {
+              "toggle_cwd",
+              mode = { "n", "i" },
+            },
+          },
+        },
+      },
+    },
     dashboard = {
       --       preset = {
       --         header = [[
