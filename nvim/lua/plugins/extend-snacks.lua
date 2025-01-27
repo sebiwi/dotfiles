@@ -6,9 +6,10 @@ return {
         input = {
           keys = {
             ["<a-c>"] = {
-              "toggle_cwd",
+              "toggle_hidden",
               mode = { "n", "i" },
             },
+            ["<a-x>"] = { "toggle_hidden", mode = { "i", "n" } },
           },
         },
       },
