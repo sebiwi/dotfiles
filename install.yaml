@@ -27,6 +27,7 @@
         - neovim
         - pngpaste
         - ripgrep
+        - stern
         - terraform-docs
         - the_silver_searcher
         - tmux
