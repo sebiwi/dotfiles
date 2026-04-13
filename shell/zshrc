@@ -18,7 +18,7 @@ export CLICOLOR=1
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 
 # Set PATH: golang:psql:krew
-export PATH="${HOME}/go/bin:${HOME}/.krew/bin:/opt/homebrew/opt/libpq/bin:$PATH"
+export PATH="${HOME}/go/bin:${HOME}/.local/bin:${HOME}/.krew/bin:/opt/homebrew/opt/libpq/bin:$PATH"
 
 # History
 HISTFILE=~/.histfile
