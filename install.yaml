@@ -43,10 +43,10 @@
         - alt-tab
         - docker
         - firefox@developer-edition
+        - font-jetbrains-mono-nerd-font
         - hiddenbar
         - keymapp
         - nikitabobko/tap/aerospace
-        - font-jetbrains-mono-nerd-font
         - obsidian
         - raycast
         - stats
@@ -62,14 +62,14 @@
     - name: Symlink vim directory and running configuration
       file:
         src: "{{ playbook_dir }}/{{ item }}"
-        dest: "{{ ansible_env.HOME }}/.{{ item }}"
+        dest: "{{ ansible_facts['env']['HOME'] }}/.{{ item }}"
         state: link
       with_items:
         - vim
         - vimrc
     - name: Create vim directories
       file:
-        path: "{{ ansible_env.HOME }}/.vim/{{ item }}"
+        path: "{{ ansible_facts['env']['HOME'] }}/.vim/{{ item }}"
         state: directory
         mode: "0755"
       with_items:
@@ -81,7 +81,7 @@
     - name: Symlink nvim directory and running configuration
       file:
         src: "{{ playbook_dir }}/{{ item }}"
-        dest: "{{ ansible_env.HOME }}/.config/{{ item }}"
+        dest: "{{ ansible_facts['env']['HOME'] }}/.config/{{ item }}"
         state: link
       with_items:
         - nvim
@@ -112,7 +112,7 @@
     - name: Symlink tmux configuration
       file:
         src: "{{ playbook_dir }}/tmux/{{ item }}"
-        dest: "{{ ansible_env.HOME }}/.{{ item }}"
+        dest: "{{ ansible_facts['env']['HOME'] }}/.{{ item }}"
         state: link
       with_items:
         - tmux.conf
@@ -120,7 +120,7 @@
     - name: Install tpm
       ansible.builtin.git:
         repo: https://github.com/tmux-plugins/tpm
-        dest: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
+        dest: "{{ ansible_facts['env']['HOME'] }}/.tmux/plugins/tpm"
     - name: Clone getipfortmux repository
       ansible.builtin.git:
         repo: https://github.com/JoshOldenburg/ipaddrutil.git
@@ -156,7 +156,7 @@
     - name: Symlink fzf configuration
       file:
         src: "{{ playbook_dir }}/shell/{{ item }}"
-        dest: "{{ ansible_env.HOME }}/.{{ item }}"
+        dest: "{{ ansible_facts['env']['HOME'] }}/.{{ item }}"
         state: link
       with_items:
         - fzf.zsh
@@ -166,11 +166,11 @@
     - name: Install prezto
       git:
         repo: https://github.com/sorin-ionescu/prezto.git
-        dest: "{{ ansible_env.HOME }}/.zprezto"
+        dest: "{{ ansible_facts['env']['HOME'] }}/.zprezto"
     - name: Symlink prezto configuration
       file:
         src: "{{ playbook_dir }}/shell/{{ item }}"
-        dest: "{{ ansible_env.HOME }}/.{{ item }}"
+        dest: "{{ ansible_facts['env']['HOME'] }}/.{{ item }}"
         state: link
       with_items:
         - zshrc
@@ -178,13 +178,13 @@
     - name: Install fzf-tab prezto module
       git:
         repo: https://github.com/Aloxaf/fzf-tab
-        dest: "{{ ansible_env.HOME }}/.zprezto/contrib/fzf-tab"
+        dest: "{{ ansible_facts['env']['HOME'] }}/.zprezto/contrib/fzf-tab"
 
     # git
     - name: Symlink git configuration
       file:
         src: "{{ playbook_dir }}/git/{{ item }}"
-        dest: "{{ ansible_env.HOME }}/.{{ item }}"
+        dest: "{{ ansible_facts['env']['HOME'] }}/.{{ item }}"
         state: link
       with_items:
         - gitconfig
@@ -193,7 +193,7 @@
     - name: Symlink wezterm configuration
       file:
         src: "{{ playbook_dir }}/wezterm/{{ item }}"
-        dest: "{{ ansible_env.HOME }}/.{{ item }}"
+        dest: "{{ ansible_facts['env']['HOME'] }}/.{{ item }}"
         state: link
       with_items:
         - wezterm.lua
@@ -201,7 +201,7 @@
     # aerospace
     - name: Create aerospace directories
       file:
-        path: "{{ ansible_env.HOME }}/.config/{{ item }}"
+        path: "{{ ansible_facts['env']['HOME'] }}/.config/{{ item }}"
         state: directory
         mode: "0755"
       with_items:
@@ -209,7 +209,7 @@
     - name: Symlink aerospace configuration
       file:
         src: "{{ playbook_dir }}/aerospace/{{ item }}"
-        dest: "{{ ansible_env.HOME }}/.config/aerospace/{{ item }}"
+        dest: "{{ ansible_facts['env']['HOME'] }}/.config/aerospace/{{ item }}"
         state: link
       with_items:
         - aerospace.toml
