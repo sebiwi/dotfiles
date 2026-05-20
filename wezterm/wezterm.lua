@@ -64,4 +64,10 @@ tabline.apply_to_config(config)
 -- wez-tmux config
 wez_tmux.apply_to_config(config)
 
+table.insert(config.keys, {
+	key = "S",
+	mods = "LEADER|SHIFT",
+	action = wezterm.action.PaneSelect({ mode = "SwapWithActive" }),
+})
+
 return config
