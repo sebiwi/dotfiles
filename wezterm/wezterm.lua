@@ -70,4 +70,19 @@ table.insert(config.keys, {
 	action = wezterm.action.PaneSelect({ mode = "SwapWithActive" }),
 })
 
+-- flash.nvim-style scrollback navigation
+local act = wezterm.action
+
+-- LEADER f: label every token on screen, press a letter to jump-select + copy
+table.insert(config.keys, {
+	key = "f",
+	mods = "LEADER",
+	action = act.QuickSelectArgs({
+		label = "jump",
+		patterns = {
+			"[^[:space:]]{3,}", -- any run of 3+ non-space chars
+		},
+	}),
+})
+
 return config
