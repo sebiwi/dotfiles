@@ -85,4 +85,47 @@ table.insert(config.keys, {
 	}),
 })
 
+-- Send a plain Escape on CTRL+[ so it works under the Kitty keyboard
+-- protocol (e.g. Claude Code), where CTRL+[ is otherwise disambiguated from Esc
+table.insert(config.keys, {
+	key = "[",
+	mods = "CTRL",
+	action = act.SendKey({ key = "Escape" }),
+})
+
+-- CTRL+[ steps out one level at a time in copy/search mode: if a visual
+-- selection is active, clear just the selection and stay in copy mode;
+-- otherwise close copy mode entirely. These modes use their own key tables,
+-- so the global CTRL+[ binding above doesn't reach them.
+local copy_mode = (config.key_tables and config.key_tables.copy_mode)
+	or wezterm.gui.default_key_tables().copy_mode
+local search_mode = (config.key_tables and config.key_tables.search_mode)
+	or wezterm.gui.default_key_tables().search_mode
+
+local function ctrl_bracket_copy_mode(window, pane)
+	if window:get_selection_text_for_pane(pane) ~= "" then
+		window:perform_action(
+			act.Multiple({ act.ClearSelection, act.CopyMode("ClearSelectionMode") }),
+			pane
+		)
+	else
+		window:perform_action(act.CopyMode("Close"), pane)
+	end
+end
+
+table.insert(copy_mode, {
+	key = "[",
+	mods = "CTRL",
+	action = wezterm.action_callback(ctrl_bracket_copy_mode),
+})
+table.insert(search_mode, {
+	key = "[",
+	mods = "CTRL",
+	action = wezterm.action_callback(ctrl_bracket_copy_mode),
+})
+
+config.key_tables = config.key_tables or {}
+config.key_tables.copy_mode = copy_mode
+config.key_tables.search_mode = search_mode
+
 return config

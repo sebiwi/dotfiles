@@ -14,6 +14,10 @@ eval "$(/opt/homebrew/bin/mise activate zsh)"
 # ls colors
 export CLICOLOR=1
 
+# Default editor (used by Claude Code's external-editor binding, git, etc.)
+export EDITOR="nvim"
+export VISUAL="nvim"
+
 # Autojump
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 
