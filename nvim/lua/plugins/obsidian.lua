@@ -1,5 +1,8 @@
 return {
-  "epwalsh/obsidian.nvim",
+  -- epwalsh archived the original repo (last release 2024-07); development
+  -- continues on this community fork. Keymaps below use the new
+  -- ":Obsidian <subcommand>" syntax, so legacy commands are disabled.
+  "obsidian-nvim/obsidian.nvim",
   lazy = true,
   version = "*", -- recommended, use latest release instead of latest commit
   ft = "markdown",
@@ -7,6 +10,7 @@ return {
     "nvim-lua/plenary.nvim",
   },
   opts = {
+    legacy_commands = false,
     mappings = {
       --- follow the link under the cursor
       ["gf"] = {
@@ -76,59 +80,82 @@ return {
   },
   keys = {
     {
-      desc = "Open Note in Obisidian",
+      desc = "Open Note in Obsidian",
       "<LEADER>oo",
-      "<cmd>ObsidianOpen<cr>",
+      "<cmd>Obsidian open<cr>",
     },
     {
       desc = "Create New Note",
       "<LEADER>on",
-      "<cmd>ObsidianNew<cr>",
+      "<cmd>Obsidian new<cr>",
     },
     {
       desc = "Rename Note",
       "<LEADER>or",
-      "<cmd>ObsidianRename<cr>",
+      "<cmd>Obsidian rename<cr>",
     },
     {
       desc = "Insert Template",
       "<LEADER>oi",
-      "<cmd>ObsidianTemplate<cr>",
+      "<cmd>Obsidian template<cr>",
     },
     {
       desc = "Paste Image from Clipboard",
       "<LEADER>op",
-      "<cmd>ObsidianPasteImg<cr>",
+      "<cmd>Obsidian paste_img<cr>",
     },
     {
       desc = "Search Notes",
       "<LEADER>os",
-      "<cmd>ObsidianQuickSwitch<cr>",
+      "<cmd>Obsidian quick_switch<cr>",
     },
     {
       desc = "Grep Notes",
       "<LEADER>og",
-      "<cmd>ObsidianSearch<cr>",
+      "<cmd>Obsidian search<cr>",
     },
     {
       desc = "Search Current Page Headings",
       "<LEADER>oc",
-      "<cmd>ObsidianTOC<cr>",
+      "<cmd>Obsidian toc<cr>",
     },
     {
       desc = "Search Current Page Links",
       "<LEADER>ol",
-      "<cmd>ObsidianLinks<cr>",
+      "<cmd>Obsidian links<cr>",
     },
     {
       desc = "Search Backlinks",
       "<LEADER>ob",
-      "<cmd>ObsidianBacklinks<cr>",
+      "<cmd>Obsidian backlinks<cr>",
     },
     {
       desc = "Search Tags",
       "<LEADER>ot",
-      "<cmd>ObsidianTags<cr>",
+      "<cmd>Obsidian tags<cr>",
+    },
+    -- New in the fork:
+    {
+      desc = "Open Today's Daily Note",
+      "<LEADER>od",
+      "<cmd>Obsidian today<cr>",
+    },
+    {
+      desc = "New Note from Template",
+      "<LEADER>om",
+      "<cmd>Obsidian new_from_template<cr>",
+    },
+    {
+      desc = "Extract Selection to New Note",
+      "<LEADER>oe",
+      "<cmd>Obsidian extract_note<cr>",
+      mode = "v",
+    },
+    {
+      desc = "Link Selection to Note",
+      "<LEADER>ok",
+      "<cmd>Obsidian link<cr>",
+      mode = "v",
     },
   },
 }

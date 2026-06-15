@@ -22,10 +22,39 @@ return {
         mason = false, -- Mason manage external tooling
       },
       on_highlights = function(colors, _)
+        -- Make the selected bufferline tab clearly stand out. The default
+        -- solarized highlights only set a foreground, so the active buffer
+        -- blends into the inactive/visible ones. Give the whole selected tab
+        -- a distinct background + bold accent (like tokyonight does).
+        local sel = { bg = colors.base02, bold = true }
         return {
           MatchParen = { reverse = true },
+          -- The theme leaves the float border background transparent while the
+          -- body is solid (base04), which shows the terminal bg on the border
+          -- row. Give the border the same solid bg so the popup edge matches.
+          FloatBorder = { fg = colors.cyan, bg = colors.base04 },
           LspReferenceRead = { fg = colors.cyan, bg = colors.base02, standout = true },
           LspReferenceWrite = { fg = colors.blue, bg = colors.base02, standout = true },
+          BufferLineBufferSelected = vim.tbl_extend("force", { fg = colors.base1 }, sel),
+          BufferLineNumberSelected = vim.tbl_extend("force", { fg = colors.base1 }, sel),
+          BufferLineModifiedSelected = vim.tbl_extend("force", { fg = colors.green }, sel),
+          BufferLineDuplicateSelected = vim.tbl_extend("force", { fg = colors.base0 }, sel),
+          BufferLineCloseButtonSelected = vim.tbl_extend("force", { fg = colors.base1 }, sel),
+          BufferLinePickSelected = vim.tbl_extend("force", { fg = colors.red }, sel),
+          BufferLineIndicatorSelected = vim.tbl_extend("force", { fg = colors.blue }, sel),
+          -- Use a mid-tone fg so the slants flanking the active tab are
+          -- actually visible against its base02 background (base03 was darker
+          -- than the surrounding fill and disappeared).
+          BufferLineSeparatorSelected = { fg = colors.base01, bg = colors.base02 },
+          BufferLineDiagnosticSelected = vim.tbl_extend("force", { fg = colors.base1 }, sel),
+          BufferLineErrorSelected = vim.tbl_extend("force", { fg = colors.red }, sel),
+          BufferLineErrorDiagnosticSelected = vim.tbl_extend("force", { fg = colors.red }, sel),
+          BufferLineWarningSelected = vim.tbl_extend("force", { fg = colors.yellow }, sel),
+          BufferLineWarningDiagnosticSelected = vim.tbl_extend("force", { fg = colors.yellow }, sel),
+          BufferLineInfoSelected = vim.tbl_extend("force", { fg = colors.blue }, sel),
+          BufferLineInfoDiagnosticSelected = vim.tbl_extend("force", { fg = colors.blue }, sel),
+          BufferLineHintSelected = vim.tbl_extend("force", { fg = colors.cyan }, sel),
+          BufferLineHintDiagnosticSelected = vim.tbl_extend("force", { fg = colors.cyan }, sel),
         }
       end,
     },

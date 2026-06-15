@@ -50,10 +50,28 @@ tabline.get_config()
 tabline.setup({
 	options = {
 		theme = "Solarized (dark) (terminal.sexy)",
+		-- Make the active tab clearly stand out, like the selected buffer in the
+		-- nvim bufferline. The default solarized tab colors are base02 (active)
+		-- vs base03 (inactive) -- nearly identical near-blacks -- so the active
+		-- tab gets a solid accent and inactive tabs are dimmed.
+		theme_overrides = {
+			tab = {
+				active = { fg = "#002b36", bg = "#268bd2" }, -- solarized blue (dark text)
+				inactive = { fg = "#586e75", bg = "#002b36" }, -- dimmed base01 on the bar
+				inactive_hover = { fg = "#93a1a1", bg = "#073642" },
+			},
+		},
 	},
 	sections = {
 		tabline_b = {},
 		tabline_c = {},
+		-- Inactive tabs: index + current directory only. (Default was the
+		-- foreground process, which fell back to the pane title / remote domain
+		-- -- the unclear "IP-address" text.)
+		tab_inactive = {
+			"index",
+			{ "cwd", padding = { left = 0, right = 1 } },
+		},
 		tabline_x = {},
 		tabline_y = {},
 		tabline_z = {},
