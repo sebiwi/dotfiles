@@ -1,6 +1,11 @@
 return {
   {
     "mrjones2014/smart-splits.nvim",
+    -- Must load eagerly: plugin/smart-splits.lua runs on startup and sets the
+    -- IS_NVIM wezterm user var, which the wezterm side uses to decide whether to
+    -- pass <C-h/j/k/l> through to nvim. Lazy-loading via `keys` never sets it,
+    -- so wezterm grabs the keys for its own pane navigation instead.
+    lazy = false,
     keys = {
       {
         "<C-h>",

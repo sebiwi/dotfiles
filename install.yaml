@@ -4,55 +4,56 @@
   tasks:
     # General dependencies
     - name: Install formulae
-      homebrew:
-        name: "{{ item }}"
+      community.general.homebrew:
+        name:
+          - bat
+          - eza
+          - fd
+          - fzf
+          - gh
+          - git-delta
+          - gnu-sed
+          - go
+          - helm
+          - hub
+          - k9s
+          - krew
+          - kubectx
+          - lazygit
+          - luarocks
+          - lychee
+          - neovim
+          - pngpaste
+          - ripgrep
+          - stern
+          - terraform-docs
+          - the_silver_searcher
+          - tmux
+          - tmux-mem-cpu-load
+          - vim
+          - zoxide
         state: present
-      with_items:
-        - autojump
-        - bat
-        - eza
-        - fd
-        - fzf
-        - gh
-        - git-delta
-        - gnu-sed
-        - go
-        - helm
-        - hub
-        - k9s
-        - krew
-        - kubectx
-        - lazygit
-        - luarocks
-        - lychee
-        - neovim
-        - pngpaste
-        - ripgrep
-        - stern
-        - terraform-docs
-        - the_silver_searcher
-        - tmux
-        - tmux-mem-cpu-load
-        - vim
+      tags: brew
+
     - name: Install casks
-      homebrew_cask:
-        name: "{{ item }}"
+      community.general.homebrew_cask:
+        name:
+          - alt-tab
+          - docker
+          - firefox@developer-edition
+          - font-jetbrains-mono-nerd-font
+          - hiddenbar
+          - keymapp
+          - nikitabobko/tap/aerospace
+          - obsidian
+          - raycast
+          - stats
+          - wezterm@nightly
         state: present
-      with_items:
-        # - 1password
-        - alt-tab
-        - docker
-        - firefox@developer-edition
-        - font-jetbrains-mono-nerd-font
-        - hiddenbar
-        - keymapp
-        - nikitabobko/tap/aerospace
-        - obsidian
-        - raycast
-        - stats
-        - wezterm@nightly
+      tags: brew
+
     - name: create /usr/local/bin
-      file:
+      ansible.builtin.file:
         path: /usr/local/bin
         state: directory
         mode: "0755"
@@ -60,156 +61,204 @@
 
     # vim
     - name: Symlink vim directory and running configuration
-      file:
+      ansible.builtin.file:
         src: "{{ playbook_dir }}/{{ item }}"
-        dest: "{{ ansible_facts['env']['HOME'] }}/.{{ item }}"
+        dest: "{{ ansible_env.HOME }}/.{{ item }}"
         state: link
-      with_items:
+      loop:
         - vim
         - vimrc
+      tags: vim
     - name: Create vim directories
-      file:
-        path: "{{ ansible_facts['env']['HOME'] }}/.vim/{{ item }}"
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/.vim/{{ item }}"
         state: directory
         mode: "0755"
-      with_items:
+      loop:
         - undo
         - backup
         - swap
+      tags: vim
 
     # nvim
     - name: Symlink nvim directory and running configuration
-      file:
+      ansible.builtin.file:
         src: "{{ playbook_dir }}/{{ item }}"
-        dest: "{{ ansible_facts['env']['HOME'] }}/.config/{{ item }}"
+        dest: "{{ ansible_env.HOME }}/.config/{{ item }}"
         state: link
-      with_items:
+      loop:
         - nvim
+      tags: nvim
+
+    # gh
     - name: Check if gh-notify extension is already installed
-      command: gh ext list
+      ansible.builtin.command: gh ext list
       register: gh_ext_list
       changed_when: false
+      tags: gh
     - name: Install gh notify extension
-      command: gh ext install meiji163/gh-notify
+      ansible.builtin.command: gh ext install meiji163/gh-notify
       when: "'meiji163/gh-notify' not in gh_ext_list.stdout"
+      tags: gh
+
+    # shell-color-scripts
     - name: Check if shell-color-scripts is already installed
-      stat:
+      ansible.builtin.stat:
         path: /usr/local/bin/random-splash
       register: shell_color_scripts_installed
+      tags: shell-color-scripts
     - name: Clone shell-color-scripts repository
-      git:
+      ansible.builtin.git:
         repo: https://gitlab.com/dwt1/shell-color-scripts.git
         dest: /tmp/shell-color-scripts
       when: not shell_color_scripts_installed.stat.exists
+      tags: shell-color-scripts
     - name: Install shell-color-scripts
-      command: make install
+      ansible.builtin.command: make install
       args:
         chdir: /tmp/shell-color-scripts
       when: not shell_color_scripts_installed.stat.exists
       become: true
+      tags: shell-color-scripts
 
     # tmux
     - name: Symlink tmux configuration
-      file:
+      ansible.builtin.file:
         src: "{{ playbook_dir }}/tmux/{{ item }}"
-        dest: "{{ ansible_facts['env']['HOME'] }}/.{{ item }}"
+        dest: "{{ ansible_env.HOME }}/.{{ item }}"
         state: link
-      with_items:
+      loop:
         - tmux.conf
         - tmuxline
+      tags: tmux
+    - name: Check if tpm is installed
+      ansible.builtin.stat:
+        path: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
+      register: tpm_installed
+      tags: tmux
     - name: Install tpm
       ansible.builtin.git:
         repo: https://github.com/tmux-plugins/tpm
-        dest: "{{ ansible_facts['env']['HOME'] }}/.tmux/plugins/tpm"
+        dest: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
+      when: not tpm_installed.stat.exists
+      tags: tmux
+    - name: Check if getipfortmux is installed
+      ansible.builtin.stat:
+        path: /usr/local/bin/getipfortmux
+      register: getipfortmux_installed
+      tags: tmux
     - name: Clone getipfortmux repository
       ansible.builtin.git:
         repo: https://github.com/JoshOldenburg/ipaddrutil.git
         dest: /tmp/ipaddrutil
+      when: not getipfortmux_installed.stat.exists
+      tags: tmux
     - name: Build getipfortmux
-      shell: make all
+      ansible.builtin.command: make all
       args:
         chdir: /tmp/ipaddrutil
-        creates: /tmp/ipaddrutil/getipfortmux
+      when: not getipfortmux_installed.stat.exists
+      tags: tmux
     - name: Add getipfortmux binary to path
-      copy:
+      ansible.builtin.copy:
         src: /tmp/ipaddrutil/getipfortmux
         dest: /usr/local/bin/getipfortmux
-        mode: "0111"
+        mode: "0755"
       become: true
+      when: not getipfortmux_installed.stat.exists
+      tags: tmux
+    - name: Check if tmux-battery is installed
+      ansible.builtin.stat:
+        path: /usr/local/bin/tmux-battery
+      register: tmux_battery_installed
+      tags: tmux
     - name: Clone tmux-battery repository
-      git:
+      ansible.builtin.git:
         repo: https://github.com/JoshOldenburg/tmux-battery.git
         dest: /tmp/tmux-battery
+      when: not tmux_battery_installed.stat.exists
+      tags: tmux
     - name: Build tmux-battery
-      shell: make all
+      ansible.builtin.command: make all
       args:
         chdir: /tmp/tmux-battery
-        creates: /tmp/tmux-battery/tmux-battery
+      when: not tmux_battery_installed.stat.exists
+      tags: tmux
     - name: Add tmux-battery binary to path
-      copy:
+      ansible.builtin.copy:
         src: /tmp/tmux-battery/tmux-battery
         dest: /usr/local/bin/tmux-battery
-        mode: "0111"
+        mode: "0755"
       become: true
+      when: not tmux_battery_installed.stat.exists
+      tags: tmux
 
     # fzf
     - name: Symlink fzf configuration
-      file:
+      ansible.builtin.file:
         src: "{{ playbook_dir }}/shell/{{ item }}"
-        dest: "{{ ansible_facts['env']['HOME'] }}/.{{ item }}"
+        dest: "{{ ansible_env.HOME }}/.{{ item }}"
         state: link
-      with_items:
+      loop:
         - fzf.zsh
         - p10k.zsh
+      tags: fzf
 
     # Prezto
     - name: Install prezto
-      git:
+      ansible.builtin.git:
         repo: https://github.com/sorin-ionescu/prezto.git
-        dest: "{{ ansible_facts['env']['HOME'] }}/.zprezto"
+        dest: "{{ ansible_env.HOME }}/.zprezto"
+      tags: prezto
     - name: Symlink prezto configuration
-      file:
+      ansible.builtin.file:
         src: "{{ playbook_dir }}/shell/{{ item }}"
-        dest: "{{ ansible_facts['env']['HOME'] }}/.{{ item }}"
+        dest: "{{ ansible_env.HOME }}/.{{ item }}"
         state: link
-      with_items:
+      loop:
         - zshrc
         - zpreztorc
+      tags: prezto
     - name: Install fzf-tab prezto module
-      git:
+      ansible.builtin.git:
         repo: https://github.com/Aloxaf/fzf-tab
-        dest: "{{ ansible_facts['env']['HOME'] }}/.zprezto/contrib/fzf-tab"
+        dest: "{{ ansible_env.HOME }}/.zprezto/contrib/fzf-tab"
+      tags: prezto
 
     # git
     - name: Symlink git configuration
-      file:
+      ansible.builtin.file:
         src: "{{ playbook_dir }}/git/{{ item }}"
-        dest: "{{ ansible_facts['env']['HOME'] }}/.{{ item }}"
+        dest: "{{ ansible_env.HOME }}/.{{ item }}"
         state: link
-      with_items:
+      loop:
         - gitconfig
+      tags: git
 
     # wezterm
     - name: Symlink wezterm configuration
-      file:
+      ansible.builtin.file:
         src: "{{ playbook_dir }}/wezterm/{{ item }}"
-        dest: "{{ ansible_facts['env']['HOME'] }}/.{{ item }}"
+        dest: "{{ ansible_env.HOME }}/.{{ item }}"
         state: link
-      with_items:
+      loop:
         - wezterm.lua
+      tags: wezterm
 
     # aerospace
     - name: Create aerospace directories
-      file:
-        path: "{{ ansible_facts['env']['HOME'] }}/.config/{{ item }}"
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/.config/{{ item }}"
         state: directory
         mode: "0755"
-      with_items:
+      loop:
         - aerospace
+      tags: aerospace
     - name: Symlink aerospace configuration
-      file:
+      ansible.builtin.file:
         src: "{{ playbook_dir }}/aerospace/{{ item }}"
-        dest: "{{ ansible_facts['env']['HOME'] }}/.config/aerospace/{{ item }}"
+        dest: "{{ ansible_env.HOME }}/.config/aerospace/{{ item }}"
         state: link
-      with_items:
+      loop:
         - aerospace.toml
+      tags: aerospace
