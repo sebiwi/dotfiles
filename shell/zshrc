@@ -81,6 +81,14 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+# Plain group labels: fzf-tab can't prompt-expand Prezto's colored format, so it
+# leaks `%F{yellow}` literally. fzf-tab colors groups itself. Must come after Prezto.
+zstyle ':completion:*' format '[%d]'
+
+# In the fzf-tab menu, `<`/`>` cycle through completion groups (one category at a
+# time), replacing the default F1/F2.
+zstyle ':fzf-tab:*' switch-group '<' '>'
+
 # zoxide (smarter cd; `z <dir>` to jump, `zi` for interactive fzf picker).
 # Must come after Prezto so compinit has already run for completions.
 command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
