@@ -10,6 +10,7 @@
           - bat
           - eza
           - fd
+          - ffmpeg
           - fzf
           - gh
           - git-delta
@@ -24,8 +25,10 @@
           - lychee
           - neovim
           - pngpaste
+          - poppler
           - pre-commit
           - ripgrep
+          - sevenzip
           - stern
           - terraform-docs
           - tmux
