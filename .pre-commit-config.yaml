@@ -1,0 +1,35 @@
+# Run `pre-commit install` once (the playbook's `pre-commit` tag does this).
+# Bump pinned revs with `pre-commit autoupdate`. Bypass a single commit with
+# `git commit --no-verify`.
+repos:
+  # Secret scanning -- the main reason this exists.
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.0
+    hooks:
+      - id: gitleaks
+
+  # Lua formatting for the nvim config (uses nvim/stylua.toml).
+  - repo: https://github.com/JohnnyMorganz/StyLua
+    rev: v2.5.2
+    hooks:
+      - id: stylua
+
+  # Generic hygiene.
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-merge-conflict
+      - id: check-added-large-files
+      - id: check-yaml
+
+  # zsh is not bash, so shellcheck does not apply. `zsh -n` parses each shell
+  # file and fails on syntax errors without executing anything.
+  - repo: local
+    hooks:
+      - id: zsh-syntax-check
+        name: zsh -n syntax check
+        entry: bash -c 'for f in "$@"; do zsh -n "$f" || exit 1; done' --
+        language: system
+        files: '^shell/.*\.(sh|zsh)$'

@@ -24,6 +24,7 @@
           - lychee
           - neovim
           - pngpaste
+          - pre-commit
           - ripgrep
           - stern
           - terraform-docs
@@ -261,3 +262,11 @@
       loop:
         - aerospace.toml
       tags: aerospace
+
+    # pre-commit
+    - name: Install pre-commit git hook
+      ansible.builtin.command: pre-commit install
+      args:
+        chdir: "{{ playbook_dir }}"
+        creates: "{{ playbook_dir }}/.git/hooks/pre-commit"
+      tags: pre-commit

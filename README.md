@@ -32,7 +32,7 @@ pdm run ansible-playbook install.yaml -K --tags nvim,wezterm
 ```
 
 Available tags: `brew`, `vim`, `nvim`, `gh`, `shell-color-scripts`, `tmux`,
-`fzf`, `prezto`, `git`, `wezterm`, `aerospace`.
+`fzf`, `prezto`, `git`, `wezterm`, `aerospace`, `pre-commit`.
 
 ## Post-install
 
@@ -50,6 +50,10 @@ Available tags: `brew`, `vim`, `nvim`, `gh`, `shell-color-scripts`, `tmux`,
 
 - atuin (shell history) stores data locally on first use; run `atuin import auto`
   once to import existing history. Sync is opt-in (`atuin register`).
+- A `pre-commit` hook (gitleaks secret scan, stylua, zsh syntax check, generic
+  hygiene) runs on commit. The `pre-commit` tag installs the git hook; bump
+  pinned versions with `pre-commit autoupdate`. Bypass once with
+  `git commit --no-verify`.
 
 ## License
 

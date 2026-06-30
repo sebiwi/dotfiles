@@ -115,17 +115,13 @@ table.insert(config.keys, {
 -- selection is active, clear just the selection and stay in copy mode;
 -- otherwise close copy mode entirely. These modes use their own key tables,
 -- so the global CTRL+[ binding above doesn't reach them.
-local copy_mode = (config.key_tables and config.key_tables.copy_mode)
-	or wezterm.gui.default_key_tables().copy_mode
+local copy_mode = (config.key_tables and config.key_tables.copy_mode) or wezterm.gui.default_key_tables().copy_mode
 local search_mode = (config.key_tables and config.key_tables.search_mode)
 	or wezterm.gui.default_key_tables().search_mode
 
 local function ctrl_bracket_copy_mode(window, pane)
 	if window:get_selection_text_for_pane(pane) ~= "" then
-		window:perform_action(
-			act.Multiple({ act.ClearSelection, act.CopyMode("ClearSelectionMode") }),
-			pane
-		)
+		window:perform_action(act.Multiple({ act.ClearSelection, act.CopyMode("ClearSelectionMode") }), pane)
 	else
 		window:perform_action(act.CopyMode("Close"), pane)
 	end
