@@ -11,15 +11,15 @@ return {
       variant = "summer", -- "spring" | "summer" | "autumn" | "winter" (default)
       transparent = {
         enabled = true, -- Master switch to enable transparency
-        pmenu = false, -- Popup menu (e.g., autocomplete suggestions)
+        pmenu = true, -- Popup menu (e.g., autocomplete suggestions)
         normal = true, -- Main editor window background
-        normalfloat = false, -- Floating windows
+        normalfloat = true, -- Floating windows
         neotree = true, -- Neo-tree file explorer
         nvimtree = true, -- Nvim-tree file explorer
-        whichkey = false, -- Which-key popup
+        whichkey = true, -- Which-key popup
         telescope = true, -- Telescope fuzzy finder
-        lazy = false, -- Lazy plugin manager UI
-        mason = false, -- Mason manage external tooling
+        lazy = true, -- Lazy plugin manager UI
+        mason = true, -- Mason manage external tooling
       },
       on_highlights = function(colors, _)
         -- Make the selected bufferline tab clearly stand out. The default
@@ -33,6 +33,16 @@ return {
           -- body is solid (base04), which shows the terminal bg on the border
           -- row. Give the border the same solid bg so the popup edge matches.
           FloatBorder = { fg = colors.cyan, bg = colors.base04 },
+          -- blink.cmp paints its menu/docs with its own highlight groups
+          -- rather than Pmenu, so the solarized `pmenu` transparency flag
+          -- doesn't reach it. Force the backgrounds transparent here.
+          BlinkCmpMenu = { bg = "NONE" },
+          BlinkCmpMenuBorder = { fg = colors.cyan, bg = "NONE" },
+          BlinkCmpDoc = { bg = "NONE" },
+          BlinkCmpDocBorder = { fg = colors.cyan, bg = "NONE" },
+          BlinkCmpDocSeparator = { bg = "NONE" },
+          BlinkCmpSignatureHelp = { bg = "NONE" },
+          BlinkCmpSignatureHelpBorder = { fg = colors.cyan, bg = "NONE" },
           LspReferenceRead = { fg = colors.cyan, bg = colors.base02, standout = true },
           LspReferenceWrite = { fg = colors.blue, bg = colors.base02, standout = true },
           BufferLineBufferSelected = vim.tbl_extend("force", { fg = colors.base1 }, sel),
