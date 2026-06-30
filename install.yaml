@@ -204,6 +204,13 @@
         - p10k.zsh
       tags: fzf
 
+    # fzf-git
+    - name: Install fzf-git.sh
+      ansible.builtin.git:
+        repo: https://github.com/junegunn/fzf-git.sh
+        dest: "{{ ansible_env.HOME }}/.fzf-git"
+      tags: fzf-git
+
     # Prezto
     - name: Install prezto
       ansible.builtin.git:

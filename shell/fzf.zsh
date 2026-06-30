@@ -10,6 +10,15 @@ fi
 # ---------------
 [[ $- == *i* ]] && source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
 
+# Appearance: consistent layout + Solarized-dark colors (matches terminal/bat/delta).
+export FZF_DEFAULT_OPTS="
+  --height 60% --layout=reverse --border --info=inline
+  --prompt='❯ ' --marker='✓'
+  --color=fg:#839496,bg:#002b36,hl:#268bd2
+  --color=fg+:#93a1a1,bg+:#073642,hl+:#268bd2
+  --color=info:#586e75,prompt:#859900,pointer:#d33682
+  --color=marker:#d33682,spinner:#cb4b16,header:#586e75,border:#073642"
+
 # Key bindings
 # ------------
 source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
@@ -36,3 +45,9 @@ _fzf_comprun() {
     *)            fzf --preview "bat -n --color=always --line-range :500 {}" "$@" ;;
   esac
 }
+
+# fzf-git.sh: git-object pickers under the CTRL-G prefix --
+# CTRL-G CTRL-F files, CTRL-B branches, CTRL-T tags, CTRL-R remotes,
+# CTRL-H hashes, CTRL-S stashes, CTRL-L reflogs, CTRL-W worktrees, CTRL-E each.
+# Installed by the `fzf-git` playbook tag; guarded so it is inert if absent.
+[ -f ~/.fzf-git/fzf-git.sh ] && source ~/.fzf-git/fzf-git.sh

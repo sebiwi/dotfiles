@@ -32,7 +32,7 @@ pdm run ansible-playbook install.yaml -K --tags nvim,wezterm
 ```
 
 Available tags: `brew`, `vim`, `nvim`, `gh`, `shell-color-scripts`, `tmux`,
-`fzf`, `prezto`, `git`, `wezterm`, `aerospace`, `pre-commit`.
+`fzf`, `fzf-git`, `prezto`, `git`, `wezterm`, `aerospace`, `pre-commit`.
 
 ## Post-install
 
