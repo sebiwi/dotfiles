@@ -3,6 +3,7 @@
     lola     = log --graph --decorate --pretty=oneline --abbrev-commit --all
     history = log --pretty=format:\"[%h] %ae, %ar: %s\" --stat
     poule = ! bash -c 'source $HOME/stuff/dotfiles/shell/poule.sh && poule && git pull'
+    dsbs = "!git -c delta.side-by-side=true -c delta.line-numbers=true diff"
 
 [core]
     editor = nvim
@@ -13,6 +14,7 @@
 
 [delta]
     features = decorations
+    navigate = true
 
 [delta "interactive"]
     keep-plus-minus-markers = false
@@ -21,6 +23,7 @@
     commit-decoration-style = blue ol
     commit-style = raw
     file-style = omit
+    hunk-header-style = file line-number syntax
     hunk-header-decoration-style = blue box
     hunk-header-file-style = red
     hunk-header-line-number-style = "#067a00"
