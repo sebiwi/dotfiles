@@ -5,7 +5,7 @@
     poule = ! bash -c 'source $HOME/stuff/dotfiles/shell/poule.sh && poule && git pull'
 
 [core]
-    editor = vim
+    editor = nvim
     pager = delta
 
 [interactive]
@@ -36,3 +36,12 @@
 
 [init]
     defaultBranch = main
+
+[gpg]
+	format = ssh
+
+[commit]
+	gpgsign = true
+
+[tag]
+	gpgsign = true

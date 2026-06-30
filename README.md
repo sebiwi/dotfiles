@@ -2,36 +2,55 @@
 
 The dotfiles.
 
+These currently work on MacOs. I haven't tested them elsewhere.
+
+- nvim
+- vim (but I'm trying to let go)
+- wezterm
+- tmux (but I'm trying to let go x2)
+- zsh (Prezto + Powerlevel10k)
+- git
+- aerospace
+- Various CLI tools (bat, eza, fd, fzf, ripgrep, zoxide, atuin, delta, ...)
+
 ## Requirements
 
-- brew
-  - mise
-    - python
-      - pdm
+- `brew`
+  - `mise` -> `python` -> `pdm`
 
 ## Installation
 
-Install the requirements under the `Requirements` section, then:
-
 ```bash
-
-# install ansible
-pdm install
-
-# run the install script
-pdm run ansible-playbook install.yaml -K
+pdm install                                   # install ansible
+pdm run ansible-playbook install.yaml -K      # run everything
 ```
 
-Change iTerm's colorscheme to Solarized Dark, and use the Powerlevel10k patched fonts.
+Install only some parts with tags:
 
-## Contributing
+```bash
+pdm run ansible-playbook install.yaml -K --tags nvim,wezterm
+```
 
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request
+Available tags: `brew`, `vim`, `nvim`, `gh`, `shell-color-scripts`, `tmux`,
+`fzf`, `prezto`, `git`, `wezterm`, `aerospace`.
+
+## Post-install
+
+- Use the **JetBrainsMono Nerd Font** (installed by the `brew` tag) in your
+  terminal so icons render.
+- `git/gitconfig` includes `~/.gitconfig.user` for machine-local identity and
+  signing. Create it (not tracked here), e.g.:
+
+  ```ini
+  [user]
+      name = Your Name
+      email = you@example.com
+      signingkey = ~/.ssh/id_ed25519.pub
+  ```
+
+- atuin (shell history) stores data locally on first use; run `atuin import auto`
+  once to import existing history. Sync is opt-in (`atuin register`).
 
 ## License
 
-MIT - see LICENSE for more details
+MIT - see LICENSE for more details.

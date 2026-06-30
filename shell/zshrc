@@ -96,6 +96,17 @@ command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# atuin: SQLite-backed shell history with fuzzy search. Owns Ctrl-R.
+# Must come after fzf so atuin's Ctrl-R binding wins over fzf's history widget
+# (fzf keeps Ctrl-T for files and Alt-C for dirs). --disable-up-arrow leaves the
+# Up/Down keys for Prezto's history-substring-search, bound at the bottom of this
+# file.
+command -v atuin >/dev/null && eval "$(atuin init zsh --disable-up-arrow)"
+
+# Aliases. Must come after Prezto so the eza-backed ls family overrides
+# Prezto's utility-module aliases instead of being clobbered by them.
+source ~/stuff/dotfiles/shell/aliases.sh
+
 # bat
 export BAT_THEME="Solarized (dark)"
 

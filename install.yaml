@@ -6,6 +6,7 @@
     - name: Install formulae
       community.general.homebrew:
         name:
+          - atuin
           - bat
           - eza
           - fd
@@ -15,7 +16,6 @@
           - gnu-sed
           - go
           - helm
-          - hub
           - k9s
           - krew
           - kubectx
@@ -27,7 +27,6 @@
           - ripgrep
           - stern
           - terraform-docs
-          - the_silver_searcher
           - tmux
           - tmux-mem-cpu-load
           - vim
