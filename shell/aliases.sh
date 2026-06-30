@@ -40,3 +40,17 @@ fi
 if command -v bat >/dev/null; then
   alias catp='bat --paging=never --style=plain'
 fi
+
+# yazi: `y` launches the file manager and cd's the shell to yazi's last
+# directory on quit (official wrapper). Plain `yazi` leaves $PWD unchanged.
+if command -v yazi >/dev/null; then
+  y() {
+    local tmp cwd
+    tmp="$(mktemp -t yazi-cwd.XXXXXX)"
+    yazi "$@" --cwd-file="$tmp"
+    if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+      builtin cd -- "$cwd"
+    fi
+    rm -f -- "$tmp"
+  }
+fi
