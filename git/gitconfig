@@ -45,3 +45,33 @@
 
 [tag]
 	gpgsign = true
+
+[push]
+	autoSetupRemote = true
+
+[pull]
+	rebase = true
+
+[rebase]
+	autostash = true
+
+[fetch]
+	prune = true
+
+[diff]
+	algorithm = histogram
+
+[merge]
+	conflictStyle = zdiff3
+
+[rerere]
+	enabled = true
+
+[branch]
+	sort = -committerdate
+
+[column]
+	ui = auto
+
+[help]
+	autocorrect = prompt
