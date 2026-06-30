@@ -31,6 +31,13 @@ setopt HIST_IGNORE_SPACE # drop commands that start with a space
 setopt EXTENDED_HISTORY  # timestamp each entry (also needed for atuin import)
 setopt HIST_VERIFY       # !!/!$ expansions show in the buffer before running
 setopt HIST_REDUCE_BLANKS # trim redundant whitespace before saving
+setopt HIST_FIND_NO_DUPS  # when searching history, skip duplicates already shown
+
+# Shell options
+setopt EXTENDED_GLOB      # enable ^ ~ # glob operators and qualifiers like *(.)
+setopt AUTO_PUSHD         # every cd pushes onto the dir stack (cd -<TAB> to jump back)
+setopt PUSHD_IGNORE_DUPS  # keep the dir stack free of duplicates
+setopt PUSHD_SILENT       # don't print the dir stack on pushd/popd
 
 # Kubernetes
 source ~/stuff/dotfiles/shell/kubernetes.sh
