@@ -7,6 +7,7 @@
       community.general.homebrew:
         name:
           - atuin
+          - awscli
           - bat
           - eza
           - fd
@@ -57,7 +58,7 @@
         state: present
       tags: brew
 
-    - name: create /usr/local/bin
+    - name: Create /usr/local/bin
       ansible.builtin.file:
         path: /usr/local/bin
         state: directory
@@ -68,7 +69,7 @@
     - name: Symlink vim directory and running configuration
       ansible.builtin.file:
         src: "{{ playbook_dir }}/{{ item }}"
-        dest: "{{ ansible_env.HOME }}/.{{ item }}"
+        dest: "{{ ansible_facts.env.HOME }}/.{{ item }}"
         state: link
       loop:
         - vim
@@ -76,7 +77,7 @@
       tags: vim
     - name: Create vim directories
       ansible.builtin.file:
-        path: "{{ ansible_env.HOME }}/.vim/{{ item }}"
+        path: "{{ ansible_facts.env.HOME }}/.vim/{{ item }}"
         state: directory
         mode: "0755"
       loop:
@@ -89,7 +90,7 @@
     - name: Symlink nvim directory and running configuration
       ansible.builtin.file:
         src: "{{ playbook_dir }}/{{ item }}"
-        dest: "{{ ansible_env.HOME }}/.config/{{ item }}"
+        dest: "{{ ansible_facts.env.HOME }}/.config/{{ item }}"
         state: link
       loop:
         - nvim
@@ -103,6 +104,7 @@
       tags: gh
     - name: Install gh notify extension
       ansible.builtin.command: gh ext install meiji163/gh-notify
+      changed_when: true
       when: "'meiji163/gh-notify' not in gh_ext_list.stdout"
       tags: gh
 
@@ -117,13 +119,14 @@
       changed_when: false
       failed_when: false
       environment:
-        PATH: "{{ ansible_env.HOME }}/.krew/bin:{{ ansible_env.PATH }}"
+        PATH: "{{ ansible_facts.env.HOME }}/.krew/bin:{{ ansible_facts.env.PATH }}"
       tags: krew
     - name: Install kubectl-neat krew plugin
       ansible.builtin.command: kubectl krew install neat
+      changed_when: true
       when: "'neat' not in krew_plugin_list.stdout"
       environment:
-        PATH: "{{ ansible_env.HOME }}/.krew/bin:{{ ansible_env.PATH }}"
+        PATH: "{{ ansible_facts.env.HOME }}/.krew/bin:{{ ansible_facts.env.PATH }}"
       tags: krew
 
     # shell-color-scripts
@@ -142,6 +145,7 @@
       ansible.builtin.command: make install
       args:
         chdir: /tmp/shell-color-scripts
+      changed_when: true
       when: not shell_color_scripts_installed.stat.exists
       become: true
       tags: shell-color-scripts
@@ -150,7 +154,7 @@
     - name: Symlink tmux configuration
       ansible.builtin.file:
         src: "{{ playbook_dir }}/tmux/{{ item }}"
-        dest: "{{ ansible_env.HOME }}/.{{ item }}"
+        dest: "{{ ansible_facts.env.HOME }}/.{{ item }}"
         state: link
       loop:
         - tmux.conf
@@ -158,13 +162,13 @@
       tags: tmux
     - name: Check if tpm is installed
       ansible.builtin.stat:
-        path: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
+        path: "{{ ansible_facts.env.HOME }}/.tmux/plugins/tpm"
       register: tpm_installed
       tags: tmux
     - name: Install tpm
       ansible.builtin.git:
         repo: https://github.com/tmux-plugins/tpm
-        dest: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
+        dest: "{{ ansible_facts.env.HOME }}/.tmux/plugins/tpm"
       when: not tpm_installed.stat.exists
       tags: tmux
     - name: Check if getipfortmux is installed
@@ -182,6 +186,7 @@
       ansible.builtin.command: make all
       args:
         chdir: /tmp/ipaddrutil
+      changed_when: true
       when: not getipfortmux_installed.stat.exists
       tags: tmux
     - name: Add getipfortmux binary to path
@@ -207,6 +212,7 @@
       ansible.builtin.command: make all
       args:
         chdir: /tmp/tmux-battery
+      changed_when: true
       when: not tmux_battery_installed.stat.exists
       tags: tmux
     - name: Add tmux-battery binary to path
@@ -222,46 +228,46 @@
     - name: Symlink fzf configuration
       ansible.builtin.file:
         src: "{{ playbook_dir }}/shell/{{ item }}"
-        dest: "{{ ansible_env.HOME }}/.{{ item }}"
+        dest: "{{ ansible_facts.env.HOME }}/.{{ item }}"
         state: link
       loop:
         - fzf.zsh
-        - p10k.zsh
       tags: fzf
 
     # fzf-git
     - name: Install fzf-git.sh
       ansible.builtin.git:
         repo: https://github.com/junegunn/fzf-git.sh
-        dest: "{{ ansible_env.HOME }}/.fzf-git"
+        dest: "{{ ansible_facts.env.HOME }}/.fzf-git"
       tags: fzf-git
 
     # Prezto
     - name: Install prezto
       ansible.builtin.git:
         repo: https://github.com/sorin-ionescu/prezto.git
-        dest: "{{ ansible_env.HOME }}/.zprezto"
+        dest: "{{ ansible_facts.env.HOME }}/.zprezto"
       tags: prezto
     - name: Symlink prezto configuration
       ansible.builtin.file:
         src: "{{ playbook_dir }}/shell/{{ item }}"
-        dest: "{{ ansible_env.HOME }}/.{{ item }}"
+        dest: "{{ ansible_facts.env.HOME }}/.{{ item }}"
         state: link
       loop:
         - zshrc
         - zpreztorc
+        - p10k.zsh
       tags: prezto
     - name: Install fzf-tab prezto module
       ansible.builtin.git:
         repo: https://github.com/Aloxaf/fzf-tab
-        dest: "{{ ansible_env.HOME }}/.zprezto/contrib/fzf-tab"
+        dest: "{{ ansible_facts.env.HOME }}/.zprezto/contrib/fzf-tab"
       tags: prezto
 
     # git
     - name: Symlink git configuration
       ansible.builtin.file:
         src: "{{ playbook_dir }}/git/{{ item }}"
-        dest: "{{ ansible_env.HOME }}/.{{ item }}"
+        dest: "{{ ansible_facts.env.HOME }}/.{{ item }}"
         state: link
       loop:
         - gitconfig
@@ -271,7 +277,7 @@
     - name: Symlink wezterm configuration
       ansible.builtin.file:
         src: "{{ playbook_dir }}/wezterm/{{ item }}"
-        dest: "{{ ansible_env.HOME }}/.{{ item }}"
+        dest: "{{ ansible_facts.env.HOME }}/.{{ item }}"
         state: link
       loop:
         - wezterm.lua
@@ -280,7 +286,7 @@
     # aerospace
     - name: Create aerospace directories
       ansible.builtin.file:
-        path: "{{ ansible_env.HOME }}/.config/{{ item }}"
+        path: "{{ ansible_facts.env.HOME }}/.config/{{ item }}"
         state: directory
         mode: "0755"
       loop:
@@ -289,7 +295,7 @@
     - name: Symlink aerospace configuration
       ansible.builtin.file:
         src: "{{ playbook_dir }}/aerospace/{{ item }}"
-        dest: "{{ ansible_env.HOME }}/.config/aerospace/{{ item }}"
+        dest: "{{ ansible_facts.env.HOME }}/.config/aerospace/{{ item }}"
         state: link
       loop:
         - aerospace.toml
@@ -298,14 +304,14 @@
     # yazi
     - name: Create yazi directories
       ansible.builtin.file:
-        path: "{{ ansible_env.HOME }}/.config/yazi"
+        path: "{{ ansible_facts.env.HOME }}/.config/yazi"
         state: directory
         mode: "0755"
       tags: yazi
     - name: Symlink yazi configuration
       ansible.builtin.file:
         src: "{{ playbook_dir }}/yazi/{{ item }}"
-        dest: "{{ ansible_env.HOME }}/.config/yazi/{{ item }}"
+        dest: "{{ ansible_facts.env.HOME }}/.config/yazi/{{ item }}"
         state: link
       loop:
         - yazi.toml

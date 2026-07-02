@@ -46,7 +46,6 @@ smart_splits.apply_to_config(config, {
 })
 
 -- tabline config
-tabline.get_config()
 tabline.setup({
 	options = {
 		theme = "Solarized (dark) (terminal.sexy)",

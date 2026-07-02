@@ -1,0 +1,21 @@
+# The pre-commit ansible-lint hook scans the whole repo (it ignores the
+# `files:` filter), but install.yaml is the only Ansible content here.
+# Exclude everything else so app configs and vendored plugins aren't linted.
+# The git-clone tasks (prezto, tpm, fzf-git, ...) deliberately track each
+# tool's default branch instead of pinning a version; that variability is
+# the point, not an oversight.
+skip_list:
+  - latest[git]
+
+exclude_paths:
+  - .git/
+  - .venv/
+  - .pre-commit-config.yaml
+  - aerospace/
+  - git/
+  - nvim/
+  - shell/
+  - tmux/
+  - vim/
+  - wezterm/
+  - yazi/

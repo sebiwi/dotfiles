@@ -24,6 +24,17 @@ repos:
       - id: check-added-large-files
       - id: check-yaml
 
+  # Ansible semantics for the playbook (check-yaml only covers syntax).
+  - repo: https://github.com/ansible/ansible-lint
+    rev: v26.6.0
+    hooks:
+      - id: ansible-lint
+        files: ^install\.yaml$
+        additional_dependencies:
+          # Full ansible package: the hook env only has ansible-core, and the
+          # syntax check needs community.general (homebrew modules).
+          - ansible
+
   # zsh is not bash, so shellcheck does not apply. `zsh -n` parses each shell
   # file and fails on syntax errors without executing anything.
   - repo: local
