@@ -1,0 +1,13 @@
+# Partial config: unspecified keys fall back to Yazi's built-in defaults.
+
+[mgr]
+# parent : current : preview  (default is [1, 4, 3])
+# Give the preview pane a much larger share of the width.
+ratio = [1, 2, 4]
+
+[preview]
+# Cap the resolution Yazi renders images/PDFs at (in px).
+# Defaults are 600 x 900; bumping these keeps the larger pane sharp.
+max_width  = 1920
+max_height = 1080
+image_quality = 90

@@ -11,6 +11,9 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # mise
 eval "$(/opt/homebrew/bin/mise activate zsh)"
 
+# Where this repo lives; sourced files below are addressed relative to it.
+export DOTFILES="$HOME/stuff/dotfiles"
+
 # ls colors
 export CLICOLOR=1
 
@@ -39,49 +42,8 @@ setopt AUTO_PUSHD         # every cd pushes onto the dir stack (cd -<TAB> to jum
 setopt PUSHD_IGNORE_DUPS  # keep the dir stack free of duplicates
 setopt PUSHD_SILENT       # don't print the dir stack on pushd/popd
 
-# Kubernetes
-source ~/stuff/dotfiles/shell/kubernetes.sh
-
-# AWS
-# sp() {
-#   export AWS_PROFILE=$(grep '^\[.*\]$' ~/.aws/credentials ~/.aws/config | cut -d ':' -f 2 | cut -d ' ' -f 2 | tr -d [ | tr -d ] | fzf)
-#   export AWS_DEFAULT_REGION=eu-west-1
-# }
-
-# up() {
-#   unset AWS_PROFILE
-#   unset AWS_DEFAULT_REGION
-# }
-
 # Use bat for man pages
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-
-# function share {
-
-#     BUCKET=$(whoami)-share
-#     EXPIRY_DAYS=1
-
-#     # create the bucket if it doesn't exist, and apply a lifecycle policy to tidy up old files
-#     # if aws s3 ls "s3://$BUCKET" 2>&1 | grep -q 'NoSuchBucket'; then
-#     #     echo "Creating bucket: $BUCKET and applying expiry policy of $EXPIRY_DAYS days...";
-#     #     aws s3api create-bucket --bucket $BUCKET --region eu-west-1 --create-bucket-configuration LocationConstraint=eu-west-1;
-#     #     aws s3api put-bucket-lifecycle \
-#     #         --bucket $BUCKET \
-#     #         --lifecycle-configuration "{\"Rules\":[{\"Prefix\":\"\",\"Status\":\"Enabled\",\"AbortIncompleteMultipartUpload\":{\"DaysAfterInitiation\":7},\"Expiration\":{\"Days\":$EXPIRY_DAYS},\"ID\":\"ttl\"}]}";
-#     # fi
-
-#     # upload & copy presigned url to clipboard
-#     aws s3 cp "$1" "s3://$BUCKET/$1";
-#     aws s3 presign "s3://$BUCKET/$1" --expires-in $(($EXPIRY_DAYS*86400)) | pbcopy;
-#     echo -e "\nFile uploaded with $EXPIRY_DAYS day ttl and presigned URL copied to clipboard\n";
-
-#     echo -e "Generated link\n"
-#     pbpaste
-#     echo -e "\n"
-
-# }
-
-# complete -C '/opt/homebrew/bin/aws_completer' aws
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
@@ -100,6 +62,10 @@ zstyle ':fzf-tab:*' switch-group '<' '>'
 # Must come after Prezto so compinit has already run for completions.
 command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
 
+# Kubernetes completion + aliases. Must come after Prezto for the same
+# compinit reason; the file is inert if kubectl is not installed.
+source "$DOTFILES/shell/kubernetes.sh"
+
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -112,7 +78,7 @@ command -v atuin >/dev/null && eval "$(atuin init zsh --disable-up-arrow)"
 
 # Aliases. Must come after Prezto so the eza-backed ls family overrides
 # Prezto's utility-module aliases instead of being clobbered by them.
-source ~/stuff/dotfiles/shell/aliases.sh
+source "$DOTFILES/shell/aliases.sh"
 
 # bat
 export BAT_THEME="Solarized (dark)"

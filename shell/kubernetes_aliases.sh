@@ -9,7 +9,7 @@ alias kgec='k get events --sort-by=.metadata.creationTimestamp'
 # get pod's descending events
 function kger() { k get events --sort-by=.lastTimestamp --field-selector involvedObject.name="$@" }
 # get 'real' all
-alias kgworld='k get $(kubectl api-resources --verbs=list --namespaced -o name | paste -sd ",")'
+alias kgworld='k get $(kubectl api-resources --verbs=list --namespaced -o name | paste -sd "," -)'
 # display all nodes resources request and limits
 alias kgnr="k get nodes --no-headers | awk '{print \$1}' | xargs -I {} sh -c 'echo {} ; kubectl describe node {} | grep Allocated -A 5 | grep -ve Event -ve Allocated -ve percent -ve -- ; echo '"
 # start a debug pod (including lots of troubleshooting tools)

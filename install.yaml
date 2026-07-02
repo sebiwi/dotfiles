@@ -20,6 +20,7 @@
           - k9s
           - krew
           - kubectx
+          - kubernetes-cli
           - lazygit
           - luarocks
           - lychee
@@ -104,6 +105,26 @@
       ansible.builtin.command: gh ext install meiji163/gh-notify
       when: "'meiji163/gh-notify' not in gh_ext_list.stdout"
       tags: gh
+
+    # krew plugins
+    # krew's kubectl-krew binary lives in ~/.krew/bin; ansible tasks don't read
+    # zshrc, so PATH must be extended explicitly.
+    # The list command exits non-zero before the first `krew update`/`install`
+    # initializes the plugin index, so treat any failure as "no plugins yet".
+    - name: Check installed krew plugins
+      ansible.builtin.command: kubectl krew list
+      register: krew_plugin_list
+      changed_when: false
+      failed_when: false
+      environment:
+        PATH: "{{ ansible_env.HOME }}/.krew/bin:{{ ansible_env.PATH }}"
+      tags: krew
+    - name: Install kubectl-neat krew plugin
+      ansible.builtin.command: kubectl krew install neat
+      when: "'neat' not in krew_plugin_list.stdout"
+      environment:
+        PATH: "{{ ansible_env.HOME }}/.krew/bin:{{ ansible_env.PATH }}"
+      tags: krew
 
     # shell-color-scripts
     - name: Check if shell-color-scripts is already installed
@@ -273,6 +294,22 @@
       loop:
         - aerospace.toml
       tags: aerospace
+
+    # yazi
+    - name: Create yazi directories
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/.config/yazi"
+        state: directory
+        mode: "0755"
+      tags: yazi
+    - name: Symlink yazi configuration
+      ansible.builtin.file:
+        src: "{{ playbook_dir }}/yazi/{{ item }}"
+        dest: "{{ ansible_env.HOME }}/.config/yazi/{{ item }}"
+        state: link
+      loop:
+        - yazi.toml
+      tags: yazi
 
     # pre-commit
     - name: Install pre-commit git hook

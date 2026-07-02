@@ -45,6 +45,7 @@
 
 [commit]
 	gpgsign = true
+	verbose = true
 
 [tag]
 	gpgsign = true
@@ -63,6 +64,7 @@
 
 [diff]
 	algorithm = histogram
+	colorMoved = default
 
 [merge]
 	conflictStyle = zdiff3

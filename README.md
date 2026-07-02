@@ -31,8 +31,9 @@ Install only some parts with tags:
 pdm run ansible-playbook install.yaml -K --tags nvim,wezterm
 ```
 
-Available tags: `brew`, `vim`, `nvim`, `gh`, `shell-color-scripts`, `tmux`,
-`fzf`, `fzf-git`, `prezto`, `git`, `wezterm`, `aerospace`, `pre-commit`.
+Available tags: `aerospace`, `brew`, `fzf`, `fzf-git`, `gh`, `git`, `krew`,
+`nvim`, `pre-commit`, `prezto`, `shell-color-scripts`, `tmux`, `vim`,
+`wezterm`, `yazi`.
 
 ## Post-install
 
