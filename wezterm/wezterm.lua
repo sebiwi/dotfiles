@@ -87,6 +87,34 @@ table.insert(config.keys, {
 	action = wezterm.action.PaneSelect({ mode = "SwapWithActive" }),
 })
 
+-- LEADER r: toggle split orientation between horizontal and vertical.
+-- Only handles the two-pane case: with more panes the target position is
+-- ambiguous, so it does nothing.
+table.insert(config.keys, {
+	key = "r",
+	mods = "LEADER",
+	action = wezterm.action_callback(function(window, pane)
+		local panes = pane:tab():panes_with_info()
+		if #panes ~= 2 then
+			return
+		end
+		local other = panes[1].pane:pane_id() == pane:pane_id() and panes[2] or panes[1]
+		-- same top offset means side by side, so restack; otherwise unstack
+		local flag = (panes[1].top == panes[2].top) and "--bottom" or "--right"
+		-- absolute path: the GUI process PATH doesn't include the wezterm CLI
+		wezterm.run_child_process({
+			wezterm.executable_dir .. "/wezterm",
+			"cli",
+			"split-pane",
+			flag,
+			"--pane-id",
+			tostring(pane:pane_id()),
+			"--move-pane-id",
+			tostring(other.pane:pane_id()),
+		})
+	end),
+})
+
 -- flash.nvim-style scrollback navigation
 local act = wezterm.action
 
