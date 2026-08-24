@@ -10,6 +10,11 @@ local wez_tmux = wezterm.plugin.require("https://github.com/sei40kr/wez-tmux")
 config.audible_bell = "Disabled"
 config.native_macos_fullscreen_mode = true
 
+-- Don't override SSH_AUTH_SOCK with wezterm's own agent proxy: its symlink
+-- goes stale after a wezterm restart/update, breaking ssh-add in old shells.
+-- Panes inherit the macOS launchd agent instead.
+config.mux_enable_ssh_agent = false
+
 --- fonts
 config.font = wezterm.font("JetBrainsMono Nerd Font")
 config.font_size = 14
