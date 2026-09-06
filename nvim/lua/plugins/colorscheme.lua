@@ -29,6 +29,13 @@ return {
         local sel = { bg = colors.base02, bold = true }
         return {
           MatchParen = { reverse = true },
+          -- lualine paints its sections itself, but statusline components that
+          -- emit a bare `%*` (trouble.nvim symbols does, between every item)
+          -- reset to StatusLine. The theme gives StatusLine a base04 bg while
+          -- the solarized lualine theme uses base02 for section c, so those
+          -- resets showed up as darker gaps in the bar. Align them.
+          StatusLine = { fg = colors.base1, bg = colors.base02 },
+          StatusLineNC = { fg = colors.base01, bg = colors.base02 },
           -- The theme leaves the float border background transparent while the
           -- body is solid (base04), which shows the terminal bg on the border
           -- row. Give the border the same solid bg so the popup edge matches.
