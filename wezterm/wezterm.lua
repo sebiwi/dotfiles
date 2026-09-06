@@ -8,6 +8,7 @@ local wez_tmux = wezterm.plugin.require("https://github.com/sei40kr/wez-tmux")
 
 --- general
 config.audible_bell = "Disabled"
+notify = "desktop"
 config.native_macos_fullscreen_mode = true
 
 -- Don't override SSH_AUTH_SOCK with wezterm's own agent proxy: its symlink
