@@ -52,6 +52,8 @@ return {
         },
         function()
           local in_git = Snacks.git.get_root() ~= nil
+          -- gh needs a GitHub remote; offline check so the dashboard stays fast
+          local has_gh_remote = in_git and vim.fn.system({ "git", "remote", "-v" }):find("github%.com") ~= nil
           local cmds = {
             {
               title = "Notifications",
@@ -66,6 +68,7 @@ return {
             },
             {
               title = "Open Issues",
+              enabled = has_gh_remote,
               cmd = "gh issue list -L 3",
               key = "i",
               action = function()
@@ -77,6 +80,7 @@ return {
             {
               icon = " ",
               title = "Open PRs",
+              enabled = has_gh_remote,
               cmd = "gh pr list -L 3",
               key = "p",
               action = function()
